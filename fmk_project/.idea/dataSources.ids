@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Django default" uuid="8b5d2012-a9dc-46a3-9aba-aaa2a1ff1c9f">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Django default2" uuid="c26edbbf-7899-4ef6-a99c-792401ce796b">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

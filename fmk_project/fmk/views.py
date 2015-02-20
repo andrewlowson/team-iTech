@@ -4,8 +4,10 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("FMK...Let's do this!<br> <a href='/fmk/about/'>About</a>")
 
+	context_dict = {'boldmessage': "FMK will be awesome...eventually."}
+        return render(request, 'fmk/index.html',context_dict)
 
 def about(request):
-    return HttpResponse("FMK...is a fun game!<br><a href='/fmk/'>Index</a>")
+
+    return render(request, 'fmk/about.html')

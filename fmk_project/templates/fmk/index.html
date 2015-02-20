@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	
+	{% load staticfiles %} <!-- New line -->
+	<head>
+		<title>F | M | K</title>
+	</head>
+
+	<body>
+		<h1> Welcome to F | M | K </h1>
+
+		<p> Content...<br>
+		 <strong>{{ boldmessage }}</strong></p>
+		 
+		<p>
+		 	<img src="{% static "images/condom.png" %}" width="10%" alt="condom picture"/><!-- New line -->
+		 	<img src="{% static "images/rings.png" %}" width="10%" alt="condom picture"/><!-- New line -->
+		 	<img src="{% static "images/berretta.png" %}"width="10%" alt="condom picture"/><!-- New line -->
+		</p>
+		 
+		<p><a href="/fmk/about/">About</a></p>
+
+	</body>
+
+</html>
