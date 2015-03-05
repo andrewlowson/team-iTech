@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Use the default Django User model
 # This provides the attributes: 
@@ -43,10 +44,10 @@ class Game(models.Model):
 	celebrity1 = models.ForeignKey(Celebrity, related_name = 'first_celeb')
 	celebrity2 = models.ForeignKey(Celebrity, related_name = 'second_celeb')
 	celebrity3 = models.ForeignKey(Celebrity, related_name = 'third_celeb')
-	date_created = models.DateField()
+	date_created = models.DateField(blank=False, default=datetime.now())
 
 	def __unicode__(self):
-		return self.game_id
+		return 'Game '+str(self.game_id)+' '+str(self.date_created)
 
 class Result(models.Model):
 	game_id = models.ForeignKey(Game)
@@ -60,5 +61,5 @@ class Result(models.Model):
 	result3 = models.CharField(max_length=1, choices = OPTIONS)
 	
 	def __unicode__(self):
-		return self.game_id + ' results'
+		return str(self.game_id) + ' results'
 

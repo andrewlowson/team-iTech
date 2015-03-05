@@ -6,9 +6,15 @@ import django
 django.setup()
 
 from fmk.models import Player, Category, Celebrity, Game, Result
+from django.contrib.auth.models import User
 from fmk_project.settings import STATIC_CELEB_IMAGES_PATH
 
 def populate():
+
+    python_player = add_player(
+        user = User.objects.get_by_natural_key('testuser')
+    )
+
     python_cat = add_category(
         name = 'Music',
         description = 'Famous celebrities from the world of music'
@@ -409,7 +415,7 @@ def populate():
         kcount = 0,
     )
 
-    python_celeb = add_celeb(
+    python_celeb1 = add_celeb(
         id = 39,
         fname = 'Amanda',
         sname = 'Holden',
@@ -419,7 +425,7 @@ def populate():
         kcount = 0,
     )
 
-    python_celeb = add_celeb(
+    python_celeb2 = add_celeb(
         id = 40,
         fname = 'Rachel',
         sname = 'Riley',
@@ -429,7 +435,7 @@ def populate():
         kcount = 0,
     )
 
-    python_celeb = add_celeb(
+    python_celeb3 = add_celeb(
         id = 41,
         fname = 'Holly',
         sname = 'Willoughby',
@@ -438,6 +444,27 @@ def populate():
         mcount = 0,
         kcount = 0,
     )
+
+    python_game = add_game(
+        id = 1,
+        player = python_player,
+        celeb1=python_celeb1,
+        celeb2=python_celeb2,
+        celeb3=python_celeb3,
+    )
+
+    python_result = add_result(
+        game_id = python_game,
+        result1 = 'F',
+        result2 = 'M',
+        result3 = 'K',
+    )
+
+def add_player(user):
+    player = Player.objects.get_or_create(
+        user=user
+    )[0]
+    return player
 
 def add_celeb(id, fname, sname, cat, fcount, mcount, kcount):
     picture_dir = str(id)+'.jpg'
@@ -450,23 +477,31 @@ def add_celeb(id, fname, sname, cat, fcount, mcount, kcount):
         fuck_count = fcount,
         marry_count = mcount,
         kill_count = kcount,
-    )
+    )[0]
     return celeb
 
-def add_game(id, creator, celeb1, celeb2, celeb3, date):
+def add_game(id, player, celeb1, celeb2, celeb3):
     game= Game.objects.get_or_create(
-        game_ID = id,
-        creator = creator,
+        game_id = id,
+        creator = player,
         celebrity1 = celeb1,
         celebrity2 = celeb2,
         celebrity3 = celeb3,
-        date_created = date,
-    )
+    )[0]
     return game
 
 def add_category(name, description):
     cat = Category.objects.get_or_create(name=name, description=description)[0]
     return cat
+
+def add_result(game_id, result1, result2, result3):
+    result = Result.objects.get_or_create(
+        game_id = game_id,
+        result1 = result1,
+        result2 = result2,
+        result3 = result3,
+    )[0]
+    return result
 
 # Execution starts here
 if __name__=='__main__':
