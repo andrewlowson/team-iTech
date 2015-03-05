@@ -25,11 +25,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Celebrity',
             fields=[
-                ('celeb_id', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
+                ('celeb_id', models.IntegerField(max_length=30, unique=True, serialize=False, primary_key=True)),
                 ('first_name', models.CharField(max_length=60)),
                 ('last_name', models.CharField(max_length=60)),
                 ('picture', models.ImageField(upload_to=b'celebrity_images', blank=True)),
-                ('categories', models.ManyToManyField(to='fmk.Category', verbose_name=b'categories')),
+                ('fuck_count', models.IntegerField(default=0)),
+                ('marry_count', models.IntegerField(default=0)),
+                ('kill_count', models.IntegerField(default=0)),
+                ('category', models.ForeignKey(verbose_name=b'categories', to='fmk.Category')),
             ],
             options={
             },
@@ -38,7 +41,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Game',
             fields=[
-                ('game_id', models.CharField(max_length=30, unique=True, serialize=False, primary_key=True)),
+                ('game_id', models.IntegerField(max_length=30, unique=True, serialize=False, primary_key=True)),
                 ('date_created', models.DateField()),
                 ('celebrity1', models.ForeignKey(related_name=b'first_celeb', to='fmk.Celebrity')),
                 ('celebrity2', models.ForeignKey(related_name=b'second_celeb', to='fmk.Celebrity')),

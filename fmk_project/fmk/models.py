@@ -25,27 +25,29 @@ class Category(models.Model):
 		return self.name
 		
 class Celebrity(models.Model):
-	celeb_id = models.CharField(max_length = 30, unique=True, primary_key=True)
+	celeb_id = models.IntegerField(max_length = 30, unique=True, primary_key=True)
 	first_name = models.CharField(max_length = 60)
-	last_name = models.CharField(max_length = 60)	
+	last_name = models.CharField(max_length = 60)
 	picture = models.ImageField(upload_to = 'celebrity_images', blank=True)
-	categories = models.ManyToManyField(Category, verbose_name='categories')
-	
-	
+	category = models.ForeignKey(Category, verbose_name='categories')
+	fuck_count = models.IntegerField(default=0)
+	marry_count = models.IntegerField(default=0)
+	kill_count = models.IntegerField(default=0)
+
 	def __unicode__(self):
-		return self.celeb_id
+		return self.first_name+' '+self.last_name
 		
 class Game(models.Model):
-	game_id = models.CharField(max_length = 30, unique = True, primary_key = True)
+	game_id = models.IntegerField(max_length = 30, unique = True, primary_key = True)
 	creator = models.ForeignKey(Player)
 	celebrity1 = models.ForeignKey(Celebrity, related_name = 'first_celeb')
 	celebrity2 = models.ForeignKey(Celebrity, related_name = 'second_celeb')
 	celebrity3 = models.ForeignKey(Celebrity, related_name = 'third_celeb')
 	date_created = models.DateField()
-	
+
 	def __unicode__(self):
 		return self.game_id
-		
+
 class Result(models.Model):
 	game_id = models.ForeignKey(Game)
 	OPTIONS = (
