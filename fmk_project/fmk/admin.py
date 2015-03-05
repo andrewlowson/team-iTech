@@ -6,9 +6,13 @@ class CategoryAdmin (admin.ModelAdmin):
 
 class CelebrityAdmin(admin.ModelAdmin):
     list_display = (
+        str('celeb_id'),
         'first_name',
         'last_name',
         'category',
+        str('fuck_count'),
+        str('marry_count'),
+        str('kill_count'),
     )
 
 class GameAdmin (admin.ModelAdmin):
