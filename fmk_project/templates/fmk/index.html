@@ -17,7 +17,40 @@
 		 	<img src="{% static "images/rings.png" %}" width="10%" alt="condom picture"/><!-- New line -->
 		 	<img src="{% static "images/berretta.png" %}"width="10%" alt="condom picture"/><!-- New line -->
 		</p>
-		 
+		
+		<h2>MOST F*CKED</h2>
+		{% if fuck_list %}
+			<ul>
+				{% for celebrity in fuck_list %}
+				<li>{{ celebrity }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No celebrities for display</p>
+		{% endif %}	
+		<br/>			
+		<h2>MOST MARRIED</h2>
+		{% if marry_list %}
+			<ul>
+				{% for celebrity in marry_list %}
+				<li>{{ celebrity }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No celebrities for display</p>	
+		{% endif %}	
+		<br/>
+		<h2>MOST KILLED</h2>
+		{% if kill_list %}
+			<ul>
+				{% for celebrity in kill_list %}
+				<li>{{ celebrity }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No celebrities for display</p>	
+		{% endif %}	
+		<br/> 
 		<p><a href="/fmk/about/">About</a></p>
 
 	</body>
