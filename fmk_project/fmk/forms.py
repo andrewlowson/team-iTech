@@ -2,7 +2,7 @@ from django import forms
 from fmk.models import Celebrity, Category, Game
 
 
-class CelebrityForm (forms.ModelForm):
+class AddCelebrityForm (forms.ModelForm):
     first_name = forms.CharField(max_length=60, help_text="Enter the first name of the celebrity.")
     last_name = forms.CharField(max_length=60, help_text="Enter the last name of the celebrity.")
     category = forms.ModelChoiceField(
@@ -15,7 +15,7 @@ class CelebrityForm (forms.ModelForm):
         fields = ('first_name', 'last_name', 'category', 'picture')
 
 
-class CategoryForm (forms.ModelForm):
+class AddCategoryForm (forms.ModelForm):
     name = forms.CharField(max_length=60, help_text="Enter the name of the category.")
     description = forms.CharField(
         widget=forms.Textarea,
@@ -28,7 +28,7 @@ class CategoryForm (forms.ModelForm):
         fields = ('name', 'description')
 
 
-class GameForm (forms.ModelForm):
+class CreateGameForm (forms.ModelForm):
     celebrity1 = forms.ModelChoiceField(
         queryset=Category.objects.all(),
         help_text="Select a celebrity."

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from fmk.models import Celebrity
+from fmk.forms import AddCategoryForm, AddCelebrityForm
 
 
 def index(request):
@@ -20,3 +21,36 @@ def index(request):
 def about(request):
 
     return render(request, 'fmk/about.html')
+
+
+def add_category (request):
+    #A HTTP POST?
+    if request.method=='POST':
+        form = AddCategoryForm(request.POST)
+
+        #is the form valid?
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print form.errors
+    else:
+        form = AddCategoryForm()
+    return render (request, 'fmk/add_category.html', {'form': form}
+    )
+
+def add_celebrity (request):
+    #A HTTP POST?
+    if request.method=='POST':
+        form = AddCelebrityForm(request.POST)
+
+        #is the form valid?
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print form.errors
+    else:
+        form = AddCelebrityForm()
+    return render (request, 'fmk/add_celebrity.html', {'form': form}
+    )
