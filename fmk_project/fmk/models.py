@@ -41,9 +41,9 @@ class Celebrity(models.Model):
 class Game(models.Model):
 	game_id = models.IntegerField(max_length = 30, unique = True, primary_key = True)
 	creator = models.ForeignKey(Player)
-	celebrity1 = models.ForeignKey(Celebrity, related_name = 'first_celeb')
-	celebrity2 = models.ForeignKey(Celebrity, related_name = 'second_celeb')
-	celebrity3 = models.ForeignKey(Celebrity, related_name = 'third_celeb')
+	celebrity1 = models.ForeignKey(Celebrity, related_name = 'first_celeb', unique=True)
+	celebrity2 = models.ForeignKey(Celebrity, related_name = 'second_celeb', unique=True)
+	celebrity3 = models.ForeignKey(Celebrity, related_name = 'third_celeb', unique=True)
 	date_created = models.DateField(blank=False, default=datetime.now())
 
 	def __unicode__(self):
