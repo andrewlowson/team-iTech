@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from fmk.models import Celebrity
-from fmk.forms import AddCategoryForm, AddCelebrityForm
+from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm
 
 
 def index(request):
@@ -21,6 +21,27 @@ def index(request):
 def about(request):
 
     return render(request, 'fmk/about.html')
+
+def sign_up(request):
+    registered = False
+    if request.method == 'POST':
+        user_form = SignUpForm(dats=request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save()
+
+            user.set_password(user.password)
+            user.save()
+
+            registered = True
+        else:
+            print user_form.errors
+    else:
+        user_form = SignUpForm()
+    return render(request,
+                  'fmk/sign_up.html',
+                  {'user_form': user_form, 'registered': registered})
+
 
 
 def add_category (request):

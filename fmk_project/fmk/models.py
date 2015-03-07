@@ -10,6 +10,7 @@ from datetime import datetime
 #	first_name
 #	last_name
 
+
 class Player(models.Model):
 	user = models.OneToOneField(User)
 	

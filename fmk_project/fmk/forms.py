@@ -1,5 +1,6 @@
 from django import forms
 from fmk.models import Celebrity, Category, Game
+from django.contrib.auth.models import User
 
 
 class AddCelebrityForm (forms.ModelForm):
@@ -13,6 +14,14 @@ class AddCelebrityForm (forms.ModelForm):
     class Meta:
         model = Celebrity
         fields = ('first_name', 'last_name', 'category', 'picture')
+
+class SignUpForm (forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
 
 
 class AddCategoryForm (forms.ModelForm):
