@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from fmk.models import Celebrity, Player
-from fmk.forms import AddCategoryForm, AddCelebrityForm, CreateGameForm, UserForm
+from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
@@ -21,6 +22,51 @@ def index(request):
 def about(request):
 
     return render(request, 'fmk/about.html')
+
+#View for creating a user account
+def sign_up(request):
+    registered = False
+    if request.method == 'POST':
+        user_form = SignUpForm(data=request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save()
+
+            user.set_password(user.password)
+            user.save()
+            Player.objects.get_or_create(user = user)[0]
+
+            registered = True
+        else:
+            print user_form.errors
+    else:
+        user_form = SignUpForm()
+    return render(request,
+                  'fmk/sign_up.html',
+                  {'user_form': user_form, 'registered': registered})
+
+#View for user sign in (login) page
+def sign_in(request):
+    if request.method=='POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/fmk/')
+            else:
+                return HttpResponse("Your account is currently disabled")
+        else:
+            print "Invalid Login Details: {0}, {1}".format(username,password)
+            return HttpResponse("Invalid Login Details Supplied")
+
+    else:
+        return render(request, 'fmk/sign_in.html', {})
+
 
 
 def add_category(request):
@@ -59,10 +105,13 @@ def add_game(request):
     # A HTTP POST?
     if request.method == 'POST':
         form = CreateGameForm(request.POST)
-        form.creator = request.user
         # is the form valid?
         if form.is_valid():
-            form.save(commit=True)
+            game = form.save(commit=False)
+            creator = request.user
+            game.creator=Player.objects.get(user=creator)
+            game.save()
+
             return index(request)
         else:
             print form.errors
@@ -71,45 +120,4 @@ def add_game(request):
     return render(request, 'fmk/create_a_game.html', {'form': form})
 
 
-def register(request):
 
-    # A boolean value for telling the template whether the registration was successful.
-    # Set to False initially. Code changes value to True when registration succeeds.
-    registered = False
-
-    # If it's a HTTP POST, we're interested in processing form data.
-    if request.method == 'POST':
-        # Attempt to grab information from the raw form information.
-        # Note that we make use of both UserForm and UserProfileForm.
-        user_form = UserForm(data=request.POST)
-
-        # If the two forms are valid...
-        if user_form.is_valid():
-            # Save the user's form data to the database.
-            user = user_form.save()
-
-            # Now we hash the password with the set_password method.
-            # Once hashed, we can update the user object.
-            user.set_password(user.password)
-            user.save()
-
-            Player.objects.get_or_create(user = user)[0]
-
-            # Update our variable to tell the template registration was successful.
-            registered = True
-
-        # Invalid form or forms - mistakes or something else?
-        # Print problems to the terminal.
-        # They'll also be shown to the user.
-        else:
-            print user_form.errors
-
-    # Not a HTTP POST, so we render our form using two ModelForm instances.
-    # These forms will be blank, ready for user input.
-    else:
-        user_form = UserForm()
-
-    # Render the template depending on the context.
-    return render(request,
-            'fmk/register.html',
-            {'user_form': user_form, 'registered': registered} )

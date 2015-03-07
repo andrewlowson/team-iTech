@@ -9,8 +9,7 @@
 	<body>
 		<h1>Create A New Game</h1>
 		
-		<form id = "create_game_form" method='post' action = ""
-		enctype="multipart/form-data">
+		<form id = "create_game_form" method='post' action = "">
 		
 			{% csrf_token %}
 			{% for hiddin in form.hidden_fields %}
