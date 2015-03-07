@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from fmk.models import Celebrity
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
@@ -22,10 +23,11 @@ def about(request):
 
     return render(request, 'fmk/about.html')
 
+#View for creating a user account
 def sign_up(request):
     registered = False
     if request.method == 'POST':
-        user_form = SignUpForm(dats=request.POST)
+        user_form = SignUpForm(data=request.POST)
 
         if user_form.is_valid():
             user = user_form.save()
@@ -41,6 +43,28 @@ def sign_up(request):
     return render(request,
                   'fmk/sign_up.html',
                   {'user_form': user_form, 'registered': registered})
+
+#View for user sign in (login) page
+def sign_in(request):
+    if request.method=='POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/fmk/')
+            else:
+                return HttpResponse("Your account is currently disabled")
+        else:
+            print "Invalid Login Details: {0}, {1}".format(username,password)
+            return HttpResponse("Invalid Login Details Supplied")
+
+    else:
+        return render(request, 'fmk/sign_in.html', {})
 
 
 
