@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-         <title>Sign In</title>
-    </head>
+	
+	{% load staticfiles %} <!-- New line -->
+	<head>
+		<title>F | M | K</title>
+	</head>
     <body>
         <h1>Please Sign In</h1>
-    <form id="login_form" method="post" action="/fmk/sign_in/"></form>
+		<form id="login_form" method="post" action="/fmk/sign_in/">
             {% csrf_token %}
             Username: <input type="text" name="username" value="" size="50" />
             <br />
             Password: <input type="password" name="password" value="" size="50" />
             <br />
 
-            <input type="submit" value="submit" />
-        </form>
+            <input type="submit" name="Submit" value="submit" />
+		</form>
 
     </body>
 </html>

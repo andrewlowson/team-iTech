@@ -1,4 +1,5 @@
 from django import forms
+from fmk.models import Celebrity, Category, Game, Player
 from fmk.models import Celebrity, Category, Game
 from django.contrib.auth.models import User
 
@@ -39,18 +40,19 @@ class AddCategoryForm (forms.ModelForm):
 
 class CreateGameForm (forms.ModelForm):
     celebrity1 = forms.ModelChoiceField(
-        queryset=Category.objects.all(),
+        queryset=Celebrity.objects.all(),
         help_text="Select a celebrity."
     )
     celebrity2 = forms.ModelChoiceField(
-        queryset=Category.objects.all(),
+        queryset=Celebrity.objects.all(),
         help_text="Select a celebrity."
     )
     celebrity3 = forms.ModelChoiceField(
-        queryset=Category.objects.all(),
+        queryset=Celebrity.objects.all(),
         help_text="Select a celebrity."
     )
 
     class Meta:
         model = Game
         fields = ('celebrity1', 'celebrity2', 'celebrity3')
+        exclude = ('creator',)

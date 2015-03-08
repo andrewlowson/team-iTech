@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	
+	{% load staticfiles %} <!-- New line -->
+	<head>
+		<title>F | M | K</title>
+	</head>
+
+	<body>
+		<h1>Create A New Game</h1>
+		
+		<form id = "create_game_form" method='post' action = "">
+		
+			{% csrf_token %}
+			{% for hiddin in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+
+			{% for field in form.visible_fields %}
+				{{ field.errors }}
+				{{ field.help_text }}
+				</br>
+				{{ field }}
+				</br>
+			{% endfor %}
+
+			<input type = "submit" name = "submit" value = "Create game" />
+		</form>	
+
+	</body>
+
+</html>

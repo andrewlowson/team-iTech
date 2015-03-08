@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from fmk.models import Celebrity
-from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm
+from fmk.models import Celebrity, Player
+from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm
 from django.contrib.auth import authenticate, login
 from operator import attrgetter, itemgetter
 
@@ -90,6 +90,7 @@ def sign_up(request):
 
             user.set_password(user.password)
             user.save()
+            Player.objects.get_or_create(user = user)[0]
 
             registered = True
         else:
@@ -129,7 +130,7 @@ def add_category(request):
     if request.method == 'POST':
         form = AddCategoryForm(request.POST)
 
-        #is the form valid?
+        # is the form valid?
         if form.is_valid():
             form.save(commit=True)
             return index(request)
@@ -137,16 +138,15 @@ def add_category(request):
             print form.errors
     else:
         form = AddCategoryForm()
-    return render(request, 'fmk/add_category.html', {'form': form}
-    )
+    return render(request, 'fmk/add_category.html', {'form': form})
 
 
 def add_celebrity(request):
-    #A HTTP POST?
+    # A HTTP POST?
     if request.method == 'POST':
         form = AddCelebrityForm(request.POST)
 
-        #is the form valid?
+        # is the form valid?
         if form.is_valid():
             form.save(commit=True)
             return index(request)
@@ -154,5 +154,23 @@ def add_celebrity(request):
             print form.errors
     else:
         form = AddCelebrityForm()
-    return render(request, 'fmk/add_celebrity.html', {'form': form}
-    )
+    return render(request, 'fmk/add_celebrity.html', {'form': form})
+
+
+def add_game(request):
+    # A HTTP POST?
+    if request.method == 'POST':
+        form = CreateGameForm(request.POST)
+        # is the form valid?
+        if form.is_valid():
+            game = form.save(commit=False)
+            creator = request.user
+            game.creator=Player.objects.get(user=creator)
+            game.save()
+
+            return index(request)
+        else:
+            print form.errors
+    else:
+        form = CreateGameForm()
+    return render(request, 'fmk/create_a_game.html', {'form': form})
