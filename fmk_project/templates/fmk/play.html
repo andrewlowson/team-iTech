@@ -7,37 +7,18 @@
     <body>
         <h1>Play</h1>
         <h2>Game of the Week</h2>
-		{% if fuck_list %}
-			<ul>
-				{% for celebrity in fuck_list %}
-				<li>{{ celebrity }}</li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<p>No celebrities for display</p>
-		{% endif %}	
-		<br/>			
-		<h2>MOST MARRIED</h2>
-		{% if marry_list %}
-			<ul>
-				{% for celebrity in marry_list %}
-				<li>{{ celebrity }}</li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<p>No celebrities for display</p>	
-		{% endif %}	
+		<p>
+            For this game choose between
+           {{ week_fuck.first_name }} {{ week_fuck.last_name }}, {{ week_marry.first_name }} {{ week_marry.last_name }}
+                and {{ week_kill.first_name }} {{ week_kill.last_name }}
+
+               <img src="{{ week_fuck.picture.url }}" width="10%" alt="week_fuck"/>
+				<img src="{{ week_marry.picture.url }}" width="10%" alt="week_marry"/>
+			    <img src="{{ week_kill.picture.url }}" width="10%" alt="week_kill"/>
+
+        </p>
 		<br/>
-		<h2>MOST KILLED</h2>
-		{% if kill_list %}
-			<ul>
-				{% for celebrity in kill_list %}
-				<li>{{ celebrity }}</li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<p>No celebrities for display</p>	
-		{% endif %}
+
         </body>
 
 </html>
