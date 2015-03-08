@@ -6,14 +6,8 @@ from django.contrib.auth import authenticate, login
 
 
 def index(request):
-    most_f_list = Celebrity.objects.order_by('-fuck_count')[:5]
-    most_m_list = Celebrity.objects.order_by('-marry_count')[:5]
-    most_k_list = Celebrity.objects.order_by('-kill_count')[:5]
     context_dict = {
-        'boldmessage': "FMK will be awesome...eventually.",
-        'fuck_list': most_f_list,
-        'marry_list': most_m_list,
-        'kill_list': most_k_list,
+        'boldmessage': "FMK will be awesome...eventually.",  
     }
 
     return render(request, 'fmk/index.html', context_dict)
@@ -22,6 +16,63 @@ def index(request):
 def about(request):
 
     return render(request, 'fmk/about.html')
+        
+def top_tables(request):
+	most_f_list = Celebrity.objects.order_by('-fuck_count')[:10]
+	most_m_list = Celebrity.objects.order_by('-marry_count')[:10]
+	most_k_list = Celebrity.objects.order_by('-kill_count')[:10]
+	context_dict = {
+		'fuck_list': most_f_list,
+		'marry_list': most_m_list,
+		'kill_list': most_k_list,
+    }
+    
+	return render(request, 'fmk/top_tables.html', context_dict)
+	
+def play(request):
+	top_fucked = Celebrity.objects.order_by('-fuck_count')[:1].get()
+	top_married = Celebrity.objects.order_by('-marry_count')[:1].get()
+	top_killed = Celebrity.objects.order_by('-kill_count')[:1].get()
+	
+	context_dict = {
+		'week_fuck': top_fucked,
+		'week_marry': top_married,
+		'week_kill': top_killed,
+	}
+	
+	return render(request, 'fmk/play.html', context_dict)
+	
+def create_game(request):
+	context_dict = {
+		'boldmessage': "JQuery magic goes here I believe.",  
+	}
+	
+	return render(request, 'fmk/create_game.html', context_dict)
+	
+def random_game(request):
+	#random_celebrity1 
+	#random_celebrity2
+	#random_celebrity3
+	
+	# Using these for now
+	top_fucked = Celebrity.objects.order_by('-fuck_count')[:1].get()
+	top_married = Celebrity.objects.order_by('-marry_count')[:1].get()
+	top_killed = Celebrity.objects.order_by('-kill_count')[:1].get()
+	context_dict = {
+		'random_celeb1': top_fucked,
+		'random_celeb2': top_married,
+		'random_celeb3': top_killed,
+	}
+	
+	return render(request, 'fmk/random_game.html', context_dict)
+	
+def user_stats(request):
+
+	context_dict = {
+        'boldmessage': "How does one retrieve the users fucked, married and killed? So many models and connections!",  
+    }
+
+    return render(request, 'fmk/index.html', context_dict)
 
 #View for creating a user account
 def sign_up(request):

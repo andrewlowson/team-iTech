@@ -52,6 +52,7 @@ class Game(models.Model):
 
 class Result(models.Model):
 	game_id = models.ForeignKey(Game)
+	player = models.ForeignKey(Player)
 	OPTIONS = (
 		('F', 'Fuck'),
 		('M', 'Marry'),
