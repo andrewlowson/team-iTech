@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-    {%  load staticfiles %}<!-- New line -->
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'fmk/base.html' %}
+
+{% load staticfiles %}
+
+
+
+{% block body_block %}
     <h1>This is our about page</h1>
 
 <h2>Tom Delonge is awesome</h2>
 <p>
     <img src="{%  static "images/tom-delonge-owns.jpeg" %}" alt="tom delonge photo"/><!-- New line -->
 </p>
-</body>
-</html>
+{% endblock%}

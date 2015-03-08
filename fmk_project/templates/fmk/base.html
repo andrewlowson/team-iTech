@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <title>
+
+        F | M | K
+        {% block title %} What will you decide? {% endblock %}
+    </title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+    
+<body>
+ <div>
+     <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="fmk/index">F | M | K</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        <li><a href="{% url 'index'%}">Play</a></li>
+          <li><a href="/fmk/create_a_game/">Create</a></li>
+        <li><a href="#">Top Charts</a></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About Us<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/fmk/about/">About</a></li>
+            <li><a href="#"></a>Contact Us</li>
+
+            <li class="divider"></li>
+            <li><a href="#">Ethics</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+          <li><a href="https://bootswatch.com/flatly/#top">Template Components</a></li>
+
+      </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Sign in</a></li>
+          <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        <ul class="navigation">
+            <li><a href="{% url 'index'%}">Play</a> </li>
+            <li><a href="{% url 'index'%}">Top Charts</a> </li>
+            <li><a href="{% url 'about' %}">About</a> </li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'index'%}">Account</a></li>
+                <li><a href="{% url 'index'%}">Sign Out</a></li>
+            {% else %}
+                <li><a href="{% url 'sign_in'%}">Sign In</a></li>
+            <li><a href="{% url 'sign_up'%}">Register </a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div>
+        {% block body_block %}
+            <!-- Content goes here... -->
+        {% endblock %}
+    </div>
+
+    <hr />
+ <footer>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-footer">
+             <ul class="nav navbar-nav">
+                <li ><a href="#">Site Map</a> </li>
+                <li ><a href="{% url 'index'%}">Top Charts</a> </li>
+                <li><a href="{% url 'about' %}">About</a> </li>
+                {% if user.is_authenticated %}
+                    <li ><a href="{% url 'index'%}">Account</a></li>
+                    <li ><a href="{% url 'index'%}">Sign Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'sign_in'%}">Sign In</a></li>
+                <li><a href="{% url 'sign_up'%}">Register </a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+ </footer>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+
+</html>

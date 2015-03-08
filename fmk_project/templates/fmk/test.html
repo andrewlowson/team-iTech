@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} {{}} {% endblock}
+
+{% block body_block %}
+<h1> Test</h1>
+<ul>
+    <li>
+        <a href="{% url 'about' %}">About</a>
+    </li>
+</ul>
+{% endblock %}
