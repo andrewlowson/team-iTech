@@ -458,6 +458,7 @@ def populate():
         result1 = 'F',
         result2 = 'M',
         result3 = 'K',
+        player = python_player,
     )
 
 def add_player(user):
@@ -494,12 +495,13 @@ def add_category(name, description):
     cat = Category.objects.get_or_create(name=name, description=description)[0]
     return cat
 
-def add_result(game_id, result1, result2, result3):
+def add_result(game_id, result1, result2, result3, player):
     result = Result.objects.get_or_create(
         game_id = game_id,
         result1 = result1,
         result2 = result2,
         result3 = result3,
+        player = player,
     )[0]
     return result
 
