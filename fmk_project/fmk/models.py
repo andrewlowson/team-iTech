@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
 from django.core.exceptions import ValidationError
 
 # Use the default Django User model
@@ -44,7 +43,7 @@ class Game(models.Model):
 	celebrity3 = models.ForeignKey(Celebrity, related_name = 'third_celeb',)
 
 	def __unicode__(self):
-		return 'Game '+str(self.id)+' '+str(self.date_created)
+		return 'Game '+str(self.id)
 
 class Result(models.Model):
 	game_name = models.ForeignKey(Game)
