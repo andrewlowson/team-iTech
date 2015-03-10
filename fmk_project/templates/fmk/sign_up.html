@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Sign Up</title>
-    </head>
-    <body>
+{% extends 'fmk/base.html' %}
+
+    {% block body_block %}
         <h1>Sign Up</h1>
 
         {%  if registered %}
@@ -25,6 +21,4 @@
     </form>
     {% endif %}
 
-
-    </body>
-</html>
+{% endblock %}
