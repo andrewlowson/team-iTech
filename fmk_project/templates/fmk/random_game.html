@@ -6,8 +6,36 @@
     </head>
     <body>
         <h1>Random Game</h1>
-		<p> Content...<br>
-		<strong>{{ boldmessage }}</strong></p>
+		
+		{% if random_celebs %}
+			<ul>
+				{% for celebrity in random_celebs %}
+				<li>{{celebrity}}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}		
+			
+		
+		<form id = "random_game_form" method='post' action = "/fmk/play/random_game/">
+		
+			{% csrf_token %}
+				{% for celebrity in random_celebs %}
+					<input type = "hidden" name = "celeb_list{{forloop.counter}}" value = {{ celebrity.celeb_id }} />
+				{% endfor %}	
+			{% for hiddin in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+
+			{% for field in form.visible_fields %}
+				<br>
+				{{ field.errors }}
+				{{ field.help_text }}
+				{{ field }}
+				</br>
+			{% endfor %}
+			
+			<input type = "submit" name = "submit" value = "Submit" />
+		</form>
         
         </body>
 

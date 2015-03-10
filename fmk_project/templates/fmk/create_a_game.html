@@ -9,17 +9,18 @@
 	<body>
 		<h1>Create A New Game</h1>
 		
-		<form id = "create_game_form" method='post' action = "">
+		<form id = "create_game_form" method='post' action = "/fmk/create_a_game/">
 		
 			{% csrf_token %}
+			
 			{% for hiddin in form.hidden_fields %}
 				{{ hidden }}
 			{% endfor %}
 
 			{% for field in form.visible_fields %}
+				<br>
 				{{ field.errors }}
 				{{ field.help_text }}
-				</br>
 				{{ field }}
 				</br>
 			{% endfor %}

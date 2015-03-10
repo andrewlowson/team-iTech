@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.core.exceptions import ValidationError
 
 # Use the default Django User model
 # This provides the attributes: 
@@ -64,4 +65,3 @@ class Result(models.Model):
 	
 	def __unicode__(self):
 		return str(self.game_id) + ' results'
-

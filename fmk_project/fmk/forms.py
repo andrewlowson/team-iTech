@@ -1,6 +1,5 @@
 from django import forms
-from fmk.models import Celebrity, Category, Game, Player
-from fmk.models import Celebrity, Category, Game
+from fmk.models import Celebrity, Category, Game, Player, Result
 from django.contrib.auth.models import User
 
 
@@ -16,13 +15,13 @@ class AddCelebrityForm (forms.ModelForm):
         model = Celebrity
         fields = ('first_name', 'last_name', 'category', 'picture')
 
+
 class SignUpForm (forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
-
 
 
 class AddCategoryForm (forms.ModelForm):
@@ -56,3 +55,44 @@ class CreateGameForm (forms.ModelForm):
         model = Game
         fields = ('celebrity1', 'celebrity2', 'celebrity3')
         exclude = ('creator',)
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        celeb1 = cleaned_data.get('celebrity1')
+        celeb2 = cleaned_data.get('celebrity2')
+        celeb3 = cleaned_data.get('celebrity3')
+        if celeb1 == celeb2 or celeb1 == celeb3 or celeb2 == celeb3:
+            raise forms.ValidationError('Each celebrity can only be selected once')
+
+
+class ResultForm (forms.ModelForm):
+
+    OPTIONS = (
+        ('F', 'Fuck'),
+        ('M', 'Marry'),
+        ('K', 'Kill'),
+    )
+
+    result1 = forms.ChoiceField(
+        choices=OPTIONS
+    )
+    result2 = forms.ChoiceField(
+        choices=OPTIONS
+    )
+    result3 = forms.ChoiceField(
+        choices=OPTIONS
+    )
+
+
+    class Meta:
+        model = Result
+        fields = ('result1', 'result2', 'result3')
+        exclude = ('game_id', 'player')
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        choice1 = cleaned_data.get('result1')
+        choice2 = cleaned_data.get('result2')
+        choice3 = cleaned_data.get('result3')
+        if choice1 == choice2 or choice1 == choice3 or choice2 == choice3:
+            raise forms.ValidationError('F,M and K can only be used once')
