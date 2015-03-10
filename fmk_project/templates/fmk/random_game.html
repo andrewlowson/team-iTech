@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Random Game</title>
-    </head>
-    <body>
+{% extends 'fmk/base.html' %}
+    {% block body_block %}
         <h1>Random Game</h1>
 		
 		{% if random_celebs %}
@@ -37,6 +32,4 @@
 			<input type = "submit" name = "submit" value = "Submit" />
 		</form>
         
-        </body>
-
-</html>
+      {% endblock %}

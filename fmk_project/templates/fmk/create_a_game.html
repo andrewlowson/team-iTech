@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
+{% extends 'fmk/base.html' %}
 	
 	{% load staticfiles %} <!-- New line -->
-	<head>
-		<title>F | M | K</title>
-	</head>
-
-	<body>
+	{% block body_block %}
 		<h1>Create A New Game</h1>
 		
 		<form id = "create_game_form" method='post' action = "/fmk/create_a_game/">
@@ -28,6 +23,5 @@
 			<input type = "submit" name = "submit" value = "Create game" />
 		</form>	
 
-	</body>
 
-</html>
+{% endblock %}

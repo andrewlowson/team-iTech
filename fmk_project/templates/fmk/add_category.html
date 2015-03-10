@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-	
-	{% load staticfiles %} <!-- New line -->
-	<head>
-		<title>F | M | K</title>
-	</head>
-
-	<body>
+{% extends 'fmk/base.html' %}
+    {% block body_block %}
 		<h1>Add New Celebrity Category</h1>
 		
 		<form id = "add_category_form" method='post' action = "">
@@ -27,6 +20,4 @@
 			<input type = "submit" name = "submit" value = "Create category" />
 		</form>	
 
-	</body>
-
-</html>
+	{% endblock %}

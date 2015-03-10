@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Top Tables</title>
-    </head>
-    <body>
+{% extends 'fmk/base.html' %}
+
+    {% block body_block %}
+
         <h1>Top Tables</h1>
         
         <h2>MOST F*CKED</h2>
@@ -38,7 +35,6 @@
 			</ul>
 		{% else %}
 			<p>No celebrities for display</p>	
-		{% endif %}
-		</body>
 
-</html>
+        {% endif %}
+    {% endblock %}

@@ -7,14 +7,13 @@ from django.contrib.auth import authenticate, login
 
 def index(request):
     context_dict = {
-        'boldmessage': "FMK will be awesome...eventually.",  
+        'boldmessage': "FMK will be awesome...eventually.",
     }
 
     return render(request, 'fmk/index.html', context_dict)
 
 
 def about(request):
-
     return render(request, 'fmk/about.html')
 
 
@@ -26,7 +25,9 @@ def top_tables(request):
         'fuck_list': most_f_list,
         'marry_list': most_m_list,
         'kill_list': most_k_list,
+
         }
+
     return render(request, 'fmk/top_tables.html', context_dict)
 
 
@@ -56,7 +57,6 @@ def random_game(request):
     # random_celebrity1
     # random_celebrity2
     # random_celebrity3
-
     # Using these for now
     top_fucked = Celebrity.objects.order_by('-fuck_count')[:1].get()
     top_married = Celebrity.objects.order_by('-marry_count')[:1].get()
@@ -70,13 +70,11 @@ def random_game(request):
     return render(request, 'fmk/random_game.html', context_dict)
 
 
-def user_stats(request):
-
-    context_dict = {
-        'boldmessage': "How does one retrieve the users fucked, married and killed? So many models and connections!",
-        }
-
-    return render(request, 'fmk/index.html', context_dict)
+# def user_stats(request):
+#     context_dict = {
+#         'boldmessage': "How does one retrieve the users fucked, married and killed? So many models and connections!",
+#     }
+# return render(request, 'fmk/index.html', context_dict)
 
 
 # View for creating a user account
@@ -197,7 +195,8 @@ def random_game(request):
                 )[0]
                 game.save()
                 return index(request)
-            else: return index(request)
+            else:
+                return index(request)
         else:
             print form.errors
     else:

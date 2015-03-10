@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Play</title>
-    </head>
-    <body>
+{% extends 'fmk/base.html' %}
+{% block body_block %}
         <h1>Play</h1>
         <h2>Game of the Week</h2>
 		{% if fuck_list %}
@@ -38,6 +33,4 @@
 		{% else %}
 			<p>No celebrities for display</p>	
 		{% endif %}
-        </body>
-
-</html>
+     {% endblock %}
