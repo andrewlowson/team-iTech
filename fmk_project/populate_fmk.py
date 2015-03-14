@@ -11,8 +11,14 @@ from fmk_project.settings import STATIC_CELEB_IMAGES_PATH
 
 def populate():
 
+    python_user = User.objects.create_user(
+        'testuser',
+        'testuser@gmail.com',
+        'testpass',
+    )
+
     python_player = add_player(
-        user = User.objects.get_by_natural_key('testuser')
+        user = python_user
     )
 
     python_cat = add_category(
@@ -21,77 +27,69 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 1,
         fname = 'Kanye',
         sname = 'West',
         cat = python_cat,
-        fcount = 0,
-        mcount = 0,
-        kcount = 0,
+        fcount = 10,
+        mcount = 20,
+        kcount = 100,
     )
 
     python_celeb = add_celeb(
-        id = 2,
         fname = 'Beyonce',
         sname = 'Knowles',
         cat = python_cat,
-        fcount = 0,
-        mcount = 0,
-        kcount = 0,
+        fcount = 30,
+        mcount = 50,
+        kcount = 4,
     )
 
     python_celeb = add_celeb(
-        id = 3,
         fname = 'Taylor',
         sname = 'Swift',
         cat = python_cat,
-        fcount = 0,
-        mcount = 0,
-        kcount = 0,
+        fcount = 50,
+        mcount = 70,
+        kcount = 10,
     )
 
     python_celeb = add_celeb(
-        id = 4,
         fname = 'Tom',
         sname = 'Delonge',
         cat = python_cat,
-        fcount = 0,
-        mcount = 0,
-        kcount = 0,
+        fcount = 20,
+        mcount = 40,
+        kcount = 1,
     )
 
     python_celeb = add_celeb(
-        id = 5,
         fname = 'Justin',
         sname = 'Bieber',
         cat = python_cat,
-        fcount = 0,
-        mcount = 0,
-        kcount = 0,
+        fcount = 3,
+        mcount = 10,
+        kcount = 70,
     )
 
     python_celeb = add_celeb(
-        id = 6,
         fname = 'Britney',
         sname = 'Spears',
         cat = python_cat,
-        fcount = 0,
-        mcount = 0,
-        kcount = 0,
+        fcount = 40,
+        mcount = 30,
+        kcount = 50,
     )
 
     python_celeb = add_celeb(
-        id = 7,
         fname = 'Lady',
         sname = 'Gaga',
         cat = python_cat,
-        fcount = 0,
-        mcount = 0,
-        kcount = 0,
+        fcount = 40,
+        mcount = 5,
+        kcount = 55,
     )
 
     python_celeb = add_celeb(
-        id = 8,
         fname = 'Katy',
         sname = 'Perry',
         cat = python_cat,
@@ -101,7 +99,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 9,
         fname = 'Miley',
         sname = 'Cyrus',
         cat = python_cat,
@@ -116,7 +113,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 10,
         fname = 'Leonardo',
         sname = 'DiCaprio',
         cat = python_cat,
@@ -126,7 +122,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 11,
         fname = 'Robert',
         sname = 'Downey Jr.',
         cat = python_cat,
@@ -136,7 +131,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 12,
         fname = 'Tom',
         sname = 'Cruise',
         cat = python_cat,
@@ -146,7 +140,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 13,
         fname = 'Johnny',
         sname = 'Depp',
         cat = python_cat,
@@ -156,7 +149,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 14,
         fname = 'George',
         sname = 'Clooney',
         cat = python_cat,
@@ -166,7 +158,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 15,
         fname = 'Brad',
         sname = 'Pitt',
         cat = python_cat,
@@ -176,7 +167,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 16,
         fname = 'Jennifer',
         sname = 'Lawrence',
         cat = python_cat,
@@ -186,7 +176,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 17,
         fname = 'Emma',
         sname = 'Stone',
         cat = python_cat,
@@ -196,7 +185,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 18,
         fname = 'Kristen',
         sname = 'Stewart',
         cat = python_cat,
@@ -206,7 +194,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 19,
         fname = 'Anne',
         sname = 'Hathaway',
         cat = python_cat,
@@ -216,7 +203,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 20,
         fname = 'Sandra',
         sname = 'Bullock',
         cat = python_cat,
@@ -231,7 +217,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 21,
         fname = 'Barack',
         sname = 'Obama',
         cat = python_cat,
@@ -241,7 +226,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 22,
         fname = 'Winston',
         sname = 'Churchill.',
         cat = python_cat,
@@ -251,7 +235,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 23,
         fname = 'Adolf',
         sname = 'Hitler',
         cat = python_cat,
@@ -261,7 +244,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 24,
         fname = 'Bill',
         sname = 'Clinton',
         cat = python_cat,
@@ -271,7 +253,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 25,
         fname = 'Margaret',
         sname = 'Thatcher',
         cat = python_cat,
@@ -281,7 +262,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 26,
         fname = 'Mahatma',
         sname = 'Gandhi',
         cat = python_cat,
@@ -291,7 +271,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 27,
         fname = 'Hilary',
         sname = 'Clinton',
         cat = python_cat,
@@ -301,7 +280,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 28,
         fname = 'Sarah',
         sname = 'Palin',
         cat = python_cat,
@@ -311,7 +289,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 29,
         fname = 'Angela',
         sname = 'Merkel',
         cat = python_cat,
@@ -321,7 +298,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 30,
         fname = 'Fidel',
         sname = 'Castro',
         cat = python_cat,
@@ -331,7 +307,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 31,
         fname = 'David',
         sname = 'Cameron',
         cat = python_cat,
@@ -346,7 +321,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 32,
         fname = 'Idris',
         sname = 'Elba',
         cat = python_cat,
@@ -356,7 +330,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 33,
         fname = 'Andrew',
         sname = 'Lincoln',
         cat = python_cat,
@@ -366,7 +339,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 34,
         fname = 'Hugh',
         sname = 'Laurie',
         cat = python_cat,
@@ -376,7 +348,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 35,
         fname = 'Lena',
         sname = 'Headey',
         cat = python_cat,
@@ -386,7 +357,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 36,
         fname = 'Cat',
         sname = 'Deeley',
         cat = python_cat,
@@ -396,7 +366,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 37,
         fname = 'Big',
         sname = 'Bird',
         cat = python_cat,
@@ -406,7 +375,6 @@ def populate():
     )
 
     python_celeb = add_celeb(
-        id = 38,
         fname = 'Susanna',
         sname = 'Reid',
         cat = python_cat,
@@ -416,7 +384,6 @@ def populate():
     )
 
     python_celeb1 = add_celeb(
-        id = 39,
         fname = 'Amanda',
         sname = 'Holden',
         cat = python_cat,
@@ -426,7 +393,6 @@ def populate():
     )
 
     python_celeb2 = add_celeb(
-        id = 40,
         fname = 'Rachel',
         sname = 'Riley',
         cat = python_cat,
@@ -436,7 +402,6 @@ def populate():
     )
 
     python_celeb3 = add_celeb(
-        id = 41,
         fname = 'Holly',
         sname = 'Willoughby',
         cat = python_cat,
@@ -446,19 +411,19 @@ def populate():
     )
 
     python_game = add_game(
-        id = 1,
-        player = python_player,
         celeb1=python_celeb1,
         celeb2=python_celeb2,
         celeb3=python_celeb3,
     )
 
     python_result = add_result(
-        game_id = python_game,
+        game = python_game,
+        player = python_player,
         result1 = 'F',
         result2 = 'M',
         result3 = 'K',
     )
+
 
 def add_player(user):
     player = Player.objects.get_or_create(
@@ -466,10 +431,9 @@ def add_player(user):
     )[0]
     return player
 
-def add_celeb(id, fname, sname, cat, fcount, mcount, kcount):
-    picture_dir = str(id)+'.jpg'
+def add_celeb(fname, sname, cat, fcount, mcount, kcount):
+    picture_dir = fname+sname+'.jpg'
     celeb = Celebrity.objects.get_or_create(
-        celeb_id = id,
         first_name=fname,
         last_name=sname,
         category = cat,
@@ -480,10 +444,8 @@ def add_celeb(id, fname, sname, cat, fcount, mcount, kcount):
     )[0]
     return celeb
 
-def add_game(id, player, celeb1, celeb2, celeb3):
+def add_game(celeb1, celeb2, celeb3):
     game= Game.objects.get_or_create(
-        game_id = id,
-        creator = player,
         celebrity1 = celeb1,
         celebrity2 = celeb2,
         celebrity3 = celeb3,
@@ -491,12 +453,16 @@ def add_game(id, player, celeb1, celeb2, celeb3):
     return game
 
 def add_category(name, description):
-    cat = Category.objects.get_or_create(name=name, description=description)[0]
+    cat = Category.objects.get_or_create(
+        name = name,
+        description = description
+    )[0]
     return cat
 
-def add_result(game_id, result1, result2, result3):
+def add_result(game, player, result1, result2, result3):
     result = Result.objects.get_or_create(
-        game_id = game_id,
+        game_name = game,
+        player = player,
         result1 = result1,
         result2 = result2,
         result3 = result3,
