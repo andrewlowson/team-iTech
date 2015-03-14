@@ -16,6 +16,9 @@ def index(request):
 def about(request):
     return render(request, 'fmk/about.html')
 
+def contact_us(request):
+    return render(request, 'fmk/contact_us.html')
+
 
 def top_tables(request):
     most_f_list = Celebrity.objects.order_by('-fuck_count')[:10]
@@ -43,14 +46,6 @@ def play(request):
     }
 
     return render(request, 'fmk/play.html', context_dict)
-
-
-def create_game(request):
-    context_dict = {
-        'boldmessage': "JQuery magic goes here I believe.",
-    }
-
-    return render(request, 'fmk/create_game.html', context_dict)
 
 
 def random_game(request):
