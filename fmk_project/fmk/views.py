@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from fmk.models import Celebrity, Player, Game
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
 from django.contrib.auth import authenticate, login
+import random
 
 
 def index(request):
@@ -34,35 +35,55 @@ def top_tables(request):
     return render(request, 'fmk/top_tables.html', context_dict)
 
 
-def play(request):
-    top_fucked = Celebrity.objects.order_by('-fuck_count')[:1].get()
-    top_married = Celebrity.objects.order_by('-marry_count')[:1].get()
-    top_killed = Celebrity.objects.order_by('-kill_count')[:1].get()
-
-    context_dict = {
-        'week_fuck': top_fucked,
-        'week_marry': top_married,
-        'week_kill': top_killed,
-    }
-
-    return render(request, 'fmk/play.html', context_dict)
-
-
-def random_game(request):
-    # random_celebrity1
-    # random_celebrity2
-    # random_celebrity3
-    # Using these for now
-    top_fucked = Celebrity.objects.order_by('-fuck_count')[:1].get()
-    top_married = Celebrity.objects.order_by('-marry_count')[:1].get()
-    top_killed = Celebrity.objects.order_by('-kill_count')[:1].get()
-    context_dict = {
-        'random_celeb1': top_fucked,
-        'random_celeb2': top_married,
-        'random_celeb3': top_killed,
-    }
-
-    return render(request, 'fmk/random_game.html', context_dict)
+def playgame(request, gameID):
+    context_dict = {'game':[], 'stats':[], 'celebrities':[], 'form':[]}
+    game = Game.objects.get(id = gameID)
+    context_dict['game'].append(game)
+    celeb_id_list = [game.celebrity1, game.celebrity2, game.celebrity3]
+    if request.method == 'POST':
+        result_form = ResultForm(data=request.POST)
+        if result_form.is_valid():
+            result = result_form.save(commit=False)
+            result.player = Player.objects.get(user = request.user)
+            result.game_name = game
+            result.save()
+            result_list = [result.result1, result.result2, result.result3]
+            stats_list = []
+            for index in range(0, 3):
+                celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
+                numberGames = celebrity.num_results+1
+                celebrity.num_results = numberGames
+                if result_list[index]=='F':
+                    fcount = celebrity.fuck_count
+                    newFCount = fcount+1
+                    celebrity.fuck_count = newFCount
+                    print newFCount
+                    celebrity.save()
+                    print round(newFCount/numberGames*100, 2)
+                    context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
+                elif result_list[index]=='M':
+                    mcount = celebrity.marry_count
+                    newMCount = mcount+1
+                    celebrity.marry_count=newMCount
+                    print newMCount
+                    print round(newMCount/numberGames*100, 2)
+                    celebrity.save()
+                    context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
+                elif result_list[index]=='K':
+                    kcount = celebrity.kill_count
+                    newKCount = kcount+1
+                    celebrity.kill_count=newKCount
+                    print newKCount
+                    print round(newKCount/numberGames*100, 2)
+                    celebrity.save()
+                    context_dict['stats'].append("{0:.2f}".format(round(float(newKCount)/numberGames*100, 2)))
+                context_dict['celebrities'].append(celebrity)
+        else:
+            print result_form.errors
+    else:
+        resultForm = ResultForm()
+    context_dict['form'].append(result_form)
+    return render(request, 'fmk/playgame.html', context_dict)
 
 
 # def user_stats(request):
@@ -137,16 +158,9 @@ def add_category(request):
 def add_celebrity(request):
     # A HTTP POST?
     if request.method == 'POST':
-        form = AddCelebrityForm(request.POST)
-
-        # is the form valid?
+        form = AddCelebrityForm(request.POST, request.FILES)
         if form.is_valid():
-            celebrity = form.save(commit=False)
-            if 'picture' in request.FILES:
-                image= request.FILES['picture']
-                celebrity.picture = form.cleaned_data['image']
-            celebrity.save()
-            return index(request)
+            form.save()
         else:
             print form.errors
     else:
@@ -170,11 +184,19 @@ def add_game(request):
 
 
 def random_game(request):
-
     form = ResultForm()
-    celeb_list = Celebrity.objects.order_by('?')[:3]
+    celeb_list = []
+    while (len(celeb_list)<3):
+        random_idx = random.randint(0, Celebrity.objects.count()-1)
+        celeb = Celebrity.objects.all()[random_idx]
+        if celeb not in celeb_list:
+            celeb_list.append(celeb)
+    game = Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])[0]
+    print game.id
     context_dict = {
         'random_celebs': celeb_list,
-        'form': form
+        'form': form,
+        'game': game
     }
+    Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)

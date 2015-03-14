@@ -33,6 +33,7 @@ def populate():
         fcount = 10,
         mcount = 20,
         kcount = 100,
+        numResults = 130
     )
 
     python_celeb = add_celeb(
@@ -42,6 +43,7 @@ def populate():
         fcount = 30,
         mcount = 50,
         kcount = 4,
+        numResults = 84
     )
 
     python_celeb = add_celeb(
@@ -51,6 +53,7 @@ def populate():
         fcount = 50,
         mcount = 70,
         kcount = 10,
+        numResults = 130
     )
 
     python_celeb = add_celeb(
@@ -60,6 +63,7 @@ def populate():
         fcount = 20,
         mcount = 40,
         kcount = 1,
+        numResults = 61
     )
 
     python_celeb = add_celeb(
@@ -69,6 +73,7 @@ def populate():
         fcount = 3,
         mcount = 10,
         kcount = 70,
+        numResults = 83
     )
 
     python_celeb = add_celeb(
@@ -78,6 +83,7 @@ def populate():
         fcount = 40,
         mcount = 30,
         kcount = 50,
+        numResults = 120
     )
 
     python_celeb = add_celeb(
@@ -87,6 +93,7 @@ def populate():
         fcount = 40,
         mcount = 5,
         kcount = 55,
+        numResults = 100
     )
 
     python_celeb = add_celeb(
@@ -96,6 +103,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -105,6 +113,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_cat = add_category(
@@ -119,6 +128,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -128,6 +138,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -137,6 +148,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -146,6 +158,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -155,6 +168,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -164,6 +178,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -173,6 +188,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -182,6 +198,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -191,6 +208,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -200,6 +218,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -209,6 +228,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_cat = add_category(
@@ -223,6 +243,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -232,6 +253,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -241,6 +263,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -250,6 +273,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -259,6 +283,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -268,6 +293,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -277,6 +303,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -286,6 +313,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -295,6 +323,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -304,6 +333,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -313,6 +343,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_cat = add_category(
@@ -327,6 +358,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -336,6 +368,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -345,6 +378,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -354,6 +388,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -363,6 +398,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -372,6 +408,7 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb = add_celeb(
@@ -381,15 +418,17 @@ def populate():
         fcount = 0,
         mcount = 0,
         kcount = 0,
+        numResults = 0
     )
 
     python_celeb1 = add_celeb(
         fname = 'Amanda',
         sname = 'Holden',
         cat = python_cat,
-        fcount = 0,
+        fcount = 1,
         mcount = 0,
         kcount = 0,
+        numResults = 1
     )
 
     python_celeb2 = add_celeb(
@@ -397,8 +436,9 @@ def populate():
         sname = 'Riley',
         cat = python_cat,
         fcount = 0,
-        mcount = 0,
+        mcount = 1,
         kcount = 0,
+        numResults = 1
     )
 
     python_celeb3 = add_celeb(
@@ -407,7 +447,8 @@ def populate():
         cat = python_cat,
         fcount = 0,
         mcount = 0,
-        kcount = 0,
+        kcount = 1,
+        numResults = 1
     )
 
     python_game = add_game(
@@ -431,7 +472,7 @@ def add_player(user):
     )[0]
     return player
 
-def add_celeb(fname, sname, cat, fcount, mcount, kcount):
+def add_celeb(fname, sname, cat, fcount, mcount, kcount, numResults):
     picture_name = fname+sname+'.jpg'
     celeb = Celebrity.objects.get_or_create(
         first_name=fname,
@@ -440,7 +481,8 @@ def add_celeb(fname, sname, cat, fcount, mcount, kcount):
         fuck_count = fcount,
         marry_count = mcount,
         kill_count = kcount,
-        picture = os.path.join(MEDIA_CELEB_IMAGES_PATH, picture_name),
+        picture = os.path.join('FMK_Celebrity_Thumbs', picture_name),
+        num_results = numResults
     )[0]
 
     return celeb

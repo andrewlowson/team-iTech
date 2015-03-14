@@ -33,6 +33,7 @@ class Celebrity(models.Model):
 	fuck_count = models.IntegerField(default=0)
 	marry_count = models.IntegerField(default=0)
 	kill_count = models.IntegerField(default=0)
+	num_results = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return self.first_name+' '+self.last_name
@@ -56,6 +57,6 @@ class Result(models.Model):
 	result1 = models.CharField(max_length=1, choices = OPTIONS)
 	result2 = models.CharField(max_length=1, choices = OPTIONS)
 	result3 = models.CharField(max_length=1, choices = OPTIONS)
-	
+
 	def __unicode__(self):
 		return str(self.game_name) + ' results'

@@ -12,6 +12,7 @@ class CelebrityAdmin(admin.ModelAdmin):
         str('fuck_count'),
         str('marry_count'),
         str('kill_count'),
+        str('num_results'),
         'picture',
     )
 
