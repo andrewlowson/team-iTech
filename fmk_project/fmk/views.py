@@ -178,3 +178,8 @@ def random_game(request):
         'form': form
     }
     return render(request, 'fmk/random_game.html', context_dict)
+
+
+def stolen(request):
+
+    return render(request, 'fmk/stolen.html')

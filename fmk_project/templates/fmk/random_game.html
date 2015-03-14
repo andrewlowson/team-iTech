@@ -1,18 +1,69 @@
 {% extends 'fmk/base.html' %}
+    {% load staticfiles %}
     {% block body_block %}
         <h1>Random Game</h1>
 		
 		{% if random_celebs %}
-			<ul>
+
 				{% for celebrity in random_celebs %}
-				<li>{{celebrity}}</li>
+				{{celebrity}}
 				{% endfor %}
-			</ul>
+
 		{% endif %}		
-			
-		
+	
+<div id="spinner" >
+<div style="display:none" id="container">
+    <div id="nav">
+    	<a href="#"><img id="nav-logo" src="http://www.smkgame.com/adland/images/logo-header.png" width="603" height="38" alt="Shag Marry Kill" /></a>
+    </div>
+    <div id="content" >	
+		<div class="person" id="person1">
+			<div class="name">Kanye West</div>
+
+
+		</div>
+		<div class="person" id="person2">
+			<div class="name">Tom Delonge</div>
+
+
+		</div>
+					
+				
+<div class="person" id="person3" >
+  <div class="name">Big Bird</div>
+
+				<div class="photoContainer">
+					<div class="photoCard">
+						<div class="photoFront">
+							<div class="photoFrontImage" ><div class="photoFrontImageInner" ><img src="{% media 'FMK_Celebrity_Thumbs/1.jpg'}" alt="big bird" /></div></div>
+							<div class="overlay" id="overlay1" ><img src="{% static 'images/condom.png'%}" alt="" /></div>
+							<div class="overlay" id="overlay2" ><img src="{% static 'images/rings.png'%}" alt="" /></div>
+							<div class="overlay" id="overlay3" ><img src="{% static 'images/berretta.png'%}" alt="" /></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="sums">
+					<div class="sum" id="sum1" ><span id="sumValue1">182</span><br /><span>Fuck</span></div>
+					<div class="sum" id="sum2" ><span id="sumValue2">44</span><br /><span>MARRY</span></div>
+					<div class="sum" id="sum3" ><span id="sumValue3">152</span><br /><span>KILL</span></div>
+				</div>
+				<div class="icon" id="icon1" >
+					<img src="{% static 'images/condom.png'%}" alt="fuck" />
+					<div class="word shag" >Fuck</div>
+				</div>
+				<div class="icon" id="icon2" >
+					<img src="{% static 'images/rings.png'%}" alt="marry" />
+					<div class="word marry" >Marry</div>
+				</div>
+				<div class="icon" id="icon3" >
+					<img src="{% static 'images/berretta.png'%}" alt="kill" />
+		<div class="word kill" >KILL</div>
+	</div>
+</div>
+</div></div></div>
 		<form id = "random_game_form" method='post' action = "/fmk/play/random_game/">
-		
+
 			{% csrf_token %}
 				{% for celebrity in random_celebs %}
 					<input type = "hidden" name = "celeb_list{{forloop.counter}}" value = {{ celebrity.celeb_id }} />
