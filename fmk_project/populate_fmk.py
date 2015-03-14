@@ -7,7 +7,7 @@ django.setup()
 
 from fmk.models import Player, Category, Celebrity, Game, Result
 from django.contrib.auth.models import User
-from fmk_project.settings import STATIC_CELEB_IMAGES_PATH
+from fmk_project.settings import MEDIA_CELEB_IMAGES_PATH
 
 def populate():
 
@@ -432,16 +432,17 @@ def add_player(user):
     return player
 
 def add_celeb(fname, sname, cat, fcount, mcount, kcount):
-    picture_dir = fname+sname+'.jpg'
+    picture_name = fname+sname+'.jpg'
     celeb = Celebrity.objects.get_or_create(
         first_name=fname,
         last_name=sname,
         category = cat,
-        picture= os.path.join(STATIC_CELEB_IMAGES_PATH, picture_dir),
         fuck_count = fcount,
         marry_count = mcount,
         kill_count = kcount,
+        picture = os.path.join(MEDIA_CELEB_IMAGES_PATH, picture_name),
     )[0]
+
     return celeb
 
 def add_game(celeb1, celeb2, celeb3):

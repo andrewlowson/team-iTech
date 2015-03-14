@@ -54,7 +54,6 @@ class CreateGameForm (forms.ModelForm):
     class Meta:
         model = Game
         fields = ('celebrity1', 'celebrity2', 'celebrity3')
-        exclude = ('creator',)
 
     def clean(self):
         cleaned_data = self.cleaned_data

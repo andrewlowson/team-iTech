@@ -141,7 +141,11 @@ def add_celebrity(request):
 
         # is the form valid?
         if form.is_valid():
-            form.save(commit=True)
+            celebrity = form.save(commit=False)
+            if 'picture' in request.FILES:
+                image= request.FILES['picture']
+                celebrity.picture = form.cleaned_data['image']
+            celebrity.save()
             return index(request)
         else:
             print form.errors
@@ -156,11 +160,7 @@ def add_game(request):
         form = CreateGameForm(request.POST)
         # is the form valid?
         if form.is_valid():
-            game = form.save(commit=False)
-            creator = request.user
-            game.creator = Player.objects.get(user=creator)
-            game.save()
-
+            game = form.save(commit=True)
             return index(request)
         else:
             print form.errors
@@ -170,35 +170,11 @@ def add_game(request):
 
 
 def random_game(request):
-    # A HTTP POST?
-    context_dict = {}
-    if request.method == 'POST':
-        form = ResultForm(request.POST)
-        if form.is_valid():
-            game=form.save(commit=False)
-            # For random games only scores of authorised users are stored.
-            if request.user.is_authenticated():
-                game.player = Player.objects.get(user=request.user)
-                celeb1 = Celebrity.objects.get(celeb_id=request.POST.get("celeb_list1"))
-                celeb2 = Celebrity.objects.get(celeb_id=request.POST.get("celeb_list2"))
-                celeb3 = Celebrity.objects.get(celeb_id=request.POST.get("celeb_list3"))
-                game.game_id = Game.objects.get_or_create(
-                    creator=game.player,
-                    celebrity1=celeb1,
-                    celebrity2=celeb2,
-                    celebrity3=celeb3,
-                )[0]
-                game.save()
-                return index(request)
-            else:
-                return index(request)
-        else:
-            print form.errors
-    else:
-        form = ResultForm()
-        celeb_list = Celebrity.objects.order_by('?')[:3]
-        context_dict = {
-            'random_celebs': celeb_list,
-            'form': form
-        }
+
+    form = ResultForm()
+    celeb_list = Celebrity.objects.order_by('?')[:3]
+    context_dict = {
+        'random_celebs': celeb_list,
+        'form': form
+    }
     return render(request, 'fmk/random_game.html', context_dict)
