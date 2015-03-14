@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^fmk/', include('fmk.urls')),
+    url(r'^$', include('fmk.urls')),
 )
 
 if settings.DEBUG:

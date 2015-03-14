@@ -200,3 +200,8 @@ def random_game(request):
     }
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)
+
+
+def stolen(request):
+
+    return render(request, 'fmk/stolen.html')

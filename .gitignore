@@ -23,6 +23,7 @@ var/
 *.egg
 fmk_project/*.idea/
 fmk_project/db.sqlite3
+db.sqlite3
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
