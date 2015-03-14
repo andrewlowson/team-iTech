@@ -3,13 +3,26 @@
 	{% load staticfiles %} <!-- New line -->
 	{% block body_block %}
         <h1>Please Sign In</h1>
-		<form id="login_form" method="post" action="/fmk/sign_in/">
+		<form class="form-horizontal" id="login_form" method="post" action="/fmk/sign_in/">
+             <fieldset>
             {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
-
-            <input type="submit" name="Submit" value="submit" />
+            <label for="username" class="col-lg-2 control-label">Username</label>
+            <div class="col-lg-6">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" value=""/>
+            </div>
+           <br>
+           <br>
+           <br>
+            <label for="password" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-6">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value=""/>
+            </div>
+              <br>
+           <br>
+           <br>
+                 <div class="col-lg-10">
+            <input type="submit" class="col-lg-2 btn btn-primary" name="Submit" value="Submit" />
+                     </div>
+             </fieldset>
 		</form>
 {% endblock %}
