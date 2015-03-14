@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Celebrity',
             fields=[
-                ('celeb_id', models.IntegerField(max_length=30, unique=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('first_name', models.CharField(max_length=60)),
                 ('last_name', models.CharField(max_length=60)),
                 ('picture', models.ImageField(upload_to=b'celebrity_images', blank=True)),
@@ -41,8 +41,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Game',
             fields=[
-                ('game_id', models.IntegerField(max_length=30, unique=True, serialize=False, primary_key=True)),
-                ('date_created', models.DateField()),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('celebrity1', models.ForeignKey(related_name=b'first_celeb', to='fmk.Celebrity')),
                 ('celebrity2', models.ForeignKey(related_name=b'second_celeb', to='fmk.Celebrity')),
                 ('celebrity3', models.ForeignKey(related_name=b'third_celeb', to='fmk.Celebrity')),
@@ -68,16 +67,11 @@ class Migration(migrations.Migration):
                 ('result1', models.CharField(max_length=1, choices=[(b'F', b'Fuck'), (b'M', b'Marry'), (b'K', b'Kill')])),
                 ('result2', models.CharField(max_length=1, choices=[(b'F', b'Fuck'), (b'M', b'Marry'), (b'K', b'Kill')])),
                 ('result3', models.CharField(max_length=1, choices=[(b'F', b'Fuck'), (b'M', b'Marry'), (b'K', b'Kill')])),
-                ('game_id', models.ForeignKey(to='fmk.Game')),
+                ('game_name', models.ForeignKey(to='fmk.Game')),
+                ('player', models.ForeignKey(to='fmk.Player')),
             ],
             options={
             },
             bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='game',
-            name='creator',
-            field=models.ForeignKey(to='fmk.Player'),
-            preserve_default=True,
         ),
     ]

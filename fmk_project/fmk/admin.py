@@ -6,7 +6,6 @@ class CategoryAdmin (admin.ModelAdmin):
 
 class CelebrityAdmin(admin.ModelAdmin):
     list_display = (
-        str('celeb_id'),
         'first_name',
         'last_name',
         'category',
@@ -17,17 +16,15 @@ class CelebrityAdmin(admin.ModelAdmin):
 
 class GameAdmin (admin.ModelAdmin):
     list_display = (
-        'game_id',
-        'creator',
         'celebrity1',
         'celebrity2',
         'celebrity3',
-        'date_created',
     )
 
 class ResultAdmin (admin.ModelAdmin):
     list_display = (
-        'game_id',
+        'game_name',
+        'player',
         'result1',
         'result2',
         'result3',
