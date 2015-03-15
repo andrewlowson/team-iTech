@@ -196,7 +196,8 @@ def random_game(request):
     context_dict = {
         'random_celebs': celeb_list,
         'form': form,
-        'game': game
+        'game': game,
+        'range': range(3)
     }
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)

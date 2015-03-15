@@ -309,7 +309,7 @@ h2 {
 .home .people #person3  {
 }
 .home .people .person .name {
-	background-color:#58595B;
+	background-color: #dfe0e2;
 	-webkit-border-top-left-radius: 12px;
 	-webkit-border-top-right-radius: 12px;
 	-moz-border-radius-topleft: 12px;
@@ -423,10 +423,10 @@ h2 {
          -o-transition:all 0.2s ease-in-out;
             transition:all 0.2s ease-in-out;
 }
-.photoCard .shrink {
-	height:172px;
-	overflow: hidden;
-}
+/*.photoCard .shrink {*/
+	/*height:172px;*/
+	/*overflow: hidden;*/
+/*}*/
 .photoCard .photoBack {
 	position: absolute;
 	width:250px;
