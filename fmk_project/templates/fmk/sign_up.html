@@ -15,14 +15,29 @@
 
             {% csrf_token %}
 
-    {{ user_form.as_p }}
+    <label for="username" class="col-lg-2 control-label">Username</label>
+
+ <div class="col-lg-6">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" value=""/>
+ </div>
+
+ <div class="col-lg-6">
+             <input type="text" class="form-control" id="email" name="email" placeholder="Email" value=""/>
+
+ </div>
+<div class="col-lg-6">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value=""/>
+ </div>
+
     {{ profile_form.as_p }}
 
     <br>
-            <div class="col-lg-10 col-lg-offset-2">
+ <div class="col-lg-10 col-lg-offset-2">
     <input type = "submit" class="btn btn-primary" name="submit" value="Register"/>
             </div>
     </form>
-    {% endif %}
 
+
+
+{% endif %}
 {% endblock %}
