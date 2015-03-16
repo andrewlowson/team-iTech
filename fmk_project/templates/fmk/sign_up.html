@@ -9,31 +9,9 @@
         {% else %}
         <strong>Sign Up Here</strong>
 
-        <form id="user_form" method="post" action="/fmk/sign_up/"
+        <form class="form-horizontal" id="user_form" method="post" action="/fmk/sign_up/"
             enctype="multipart/form-data">
 
-
-            <fieldset>
-    <br>
-                <div class="form-group">
-      <label for="inputUsername" class="col-lg-4 control-label">Username</label>
-      <div class="col-lg-9">
-        <input type="text" class="form-control" id="inputUsername" placeholder="Username">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-4 control-label">Email</label>
-      <div class="col-lg-9">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-4 control-label">Password</label>
-      <div class="col-lg-9">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-     </div>
-    </div>
-  </fieldset>
 
             {% csrf_token %}
 
@@ -41,7 +19,9 @@
     {{ profile_form.as_p }}
 
     <br>
-    <input type = "submit" name="submit" value="Register"/>
+            <div class="col-lg-10 col-lg-offset-2">
+    <input type = "submit" class="btn btn-primary" name="submit" value="Register"/>
+            </div>
     </form>
     {% endif %}
 
