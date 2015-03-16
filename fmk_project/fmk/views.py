@@ -57,24 +57,18 @@ def playgame(request, gameID):
                     fcount = celebrity.fuck_count
                     newFCount = fcount+1
                     celebrity.fuck_count = newFCount
-                    print newFCount
                     celebrity.save()
-                    print round(newFCount/numberGames*100, 2)
                     context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
                 elif result_list[index]=='M':
                     mcount = celebrity.marry_count
                     newMCount = mcount+1
                     celebrity.marry_count=newMCount
-                    print newMCount
-                    print round(newMCount/numberGames*100, 2)
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
                 elif result_list[index]=='K':
                     kcount = celebrity.kill_count
                     newKCount = kcount+1
                     celebrity.kill_count=newKCount
-                    print newKCount
-                    print round(newKCount/numberGames*100, 2)
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newKCount)/numberGames*100, 2)))
                 context_dict['celebrities'].append(celebrity)
@@ -192,7 +186,6 @@ def random_game(request):
         if celeb not in celeb_list:
             celeb_list.append(celeb)
     game = Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])[0]
-    print game.id
     context_dict = {
         'random_celebs': celeb_list,
         'form': form,
