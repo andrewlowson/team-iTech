@@ -1,8 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from fmk.models import Celebrity, Player, Game
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import random
 
 
@@ -138,6 +139,10 @@ def sign_in(request):
     else:
         return render(request, 'fmk/sign_in.html', {})
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/fmk/')
 
 def add_category(request):
     # A HTTP POST?
