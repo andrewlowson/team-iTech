@@ -14,7 +14,7 @@
 		<form id = "result_form" method='post' action = "/fmk/play/{{game.id}}/">
 		
 			{% csrf_token %}	
-			{% for hiddin in form.hidden_fields %}
+			{% for hidden in form.hidden_fields %}
 				{{ hidden }}
 			{% endfor %}
 

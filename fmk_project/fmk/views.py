@@ -1,8 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from fmk.models import Celebrity, Player, Game
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import random
 
 
@@ -75,9 +76,22 @@ def playgame(request, gameID):
         else:
             print result_form.errors
     else:
-        resultForm = ResultForm()
-    context_dict['form'].append(result_form)
+        result_form = ResultForm()
+        print 'new form'
+        for index in range(0, 3):
+            celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
+            context_dict['celebrities'].append(celebrity)
+        context_dict['form'].append(result_form)
+        #print dir(result_form)
+        print result_form.visible_fields()
+
+        for entry in result_form.visible_fields():
+            print entry.name
+            print entry.value()
+            print
+
     return render(request, 'fmk/playgame.html', context_dict)
+#d.maxwell.1@research.gla.ac.uk
 
 
 # def user_stats(request):
@@ -132,6 +146,10 @@ def sign_in(request):
     else:
         return render(request, 'fmk/sign_in.html', {})
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/fmk/')
 
 def add_category(request):
     # A HTTP POST?
@@ -154,7 +172,13 @@ def add_celebrity(request):
     if request.method == 'POST':
         form = AddCelebrityForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            celebrity = form.save(commit=False)
+            if 'picture' in request.FILES:
+                celebImage = request.FILES['picture']
+                celebrity.picture = celebImage
+                celebrity.save()
+            celebrity.save()
+            return index(request)
         else:
             print form.errors
     else:

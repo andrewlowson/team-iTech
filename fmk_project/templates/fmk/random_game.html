@@ -9,47 +9,11 @@
 		
 		<form id = "random_game_form" method='post' action = "/fmk/play/{{game.id}}/">
 			
-			<p>Game {{game.id}}</p>
+			<!--<p>Game {{game.id}}</p>-->
 			
 			{% csrf_token %}
 
 <div>
-		{% if random_celebs %}
-				{% for celebrity in random_celebs %}
-
-				<img src ="{{celebrity.picture.url}}" alt="{{celebrity}}">
-                {{celebrity.name}}
-				{% endfor %}
-		{% endif %}
-
-     </div><div>
-
-
-            </div>
-
-
-			<!--Then the template splits it-->
-	
-
-</div></div></div>
-			
-			<!--Then the end of the form finishes down here-->
-			
-			{% for hiddin in form.hidden_fields %}
-				{{ hidden }}
-			{% endfor %}
-
-			{% for field in form.visible_fields %}
-				<br>
-				{{ field.errors }}
-				{{ field.help_text }}
-				{{ field }}
-				</br>
-			{% endfor %}
-			
-			<input type = "submit" name = "submit" value = "Submit" />
-		</form>
-
 
 
             {% if random_celebs %}
@@ -66,7 +30,7 @@
 <div class="home" >
 	<div class="game" id="game" >
 
-		<div id="instructions" >Who gets a Fuck, who gets a ring and who just gets it? Select Sex(es), Click the Fuck, Marry or Kill buttons and see the results!</div>
+		<div id="instructions" >Who gets a fuck, who gets a ring and who just gets it? Select Sex(es), Click the Fuck, Marry or Kill buttons and see the results!</div>
 
 		<div class="people" >
 
@@ -217,11 +181,6 @@
 
 
 
-
-
-
-
-
 </div>
 
     </div>
@@ -230,6 +189,38 @@
 </div>
 
 
-{% endif %}
+
+		{% endif %}
+
+     </div><div>
+
+
+            </div>
+
+
+			<!--Then the template splits it-->
+	
+
+</div></div></div>
+			
+			<!--Then the end of the form finishes down here-->
+			
+			{% for hiddin in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+
+			{% for field in form.visible_fields %}
+				<br>
+				{{ field.errors }}
+				{{ field.help_text }}
+				{{ field }}
+				</br>
+			{% endfor %}
+			
+			<input type = "submit" name = "submit" value = "Submit" />
+		</form>
+
+
+
 
       {% endblock %}

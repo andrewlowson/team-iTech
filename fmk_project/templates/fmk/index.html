@@ -1,65 +1,34 @@
 {% extends 'fmk/base.html' %}
 
 
-	{% load staticfiles %} <!-- New line -->
+	{% load staticfiles %}
 
 
 {% block body_block %}
-		<h1> Welcome to F | M | K </h1>
         {% if user.is_authenticated %}
-		<h2>Welcome, {{ user.username }}!</h2>
+		<h1>Welcome to F | M | K, {{ user.username }}!</h1>
 		{% else %}
-		<h2>Welcome! Please Sign In!</h2>
+		<h2>Welcome to F | M | K</h2>
 		{% endif %}
 
-		<p> Content...<br>
-		 <strong>{{ boldmessage }}</strong></p>
-		 
-		<p>
-		 	<img src="{% static 'images/FMK.png' %}" width="30%" alt="condom picture"/><!-- New line -->
+        <div class="jumbotron">
+        <p>Given a choice between three celebrities
+        who would you
+        <p><strong>Fuck</strong><p>
+        <p><strong>Marry</strong></p>
+        <p><strong>Kill?</strong></p>
+        </p>
 
-		</p>
-		<p><a href="{% url 'stolen' %}">Example Game</a></a></p>
-		<p> Link to play random game</p>
-		
-		{% if user.is_authenticated %}
-		<p><a href="/fmk/add_category/">Add Category</a></p>
-		<p><a href="/fmk/add_celebrity/">Add Celebrity</a></p>
-		{% endif %}
-		<div class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body…</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-        <br/>
-        <br/>
+        {% if user.is_authenticated %}
+        <a href="{% url 'random_game' %}" class="btn btn-default">Random Game</a>
+        <a href="/fmk/create_a_game" class="btn btn-default">Create Game</a>
+        {% else %}
+        <a href="{% url 'random_game' %}" class="btn btn-default">Random Game</a>
+        <p>Sign in to create your own games and add a celebrity</p>
+        {% endif %}
+        </div>
+
+
         <a class="twitter-timeline" href="https://twitter.com/search?q=%23fmkitech%20OR%20%40fmkitech" data-widget-id="575301081732878337">Tweets about #fmkitech OR @fmkitech</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        <br/>
-        <br/>
-		<br/>
-
-		<p><a href="/fmk/about/">About</a></p>
-        <p><a href="/fmk/sign_up/">Sign Up</a> </p>
-        <a href="/fmk/sign_in/">Sign In</a>
-		<p><a href="/fmk/add_category/">Add Category</a></p>
-		<p><a href="/fmk/add_celebrity/">Add Celebrity</a></p>
-		<p><a href="/fmk/create_a_game/">Create a Game</a></p>
-		<p><a href="/fmk/play/random_game/">Random Game</a></p>
-
-
-
-
 
 {% endblock %}

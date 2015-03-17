@@ -10,7 +10,7 @@ class AddCelebrityForm (forms.ModelForm):
         queryset=Category.objects.all(),
         help_text="Assign a category to the celebrity."
     )
-    picture = forms.ImageField()
+    picture = forms.ImageField();
 
     class Meta:
         model = Celebrity

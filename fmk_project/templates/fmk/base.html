@@ -67,8 +67,24 @@ var sFBAppID = "546704715361140";
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="{% url 'index'%}">Play</a></li>
-                        <li><a href="/fmk/create_a_game/">Create</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Play<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url 'random_game' %}">Random Game</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="/fmk/create_a_game">Create Game</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Create<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url 'add_celebrity' %}">Add Celebrity</a></li>
+                                <li><a href="/fmk/add_category">Add Category</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
                         <li><a href="{% url 'top_tables'%}">Top Tables</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
@@ -90,8 +106,12 @@ var sFBAppID = "546704715361140";
                     <!--<button type="submit" class="btn btn-default">Submit</button>-->
                     <!--</form>-->
                     <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
                         <li><a href="{% url 'sign_in' %}">Sign in</a></li>
                         <li><a href="{% url 'sign_up' %}">Register</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -111,12 +131,12 @@ var sFBAppID = "546704715361140";
 
             <ul class="list-unstyled">
               <li class="pull-right"><a href="#top">Back to top</a></li>
-              <li><a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;">Blog</a></li>
-              <li><a href="http://feeds.feedburner.com/bootswatch">RSS</a></li>
-              <li><a href="https://twitter.com/bootswatch">Twitter</a></li>
-              <li><a href="https://github.com/thomaspark/bootswatch/">GitHub</a></li>
-              <li><a href="../help/#api">API</a></li>
-              <li><a href="../help/#support">Support</a></li>
+              <li><a href="#">Site Map</a></li>
+              <li><a href="/fmk/about">About</a></li>
+              <li><a href="https://twitter.com/fmkitech">Twitter</a></li>
+              <li><a href="{% url 'sign_in' %}">Sign In</a></li>
+              <li><a href="{% url 'sign_up' %}">Register</a></li>
+              <li><a href="/fmk/contact_us">Contact Us</a></li>
             </ul>
 
           </div>
