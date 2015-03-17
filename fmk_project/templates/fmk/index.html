@@ -5,9 +5,8 @@
 
 
 {% block body_block %}
-		<h1> Welcome to F | M | K </h1>
         {% if user.is_authenticated %}
-		<h2>Welcome, {{ user.username }}!</h2>
+		<h1>Welcome, {{ user.username }}!</h1>
 		{% else %}
 		<h2>Welcome! Please Sign In!</h2>
 		{% endif %}
