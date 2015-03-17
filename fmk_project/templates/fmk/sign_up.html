@@ -7,7 +7,7 @@
         <strong>Congratulations, You Have Created An Account</strong>
        <a href="/fmk/">Return Home</a>
         {% else %}
-        <strong>Sign Up Here</strong>
+        <h3>Sign Up For Great Features!</h3>
 
         <form class="form-horizontal" id="user_form" method="post" action="/fmk/sign_up/"
             enctype="multipart/form-data">
@@ -17,17 +17,18 @@
 
     <label for="username" class="col-lg-2 control-label">Username</label>
 
- <div class="col-lg-6">
+ <div class="col-lg-9">
             <input type="text" class="form-control" id="username" name="username" placeholder="Username" value=""/>
      <br>
  </div>
-
- <div class="col-lg-6">
+<label for="email" class="col-lg-2 control-label">Email</label>
+ <div class="col-lg-9">
              <input type="text" class="form-control" id="email" name="email" placeholder="Email" value=""/>
      <br>
 
  </div>
-<div class="col-lg-6">
+            <label for="password" class="col-lg-2 control-label">Password</label>
+<div class="col-lg-9">
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" value=""/>
     <br>
  </div>
@@ -39,6 +40,7 @@
     <input type = "submit" class="btn btn-primary" name="submit" value="Register"/>
             </div>
     </form>
+
 
 
 
