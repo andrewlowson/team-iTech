@@ -43,6 +43,7 @@ class Game(models.Model):
 	celebrity2 = models.ForeignKey(Celebrity, related_name = 'second_celeb',)
 	celebrity3 = models.ForeignKey(Celebrity, related_name = 'third_celeb',)
 
+
 	def __unicode__(self):
 		return 'Game '+str(self.id)
 
