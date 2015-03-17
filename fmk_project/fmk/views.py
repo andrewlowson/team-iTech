@@ -23,9 +23,9 @@ def contact_us(request):
 
 
 def top_tables(request):
-    most_f_list = Celebrity.objects.order_by('-fuck_count')[:10]
-    most_m_list = Celebrity.objects.order_by('-marry_count')[:10]
-    most_k_list = Celebrity.objects.order_by('-kill_count')[:10]
+    most_f_list = Celebrity.objects.order_by('-fuck_count')[:5]
+    most_m_list = Celebrity.objects.order_by('-marry_count')[:5]
+    most_k_list = Celebrity.objects.order_by('-kill_count')[:5]
     context_dict = {
         'fuck_list': most_f_list,
         'marry_list': most_m_list,
@@ -193,7 +193,9 @@ def add_game(request):
         # is the form valid?
         if form.is_valid():
             game = form.save(commit=True)
-            return index(request)
+            game_id = game.id
+            context_dict = {'game_id': game_id}
+            return render(request, 'fmk/game_created.html', context_dict)
         else:
             print form.errors
     else:

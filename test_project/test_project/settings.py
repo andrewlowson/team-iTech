@@ -1,5 +1,5 @@
 """
-Django settings for fmk_project project.
+Django settings for test_project project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -13,16 +13,11 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
-
-TEMPLATE_DIRS = [
-    TEMPLATE_PATH,
-]
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'uy@1r^r$6pi%v0q^()vlshdm9d*mv6z=3f%ikmkgi4y#0c154+'
+SECRET_KEY = 'havo-_py-be-7qk)npvp=rw=@=geavf)b25=ih+_w-utl^_)3k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +36,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fmk',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -54,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'fmk_project.urls'
+ROOT_URLCONF = 'test_project.urls'
 
-WSGI_APPLICATION = 'fmk_project.wsgi.application'
+WSGI_APPLICATION = 'test_project.wsgi.application'
 
 
 # Database
@@ -82,17 +76,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_CELEB_IMAGES_PATH = os.path.join(MEDIA_ROOT, 'FMK_Celebrity_Thumbs')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
-STATIC_CELEB_IMAGES_PATH = os.path.join(STATIC_PATH, 'celebrity_images')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    STATIC_PATH,
-)
