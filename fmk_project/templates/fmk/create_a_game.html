@@ -11,20 +11,28 @@
                 <p><a href="/fmk/add_category/">Add Category</a></p>
                 <p><a href="/fmk/add_celebrity/">Add Celebrity</a></p>
             {% endif %}
+
 			{% for hiddin in form.hidden_fields %}
 				{{ hidden }}
 			{% endfor %}
+
+
 
 			{% for field in form.visible_fields %}
 				<br>
 				{{ field.errors }}
 				{{ field.help_text }}
 				{{ field }}
+
 				</br>
 			{% endfor %}
 
-			<input type = "submit" name = "submit" value = "Create game" />
-		</form>	
 
-
+            </br>
+            <div class="col-lg-5 col-lg-offset-2">
+    <input type = "submit" class="btn btn-primary" name="submit" value="Create Game"/>
+            </div>
+            <br>
+            <br>
+</form>
 {% endblock %}
