@@ -23,9 +23,9 @@ def contact_us(request):
 
 
 def top_tables(request):
-    most_f_list = Celebrity.objects.order_by('-fuck_count')[:10]
-    most_m_list = Celebrity.objects.order_by('-marry_count')[:10]
-    most_k_list = Celebrity.objects.order_by('-kill_count')[:10]
+    most_f_list = Celebrity.objects.order_by('-fuck_count')[:5]
+    most_m_list = Celebrity.objects.order_by('-marry_count')[:5]
+    most_k_list = Celebrity.objects.order_by('-kill_count')[:5]
     context_dict = {
         'fuck_list': most_f_list,
         'marry_list': most_m_list,
