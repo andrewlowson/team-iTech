@@ -3,8 +3,12 @@
 	{% load staticfiles %} <!-- New line -->
 	{% block body_block %}
 		<h1>Create A New Game</h1>
-		
+
 		<form id = "create_game_form" method='post' action = "/fmk/create_a_game/">
+            {% if form.is_valid %}
+
+
+            {% endif %}
 		
 			{% csrf_token %}
 
@@ -38,6 +42,7 @@
                  <p><a href="/fmk/add_category/">Add Category</a></p>
                 </div>
             {% endif %}
+
 
 </form>
 {% endblock %}

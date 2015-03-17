@@ -71,9 +71,7 @@ var sFBAppID = "546704715361140";
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Play<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{% url 'random_game' %}">Random Game</a></li>
-                                {% if user.is_authenticated %}
                                 <li><a href="/fmk/create_a_game">Contribute Game</a></li>
-                                {% endif %}
                             </ul>
                         </li>
                         {% if user.is_authenticated %}

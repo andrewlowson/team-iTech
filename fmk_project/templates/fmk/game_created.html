@@ -1,0 +1,17 @@
+{% extends 'fmk/base.html' %}
+    {% block body_block %}
+        {% if game_id %}
+		<h1>Contributed Game</h1>
+            <p>You have successfully contributed a game to F|M|K</p><br>
+            <p>Would you like to share your game? <br>
+            Copy this link: fmk/play/{{ game_id }}</p>  <!--There will be a better way to do this-->
+            <p>Or you can have a go yourself </p><br>
+        <a href="/fmk/play/{{game_id}}" class="btn btn-primary">Play Your Game</a>
+
+
+
+		{% else %}
+        <h1>Game Not Added</h1>
+		    <p>Game could not be created. Sorry</p>
+        {% endif %}
+    {% endblock %}

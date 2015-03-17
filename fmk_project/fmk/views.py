@@ -180,7 +180,9 @@ def add_game(request):
         # is the form valid?
         if form.is_valid():
             game = form.save(commit=True)
-            return index(request)
+            game_id = game.id
+            context_dict = {'game_id': game_id}
+            return render(request, 'fmk/game_created.html', context_dict)
         else:
             print form.errors
     else:

@@ -20,10 +20,10 @@
         </p>
 
         {% if user.is_authenticated %}
-        <a href="{% url 'random_game' %}" class="btn btn-default">Random Game</a>
-        <a href="/fmk/create_a_game" class="btn btn-default">Create Game</a>
+        <a href="{% url 'random_game' %}" class="btn btn-primary">Random Game</a>
+        <a href="/fmk/create_a_game" class="btn btn-primary">Create Game</a>
         {% else %}
-        <a href="{% url 'random_game' %}" class="btn btn-default">Random Game</a>
+        <a href="{% url 'random_game' %}" class="btn btn-primary">Random Game</a>
         <p>Sign in to create your own games and add a celebrity</p>
         {% endif %}
         </div>
