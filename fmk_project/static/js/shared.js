@@ -99,36 +99,11 @@ $(document).ready(function() {
 	// e.preventDefault(); 
 	//}, false);
 
-	////////////////////////////////////////
-	////////////////////////////////////////
-	//  Facbeook setup
-		
-	var sFBUID = '';
-	var sFBAccessToken = '';
-		
-	////////////////////////////////////////
-	////////////////////////////////////////
+
 	//  Home page game interactions
 	if (sPage == 'home') { 
 		
-		if (sAuth == '') { 
-		
-		    FB.init({
-		      appId      : sFBAppID,
-		      channelUrl : 'http://www.smkgame.com/channel',
-		      status     : true,
-		      cookie     : true, 
-		      xfbml      : true
-		    });
-	
-			////////////////////////////////////////
-			////////////////////////////////////////
-			//  Sign in with Facebook button
-			$('#btnSignInWithFacebook').click(function () {	
-			    FB.login(fbSignInCallBack);
-		    });
-		
-		}
+
 	
 		//  Copy the peoples photos to the back here, saves filesize
 		$('#person1 .photoMini').html($('#person1 .photoFrontImage').html());
@@ -169,7 +144,7 @@ $(document).ready(function() {
 			$('#person2 .photoBack').hide();
 			$('#person3 .photoBack').hide();
 		}
-							
+		/*
 		//  Landing page start button
 		$('#btnPlayGame').bind(pointerClick, function () { 
 			$('#landingPage').fadeOut(); 
@@ -206,40 +181,14 @@ $(document).ready(function() {
 			return false;
 		});
 	
-		//  Info buttons
-		$('#person1 #btnInfo').bind(pointerClick, function () { 
-			if (sInfoStyle == 'flip') { 
-				$('#person1 .photoCard').toggleClass('flipped');
-			} else { 
-				$('#person1 .photoBack').fadeToggle();
-			}
-			return false;
-		});
-		$('#person2 #btnInfo').bind(pointerClick, function () { 
-			if (sInfoStyle == 'flip') { 
-				$('#person2 .photoCard').toggleClass('flipped');
-			} else { 
-				$('#person2 .photoBack').fadeToggle();
-			}
-			return false;
-		});
-		$('#person3 #btnInfo').bind(pointerClick, function () { 
-			if (sInfoStyle == 'flip') { 
-				$('#person3 .photoCard').toggleClass('flipped');
-			} else { 
-				$('#person3 .photoBack').fadeToggle();
-			}
-			return false;
-		});
 
-	
 		var personShag  = 0;
 		var personMarry = 0;
 		var personKill  = 0;
-		
-		//  Icon clicks		
+
+		//  Icon clicks
 		function updateIcons() {
-			
+
 			$('#person1 #icon1 .word').hide();
 			$('#person1 #icon2 .word').hide();
 			$('#person1 #icon3 .word').hide();
@@ -249,72 +198,70 @@ $(document).ready(function() {
 			$('#person3 #icon1 .word').hide();
 			$('#person3 #icon2 .word').hide();
 			$('#person3 #icon3 .word').hide();
-			
+
 			$('#person'+personShag+' #icon1 .word').show();
 			$('#person'+personMarry+' #icon2 .word').show();
 			$('#person'+personKill+' #icon3 .word').show();
-		
-			if (personShag == 0) { 
-				iconOn(1, 1);	
-				iconOn(2, 1);	
+
+			if (personShag == 0) {
+				iconOn(1, 1);
+				iconOn(2, 1);
 				iconOn(3, 1);
-			} else { 
-				iconOff(1, 1);	
-				iconOff(2, 1);	
+			} else {
+				iconOff(1, 1);
+				iconOff(2, 1);
 				iconOff(3, 1);
 			}
-			if (personMarry == 0) { 
-				iconOn(1, 2);	
-				iconOn(2, 2);	
-				iconOn(3, 2);	
-			} else { 
-				iconOff(1, 2);	
-				iconOff(2, 2);	
-				iconOff(3, 2);	
+			if (personMarry == 0) {
+				iconOn(1, 2);
+				iconOn(2, 2);
+				iconOn(3, 2);
+			} else {
+				iconOff(1, 2);
+				iconOff(2, 2);
+				iconOff(3, 2);
 			}
-			if (personKill == 0) { 
-				iconOn(1, 3);	
-				iconOn(2, 3);	
-				iconOn(3, 3);	
-			} else { 
-				iconOff(1, 3);	
-				iconOff(2, 3);	
-				iconOff(3, 3);	
+			if (personKill == 0) {
+				iconOn(1, 3);
+				iconOn(2, 3);
+				iconOn(3, 3);
+			} else {
+				iconOff(1, 3);
+				iconOff(2, 3);
+				iconOff(3, 3);
 			}
-						
+
 			//  Hide these
 			overlaysAllOff();
-			borderAllOff();
-			
+			//borderAllOff();
+
 			//  Show correct overlays
-			if (personShag != 0) { 
+			if (personShag != 0) {
 				overlayOn(personShag,1);
 				borderOn(personShag,1);
 			}
-			if (personMarry != 0) { 
+			if (personMarry != 0) {
 				overlayOn(personMarry,2);
 				borderOn(personMarry,2);
 			}
-			if (personKill != 0) { 
+			if (personKill != 0) {
 				overlayOn(personKill,3);
 				borderOn(personKill,3);
 			}
-			
+
 			//  If we are done...
-			if (personShag != 0 && personMarry != 0 && personKill != 0) { 
+			if (personShag != 0 && personMarry != 0 && personKill != 0) {
 				$('#btnChangePeople').hide();
 				$('#btnNextRound').fadeIn();
-				
+
 				//  Overlays off
 				overlaysAllOff();
-			
-				//  Shrink the people picture frames
-				$('.photoFrontImage').addClass('shrink');
-				$('.photoCard .photoFrontImage .photoFrontImageInner img').animate({'margin-top':'-25px'}, 400);
-			
+                //
+
+
 				//  Hide the info buttons
 				$('.info').hide();
-			
+
 				//  Unbind icon buttons
 				$('#person1 #icon1').unbind();
 				$('#person1 #icon2').unbind();
@@ -325,10 +272,10 @@ $(document).ready(function() {
 				$('#person3 #icon1').unbind();
 				$('#person3 #icon2').unbind();
 				$('#person3 #icon3').unbind();
-				
+
 				//  Remove the pointer cursor from the icons
 				$('.home .icon').css('cursor', 'auto');
-				
+
 				$.ajax({
 				    url: "smk-result.json",
 				    type: "GET",
@@ -336,7 +283,7 @@ $(document).ready(function() {
 				    data: "&sSMKUID="+sSMKUID+"&iPersonShag="+personShag+"&iPersonMarry="+personMarry+"&iPersonKill="+personKill+"&",
 				    success: function(sData) {
 				    	var aData = $.parseJSON(sData);
-				    	
+
 				    	$('.sums').fadeIn();
 				    	$('#person1 #sumValue1').html(addCommas(aData['iPerson1CountShag']));
 				    	$('#person1 #sumValue2').html(addCommas(aData['iPerson1CountMarry']));
@@ -349,26 +296,26 @@ $(document).ready(function() {
 				    	$('#person3 #sumValue3').html(addCommas(aData['iPerson3CountKill']));
 				    }
 				});
-				
-				//  
-			
+
+
+
 			}
 		}
-		
+
 		function iconOn(p, i) {
 			$('#person'+p+' #icon'+i+' img').fadeTo(250, 1.0);
 		}
 		function iconOff(p, i) {
-			$('#person'+p+' #icon'+i+' img').fadeTo(250, 0.25);		
+			$('#person'+p+' #icon'+i+' img').fadeTo(250, 0.25);
 		}
-		
-		
-		
+
+
+
 		function overlayOn(p, i) {
 			$('#person'+p+' #overlay'+i).show();
 		}
 		function overlayOff(p, i) {
-			$('#person'+p+' #overlay'+i).hide();	
+			$('#person'+p+' #overlay'+i).hide();
 		}
 		function overlaysAllOff() {
 			overlayOff(1,1);
@@ -381,24 +328,24 @@ $(document).ready(function() {
 			overlayOff(3,2);
 			overlayOff(3,3);
 		}
-		
-		
-		
+
+
+
 		function borderOn(p, i) {
-			if (i == 1) { 
+			if (i == 1) {
 				$('#person'+p).addClass('shag');
 			}
-			if (i == 2) { 
+			if (i == 2) {
 				$('#person'+p).addClass('marry');
 			}
-			if (i == 3) { 
-				$('#person'+p).addClass('kill');	
+			if (i == 3) {
+				$('#person'+p).addClass('kill');
 			}
 		}
-		function borderOff(p, i) {	
+		function borderOff(p, i) {
 			$('#person'+p).removeClass('shag');
 			$('#person'+p).removeClass('marry');
-			$('#person'+p).removeClass('kill');	
+			$('#person'+p).removeClass('kill');
 		}
 		function borderAllOff() {
 			borderOff(1,1);
@@ -411,7 +358,7 @@ $(document).ready(function() {
 			borderOff(3,2);
 			borderOff(3,3);
 		}
-		
+
 		$('#person1 #icon1').bind(pointerClick, function(e) {
 			if (personShag  == 1) { personShag = 0; };
 			if (personMarry == 1) { personMarry = 0; };
@@ -433,7 +380,7 @@ $(document).ready(function() {
 			personKill = 1;
 			updateIcons();
 		});
-		
+
 		$('#person2 #icon1').bind(pointerClick, function(e) {
 			if (personShag  == 2) { personShag = 0; };
 			if (personMarry == 2) { personMarry = 0; };
@@ -455,7 +402,7 @@ $(document).ready(function() {
 			personKill = 2;
 			updateIcons();
 		});
-		
+
 		$('#person3 #icon1').bind(pointerClick, function(e) {
 			if (personShag  == 3) { personShag = 0; };
 			if (personMarry == 3) { personMarry = 0; };
@@ -482,38 +429,7 @@ $(document).ready(function() {
 		
 	}		
 	
-	
-	////////////////////////////////////////
-	////////////////////////////////////////
-	//  Register and edit details image cropping
-	if (sPage == 'register' || sPage == 'edit-details') { 
-			  
-		function showCoords(c) { 
-			$('#iPhotoX').val(c.x);
-			$('#iPhotoY').val(c.y);
-			$('#iPhotoW').val(c.w);
-			$('#iPhotoH').val(c.h);
-		}
-		
-		var img = $('#cropPhoto');
-		
-		img.Jcrop({
-			aspectRatio: 1,
-			minSize:[iPersonSize*0.5, iPersonSize*0.5],
-			setSelect:[0, 0, img.width(), img.height()],
-			onSelect: showCoords,
-            onChange: showCoords,
-            onRelease: showCoords	
-		});
-		
-		
-		
-	}
-	
-	////////////////////////////////////////
-	////////////////////////////////////////
-		
-		
+
 	
 });
 
