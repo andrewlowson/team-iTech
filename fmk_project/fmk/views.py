@@ -195,7 +195,7 @@ def add_game(request):
             game = form.save(commit=True)
             game_id = game.id
             context_dict = {'game_id': game_id}
-            return render(request, 'fmk/game_created.html', context_dict)
+            return render(request, 'fmk/create_a_game.html', context_dict)
         else:
             print form.errors
     else:
