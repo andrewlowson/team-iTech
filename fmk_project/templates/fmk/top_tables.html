@@ -11,14 +11,14 @@
             <h4 class="list-group-item-heading">Most Fucked</h4>
             <p class="list-group-item-text">
               <table class="table table-striped table-hover ">
-		    <th><td>Fucked</td><td>Married</td><td>Killed</td></th>
+
 		    {% if fuck_list %}
 			    {% for celebrity in fuck_list %}
 			    <tr>
 				    <td>{{ celebrity }}</td>
+                    <td>has been fucked</td>
                     <td>{{ celebrity.fuck_count }}</td>
-                    <td>{{ celebrity.marry_count }}</td>
-                    <td>{{ celebrity.kill_count }}</td>
+                    <td>times.</td>
 			    </tr>
 			    {% endfor %}
             </table>
@@ -30,14 +30,14 @@
             <h4 class="list-group-item-heading">Most Married</h4>
             <p class="list-group-item-text">
         <table class="table table-striped table-hover ">
-		<th><td>Fucked</td><td>Married</td><td>Killed</td></th>
+
 		{% if marry_list %}
 			{% for celebrity in marry_list %}
 			<tr>
 				<td>{{ celebrity }} </td>
-                <td>{{ celebrity.fuck_count }}</td>
+                <td>has been married</td>
                 <td>{{ celebrity.marry_count }}</td>
-                <td>{{ celebrity.kill_count }}</td>
+                <td>times.</td>
 			</tr>
 			{% endfor %}
         </table>
@@ -49,14 +49,14 @@
             <h4 class="list-group-item-heading">Most Killed</h4>
             <p class="list-group-item-text">
                       <table class="table table-striped table-hover ">
-		<th><td>Fucked</td><td>Married</td><td>Killed</td></th>
+
 		{% if kill_list %}
 			{% for celebrity in kill_list %}
 			<tr>
 				<td> {{ celebrity }}</td>
-                <td>{{ celebrity.fuck_count }}</td>
-                <td>{{ celebrity.marry_count }}</td>
+                <td>has been killed</td>
                 <td>{{ celebrity.kill_count }}</td>
+                <td>times.</td>
 			</tr>
 			{% endfor %}
 		</table>

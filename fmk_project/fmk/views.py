@@ -43,6 +43,56 @@ def playgame(request, gameID):
     celeb_id_list = [game.celebrity1, game.celebrity2, game.celebrity3]
     if request.method == 'POST':
         result_form = ResultForm(data=request.POST)
+        for index in range(0, 3):
+            celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
+            numberGames = celebrity.num_results+1
+            celebrity.num_results = numberGames
+            if result_list[index]=='F':
+                fcount = celebrity.fuck_count
+                newFCount = fcount+1
+                celebrity.fuck_count = newFCount
+                celebrity.save()
+                context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
+            elif result_list[index]=='M':
+                mcount = celebrity.marry_count
+                newMCount = mcount+1
+                celebrity.marry_count=newMCount
+                celebrity.save()
+                context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
+            elif result_list[index]=='K':
+                kcount = celebrity.kill_count
+                newKCount = kcount+1
+                celebrity.kill_count=newKCount
+                celebrity.save()
+                context_dict['stats'].append("{0:.2f}".format(round(float(newKCount)/numberGames*100, 2)))
+                context_dict['celebrities'].append(celebrity)
+            else:
+                print result_form.errors
+    else:
+        result_form = ResultForm()
+        print 'new form'
+        for index in range(0, 3):
+            celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
+            context_dict['celebrities'].append(celebrity)
+        context_dict['form'].append(result_form)
+        #print dir(result_form)
+        print result_form.visible_fields()
+
+        for entry in result_form.visible_fields():
+            print entry.name
+            print entry.value()
+            print
+
+    return render(request, 'fmk/playgame.html', context_dict)
+#d.maxwell.1@research.gla.ac.uk
+
+def playgame_unregistered(request, gameID):
+    context_dict = {'game':[], 'stats':[], 'celebrities':[], 'form':[]}
+    game = Game.objects.get(id = gameID)
+    context_dict['game'].append(game)
+    celeb_id_list = [game.celebrity1, game.celebrity2, game.celebrity3]
+    if request.method == 'POST':
+        result_form = ResultForm(data=request.POST)
         if result_form.is_valid():
             result = result_form.save(commit=False)
             result.player = Player.objects.get(user = request.user)
@@ -91,7 +141,6 @@ def playgame(request, gameID):
             print
 
     return render(request, 'fmk/playgame.html', context_dict)
-#d.maxwell.1@research.gla.ac.uk
 
 
 # def user_stats(request):
@@ -216,7 +265,7 @@ def random_game(request):
         'random_celebs': celeb_list,
         'form': form,
         'game': game,
-        'range': range(3)
+        #'range': range(3)
     }
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)

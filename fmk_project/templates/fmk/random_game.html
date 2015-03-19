@@ -6,8 +6,15 @@
 		
         <h1>Random Game</h1>
 
+        {% if user.is_authenticated %}
 		
-		<form id = "random_game_form" method='post' action = "/fmk/play/{{game.id}}/">
+		<form id = "random_game_form" method='post' action = "{% url 'play_game' %}">
+
+        {% else %}
+
+        <form id = "random_game_form" method='post' action = "{% url 'play_game_unreg' %}">
+
+        {% endif %}
 			
 			<!--<p>Game {{game.id}}</p>-->
 			
