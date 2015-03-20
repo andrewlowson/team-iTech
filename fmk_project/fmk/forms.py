@@ -67,20 +67,20 @@ class CreateGameForm (forms.ModelForm):
 
 class ResultForm (forms.ModelForm):
 
-    OPTIONS = (
-        ('F', 'Fuck'),
-        ('M', 'Marry'),
-        ('K', 'Kill'),
-    )
-
     result1 = forms.ChoiceField(
-        choices=OPTIONS
+        choices= [('F', 'Fuck'),
+            ('M', 'Marry'),
+            ('K', 'KIll')]
     )
     result2 = forms.ChoiceField(
-        choices=OPTIONS
+        choices=[('F', 'Fuck'),
+            ('M', 'Marry'),
+            ('K', 'KIll')]
     )
     result3 = forms.ChoiceField(
-        choices=OPTIONS
+        choices=[('F', 'Fuck'),
+            ('M', 'Marry'),
+            ('K', 'KIll')]
     )
 
 
