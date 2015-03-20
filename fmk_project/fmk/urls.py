@@ -15,7 +15,6 @@ urlpatterns = patterns('',
     # url(r'^play/$', views.play, name= 'play'),
     url(r'^play/random_game/$', views.random_game, name= 'random_game'),
     url(r'^play/(?P<gameID>[\w\-]+)/$', views.playgame, name='play_game'),
-    url(r'^play/(?P<gameID>[\w\-]+)/$', views.playgame_unregistered, name='play_game_unreg'),
     url(r'^stolen/$', views.stolen, name= 'stolen'),
 )
 
