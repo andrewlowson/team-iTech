@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from fmk.models import Celebrity, Player, Game
+from fmk.models import Celebrity, Player, Game, Result
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User, AnonymousUser
 import random
 
 
@@ -45,34 +46,41 @@ def playgame(request, gameID):
         result_form = ResultForm(data=request.POST)
         if result_form.is_valid():
             result = result_form.save(commit=False)
-            result.player = Player.objects.get(user = request.user)
-            result.game_name = game
-            result.save()
             result_list = [result.result1, result.result2, result.result3]
-            stats_list = []
+            # For both registered and unregistered players the celebrity stats are changed
             for index in range(0, 3):
                 celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
                 numberGames = celebrity.num_results+1
                 celebrity.num_results = numberGames
                 if result_list[index]=='F':
                     fcount = celebrity.fuck_count
+                    print "fuck" + fcount
                     newFCount = fcount+1
                     celebrity.fuck_count = newFCount
+                    print celebrity.fuck_count
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
                 elif result_list[index]=='M':
                     mcount = celebrity.marry_count
+                    print "marry" + mcount
                     newMCount = mcount+1
                     celebrity.marry_count=newMCount
+                    print celebrity.marry_count
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
                 elif result_list[index]=='K':
                     kcount = celebrity.kill_count
+                    print "kill" + kcount
                     newKCount = kcount+1
                     celebrity.kill_count=newKCount
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newKCount)/numberGames*100, 2)))
                 context_dict['celebrities'].append(celebrity)
+                if request.user.is_authenticated():
+                    # The results are only stored in the database if the user is signed in
+                    result.player = Player.objects.get(user=request.user)
+                    result.game_name = game
+                    result.save()
         else:
             print result_form.errors
     else:
@@ -92,7 +100,6 @@ def playgame(request, gameID):
 
     return render(request, 'fmk/playgame.html', context_dict)
 #d.maxwell.1@research.gla.ac.uk
-
 
 # def user_stats(request):
 #     context_dict = {
@@ -195,7 +202,7 @@ def add_game(request):
             game = form.save(commit=True)
             game_id = game.id
             context_dict = {'game_id': game_id}
-            return render(request, 'fmk/game_created.html', context_dict)
+            return render(request, 'fmk/create_a_game.html', context_dict)
         else:
             print form.errors
     else:
@@ -216,7 +223,7 @@ def random_game(request):
         'random_celebs': celeb_list,
         'form': form,
         'game': game,
-        'range': range(3)
+        #'range': range(3)
     }
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)
