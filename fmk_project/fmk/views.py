@@ -54,23 +54,18 @@ def playgame(request, gameID):
                 celebrity.num_results = numberGames
                 if result_list[index]=='F':
                     fcount = celebrity.fuck_count
-                    print "fuck" + fcount
                     newFCount = fcount+1
                     celebrity.fuck_count = newFCount
-                    print celebrity.fuck_count
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
                 elif result_list[index]=='M':
                     mcount = celebrity.marry_count
-                    print "marry" + mcount
                     newMCount = mcount+1
                     celebrity.marry_count=newMCount
-                    print celebrity.marry_count
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
                 elif result_list[index]=='K':
                     kcount = celebrity.kill_count
-                    print "kill" + kcount
                     newKCount = kcount+1
                     celebrity.kill_count=newKCount
                     celebrity.save()
