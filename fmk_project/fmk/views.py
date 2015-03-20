@@ -38,14 +38,14 @@ def top_tables(request):
 
 
 def playgame(request, gameID):
-    context_dict = {'game':[], 'stats':[], 'celebrities':[], 'form':[]}
+    context_dict = {'game':[], 'stats':[], 'celebrities':[]}
     game = Game.objects.get(id = gameID)
     context_dict['game'].append(game)
     celeb_id_list = [game.celebrity1, game.celebrity2, game.celebrity3]
     if request.method == 'POST':
-        result_form = ResultForm(data=request.POST)
-        if result_form.is_valid():
-            result = result_form.save(commit=False)
+        form = ResultForm(data=request.POST)
+        if form.is_valid():
+            result = form.save(commit=False)
             result_list = [result.result1, result.result2, result.result3]
             # For both registered and unregistered players the celebrity stats are changed
             for index in range(0, 3):
@@ -54,7 +54,6 @@ def playgame(request, gameID):
                 celebrity.num_results = numberGames
                 if result_list[index]=='F':
                     fcount = celebrity.fuck_count
-                    print "fuck" + fcount
                     newFCount = fcount+1
                     celebrity.fuck_count = newFCount
                     print celebrity.fuck_count
@@ -62,7 +61,6 @@ def playgame(request, gameID):
                     context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
                 elif result_list[index]=='M':
                     mcount = celebrity.marry_count
-                    print "marry" + mcount
                     newMCount = mcount+1
                     celebrity.marry_count=newMCount
                     print celebrity.marry_count
@@ -70,7 +68,6 @@ def playgame(request, gameID):
                     context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
                 elif result_list[index]=='K':
                     kcount = celebrity.kill_count
-                    print "kill" + kcount
                     newKCount = kcount+1
                     celebrity.kill_count=newKCount
                     celebrity.save()
@@ -82,22 +79,14 @@ def playgame(request, gameID):
                     result.game_name = game
                     result.save()
         else:
-            print result_form.errors
+            print form.errors
     else:
-        result_form = ResultForm()
-        print 'new form'
+        form = ResultForm()
         for index in range(0, 3):
             celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
             context_dict['celebrities'].append(celebrity)
-        context_dict['form'].append(result_form)
-        #print dir(result_form)
-        print result_form.visible_fields()
 
-        for entry in result_form.visible_fields():
-            print entry.name
-            print entry.value()
-            print
-
+    context_dict.update({'form': form})
     return render(request, 'fmk/playgame.html', context_dict)
 #d.maxwell.1@research.gla.ac.uk
 

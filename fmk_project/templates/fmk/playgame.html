@@ -11,7 +11,6 @@
 		{% endif %}		
 			
 		{% if form %}
-			
 			<form id = "result_form" method='post' action = "/fmk/play/{{game.id}}/">
 		
 			{% csrf_token %}	
@@ -20,7 +19,6 @@
 			{% endfor %}
 			<table><tr>
 			{% for field in form.visible_fields %}
-				<p>There was a field here<p>
 				<td>
 				{{ field.errors }}
 				{{ field.help_text }}
