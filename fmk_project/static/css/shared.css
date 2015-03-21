@@ -974,6 +974,9 @@ h2 {
 	font-size:16px;
 }
 
+.game-form {
+    margin-top: 30px;
+}
 
 /* **************************** Photo Cropping **************************** */
 .cropPhoto {
