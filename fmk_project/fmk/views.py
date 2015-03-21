@@ -22,6 +22,9 @@ def about(request):
 def contact_us(request):
     return render(request, 'fmk/contact_us.html')
 
+def site_map(request):
+    return render(request, 'fmk/site_map.html')
+
 
 def top_tables(request):
     most_f_list = Celebrity.objects.order_by('-fuck_count')[:5]
@@ -56,14 +59,12 @@ def playgame(request, gameID):
                     fcount = celebrity.fuck_count
                     newFCount = fcount+1
                     celebrity.fuck_count = newFCount
-                    print celebrity.fuck_count
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
                 elif result_list[index]=='M':
                     mcount = celebrity.marry_count
                     newMCount = mcount+1
                     celebrity.marry_count=newMCount
-                    print celebrity.marry_count
                     celebrity.save()
                     context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
                 elif result_list[index]=='K':
