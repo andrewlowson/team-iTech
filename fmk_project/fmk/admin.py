@@ -4,6 +4,12 @@ from fmk.models import Player, Category, Celebrity, Game, Result
 class CategoryAdmin (admin.ModelAdmin):
     list_display = ('name', 'description')
 
+class PlayerAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        str('gamesPlayed'),
+    )
+
 class CelebrityAdmin(admin.ModelAdmin):
     list_display = (
         'first_name',
@@ -33,7 +39,7 @@ class ResultAdmin (admin.ModelAdmin):
     )
 
 # Register your models here.
-admin.site.register(Player)
+admin.site.register(Player, PlayerAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Celebrity, CelebrityAdmin)
 admin.site.register(Game, GameAdmin)

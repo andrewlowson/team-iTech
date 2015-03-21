@@ -14,6 +14,7 @@ from django.core.exceptions import ValidationError
 class Player(models.Model):
 	user = models.OneToOneField(User)
 	# If we want to add more attributes for the players insert them here
+	gamesPlayed = models.IntegerField(default = 0)
 	
 	def __unicode__(self):
 		return self.user.username

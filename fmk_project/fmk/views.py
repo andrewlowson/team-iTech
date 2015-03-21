@@ -41,14 +41,14 @@ def top_tables(request):
 
 
 def playgame(request, gameID):
-    context_dict = {'game':[], 'stats':[], 'celebrities':[], 'form':[]}
+    context_dict = {'game':[], 'stats':[], 'celebrities':[]}
     game = Game.objects.get(id = gameID)
     context_dict['game'].append(game)
     celeb_id_list = [game.celebrity1, game.celebrity2, game.celebrity3]
     if request.method == 'POST':
-        result_form = ResultForm(data=request.POST)
-        if result_form.is_valid():
-            result = result_form.save(commit=False)
+        form = ResultForm(data=request.POST)
+        if form.is_valid():
+            result = form.save(commit=False)
             result_list = [result.result1, result.result2, result.result3]
             # For both registered and unregistered players the celebrity stats are changed
             for index in range(0, 3):
@@ -80,24 +80,15 @@ def playgame(request, gameID):
                     result.game_name = game
                     result.save()
         else:
-            print result_form.errors
+            print form.errors
     else:
-        result_form = ResultForm()
-        print 'new form'
+        form = ResultForm()
         for index in range(0, 3):
             celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
             context_dict['celebrities'].append(celebrity)
-        context_dict['form'].append(result_form)
-        #print dir(result_form)
-        print result_form.visible_fields()
 
-        for entry in result_form.visible_fields():
-            print entry.name
-            print entry.value()
-            print
-
+    context_dict.update({'form': form})
     return render(request, 'fmk/playgame.html', context_dict)
-#d.maxwell.1@research.gla.ac.uk
 
 # def user_stats(request):
 #     context_dict = {
@@ -225,6 +216,19 @@ def random_game(request):
     }
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)
+
+#def player_stats(request):
+    #if request.user.is_authenticated():
+        #player = Player.objects.get(user = request.user)
+        #playerGames = Result.objects.select_related().filter(player=player)
+        #print playerGames
+        #for game in playerGames:
+            #most_f_list = Celebrity.objects.select_related().filter(game_name=game)
+        #print most_f_list
+
+
+    #else:
+        #return render(request, 'fmk/sign_in.html')
 
 
 def stolen(request):
