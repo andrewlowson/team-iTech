@@ -230,3 +230,31 @@ def random_game(request):
 def stolen(request):
 
     return render(request, 'fmk/stolen.html')
+
+
+# Helper function to find all the celebrities starting with the name inputted
+def get_celebrity_list(max_results=0, starts_with=''):
+    celebrity_list = []
+    if starts_with:
+        celebrity_list = Celebrity.objects.filter(Celebrity_name_startswith = starts_with)
+
+    if max_results > 0:
+            if len(celebrity_list) > max_results:
+                    celebrity_list = celebrity_list[:max_results]
+
+    for celebrity in celebrity_list:
+        celebrity.url = Celebrity.first_name
+
+    return celebrity_list
+
+
+
+# View to examine the request and pick out the celebrity query string
+def suggest_celebrity(request):
+    celebrity_list = []
+    starts_with = ''
+    if request.method == 'GET':
+            starts_with = request.GET['suggestion']
+    celebrity_list = get_celebrity_list(5, starts_with)
+
+    return render(request, 'fmk/celebrity_list.html', {'celebrity_list' : celebrity_list})

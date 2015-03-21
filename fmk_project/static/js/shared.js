@@ -473,7 +473,3 @@ $(document).ready(function() {
 
 
 
-
-
-
-

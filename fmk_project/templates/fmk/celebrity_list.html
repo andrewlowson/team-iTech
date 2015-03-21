@@ -1,0 +1,12 @@
+
+{% extends 'fmk/base.html' %}
+
+<ul class="nav nav-list">
+    {% if celebrity_list %}
+    {% for celebrity in celebrity_list %}
+        <li><a href="/fmk/celebrity/{{ celebrity.url }}">{{ celebrity.name }}</a></li>
+    {% endfor %}
+    {% else %}
+    <li>No Celebrities Found</li>
+{% endif %}
+</ul>

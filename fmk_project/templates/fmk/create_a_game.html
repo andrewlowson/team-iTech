@@ -39,6 +39,20 @@
 			{% endfor %}
 
 
+            <ul class="nav nav-list">
+                <li class="nav-header">Find a Celebrity</li>
+                <form>
+                    <label></label>
+                    <li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+                </form>
+            </ul>
+
+            {% if celebrity_list %}
+                <div id="celebrities">
+                    {% include 'fmk/celebrity_list.html' with celebrity_list=celebrity_list %}
+                </div>
+            {% endif %}
+
             </br>
             <div class="col-lg-5 col-lg-offset-2">
     <input type = "submit" class="btn btn-primary" name="submit" value="Create Game"/>
