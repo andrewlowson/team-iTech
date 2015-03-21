@@ -109,7 +109,7 @@ var sFBAppID = "546704715361140";
                     <!--</form>-->
                     <ul class="nav navbar-nav navbar-right">
                         {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="{% url 'logout' %}">Sign Out</a></li>
                         {% else %}
                         <li><a href="{% url 'sign_in' %}">Sign in</a></li>
                         <li><a href="{% url 'sign_up' %}">Register</a></li>
