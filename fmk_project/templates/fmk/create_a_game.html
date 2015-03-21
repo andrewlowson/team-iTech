@@ -9,10 +9,34 @@
             {% if game_id %}
             <p>You have successfully created a game to F|M|K!</p>
 
-            <p>Would you like to share your game? </p>
+            <p>Would you like to share your game? You can share your game via Twitter!</p>
+
             <div class="form-group">
             <label class="control-label" for="focusedInput">Game Link</label>
             <input class="form-control" id="focusedInput" type="text" value="fmk/play/{{ game_id }}">
+<br>
+                <p>Tweet your game to @fmkitech!</p>
+                <a class="twitter-hashtag-button"
+                   data-size="large"
+             href="https://twitter.com/intent/tweet?button_hashtag=fmkitech&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20fmk/play/{{ game_id }}"
+             data-related="twitter">
+            Share Game
+            </a>
+            <script>
+            window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+            </script>
+
+                <br>
+                <br>
+                <p>Tweet your game to a friend!</p>
+                <a class="twitter-mention-button"
+                   data-size="large"
+   href="https://twitter.com/intent/tweet?screen_name=friend&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20fmk/play/{{ game_id }}">
+Tweet to friend
+</a>
+<script>
+window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+</script>
                 <!--There will be a better way to do this-->
             </div>
 
@@ -39,19 +63,20 @@
 			{% endfor %}
 
 
-            <ul class="nav nav-list">
-                <li class="nav-header">Find a Celebrity</li>
-                <form>
-                    <label></label>
-                    <li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
-                </form>
-            </ul>
+            <!--<ul class="nav nav-list">-->
+                <!--<li class="nav-header">Find a Celebrity</li>-->
+                <!--<form>-->
+                    <!--<label></label>-->
+                    <!--<li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>-->
+                <!--</form>-->
+            <!--</ul>-->
 
-            {% if celebrity_list %}
-                <div id="celebrities">
-                    {% include 'fmk/celebrity_list.html' with celebrity_list=celebrity_list %}
-                </div>
-            {% endif %}
+            <!--{% if celebrity_list %}-->
+                <!--<div id="celebrities">-->
+                    <!--{% include 'fmk/celebrity_list.html' with celebrity_list=celebrity_list %}-->
+                <!--</div>-->
+            <!--{% endif %}-->
+
 
             </br>
             <div class="col-lg-5 col-lg-offset-2">
