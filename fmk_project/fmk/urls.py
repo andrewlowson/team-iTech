@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^play/random_game/$', views.random_game, name= 'random_game'),
     url(r'^play/(?P<gameID>[\w\-]+)/$', views.playgame, name='play_game'),
     url(r'^stolen/$', views.stolen, name= 'stolen'),
+    url(r'^site_map/$', views.site_map, name='site_map'),
 )
 

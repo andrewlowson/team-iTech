@@ -22,6 +22,9 @@ def about(request):
 def contact_us(request):
     return render(request, 'fmk/contact_us.html')
 
+def site_map(request):
+    return render(request, 'fmk/site_map.html')
+
 
 def top_tables(request):
     most_f_list = Celebrity.objects.order_by('-fuck_count')[:5]
