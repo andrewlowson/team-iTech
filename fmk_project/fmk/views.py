@@ -88,7 +88,6 @@ def playgame(request, gameID):
 
     context_dict.update({'form': form})
     return render(request, 'fmk/playgame.html', context_dict)
-#d.maxwell.1@research.gla.ac.uk
 
 # def user_stats(request):
 #     context_dict = {
@@ -216,6 +215,19 @@ def random_game(request):
     }
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)
+
+#def player_stats(request):
+    #if request.user.is_authenticated():
+        #player = Player.objects.get(user = request.user)
+        #playerGames = Result.objects.select_related().filter(player=player)
+        #print playerGames
+        #for game in playerGames:
+            #most_f_list = Celebrity.objects.select_related().filter(game_name=game)
+        #print most_f_list
+
+
+    #else:
+        #return render(request, 'fmk/sign_in.html')
 
 
 def stolen(request):
