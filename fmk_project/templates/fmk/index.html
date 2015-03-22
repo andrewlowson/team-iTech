@@ -5,11 +5,13 @@
 
 
 {% block body_block %}
+<div id="indexpageheading">
         {% if user.is_authenticated %}
 		<h1>Welcome to F | M | K, {{ user.username }}!</h1>
 		{% else %}
 		<h2>Welcome to F | M | K</h2>
 		{% endif %}
+        </div>
 <div id="indexLayoutTest">
         <div class="jumbotron">
 
