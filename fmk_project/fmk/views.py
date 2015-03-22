@@ -61,19 +61,22 @@ def playgame(request, gameID):
                     newFCount = fcount+1
                     celebrity.fuck_count = newFCount
                     celebrity.save()
-                    context_dict['stats'].append("{0:.2f}".format(round(float(newFCount)/numberGames*100, 2)))
+                    stat_number = "{0:.0f}".format(round(float(newFCount)/numberGames*100, 2))
+                    context_dict['stats'].append(str(stat_number)+'% of people fucked!')
                 elif result_list[index]=='M':
                     mcount = celebrity.marry_count
                     newMCount = mcount+1
                     celebrity.marry_count=newMCount
                     celebrity.save()
-                    context_dict['stats'].append("{0:.2f}".format(round(float(newMCount)/numberGames*100, 2)))
+                    stat_number = "{0:.0f}".format(round(float(newMCount)/numberGames*100, 2))
+                    context_dict['stats'].append(str(stat_number)+'% of people married!')
                 elif result_list[index]=='K':
                     kcount = celebrity.kill_count
                     newKCount = kcount+1
                     celebrity.kill_count=newKCount
                     celebrity.save()
-                    context_dict['stats'].append("{0:.2f}".format(round(float(newKCount)/numberGames*100, 2)))
+                    stat_number = "{0:.0f}".format(round(float(newKCount)/numberGames*100, 2))
+                    context_dict['stats'].append(str(stat_number)+'% of people killed!')
                 context_dict['celebrities'].append(celebrity)
                 if request.user.is_authenticated():
                     # The results are only stored in the database if the user is signed in

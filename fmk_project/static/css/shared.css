@@ -801,22 +801,6 @@ h2 {
 	padding-right:10px;
 	padding-top:2px;
 }
-#authSignedIn #userCountMarry {
-	float:left;
-	margin-left:10px;
-	margin-right:5px;
-	background-image:url('../images/icon-tiny-marry.png');
-}
-#authSignedIn #userCountShag {
-	float:left;
-	margin-right:5px;
-	background-image:url('../images/icon-tiny-shag.png');
-}
-#authSignedIn #userCountKill {
-	float:left;
-	background-image:url('../images/icon-tiny-kill.png');
-}
-
 
 /* **************************** Register **************************** */
 .terms,
@@ -986,6 +970,15 @@ h2 {
 	width:128px;
 	height:128px;
 	overflow:hidden;
+}
+/*Twitter Layout */
+#twitter-layout {
+
+	position: absolute;
+	top: 19%;
+    left: 84%;
+
+
 }
 
 
