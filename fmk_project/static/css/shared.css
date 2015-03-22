@@ -971,13 +971,18 @@ h2 {
 	height:128px;
 	overflow:hidden;
 }
-/*Twitter Layout */
-#twitter-layout {
 
-	position: absolute;
-	top: 19%;
-    left: 84%;
 
+/*Index Page Layout */
+#indexLayoutTest {
+
+	padding-left: 30%;
+	float: left;
+
+}
+
+#indexbuttonlayout {
+	padding-left: 25%;
 
 }
 

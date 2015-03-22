@@ -1,5 +1,3 @@
-import random
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -7,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from fmk.models import Celebrity, Player, Game, Result
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
 
+import random
 
 def index(request):
     context_dict = {
@@ -91,10 +90,10 @@ def playgame(request, gameID):
                 game_player.save()
         else:
             print form.errors
+            context_dict.update({'form': form})
     else:
         form = ResultForm()
-
-    context_dict.update({'form': form})
+        context_dict.update({'form': form})
     context_dict.update({'game': game})
     for index in range(0, 3):
             celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)

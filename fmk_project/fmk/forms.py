@@ -1,6 +1,7 @@
 from django import forms
 from fmk.models import Celebrity, Category, Game, Player, Result
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class AddCelebrityForm (forms.ModelForm):
@@ -57,12 +58,24 @@ class CreateGameForm (forms.ModelForm):
         fields = ('celebrity1', 'celebrity2', 'celebrity3')
 
     def clean(self):
-        cleaned_data = self.cleaned_data
-        celeb1 = cleaned_data.get('celebrity1')
-        celeb2 = cleaned_data.get('celebrity2')
-        celeb3 = cleaned_data.get('celebrity3')
-        if celeb1 == celeb2 or celeb1 == celeb3 or celeb2 == celeb3:
-            raise forms.ValidationError('Each celebrity can only be selected once')
+        cleaned_data = super(CreateGameForm, self).clean()
+        choice1 = cleaned_data.get('celebrity1')
+        choice2 = cleaned_data.get('celebrity2')
+        choice3 = cleaned_data.get('celebrity3')
+        msg = "Each celebrity can only be used once"
+        if choice1 == choice2 and choice3 == choice2:
+            self.add_error('celebrity1', msg)
+            self.add_error('celebrity2', msg)
+            self.add_error('celebrity3', msg)
+        elif choice1 == choice2:
+            self.add_error('celebrity1', msg)
+            self.add_error('celebrity2', msg)
+        elif choice2 == choice3:
+            self.add_error('celebrity3', msg)
+            self.add_error('celebrity2', msg)
+        elif choice1 == choice3:
+            self.add_error('celebrity3', msg)
+            self.add_error('celebrity1', msg)
 
 
 class ResultForm (forms.ModelForm):
@@ -90,9 +103,22 @@ class ResultForm (forms.ModelForm):
         exclude = ('game_id', 'player')
 
     def clean(self):
-        cleaned_data = self.cleaned_data
+        cleaned_data = super(ResultForm, self).clean()
         choice1 = cleaned_data.get('result1')
         choice2 = cleaned_data.get('result2')
         choice3 = cleaned_data.get('result3')
-        if choice1 == choice2 or choice1 == choice3 or choice2 == choice3:
-            raise forms.ValidationError('F,M and K can only be used once')
+        msg = "F,M and K can only be used once"
+        if choice1 == choice2 and choice3 == choice2:
+            self.add_error('result1', msg)
+            self.add_error('result2', msg)
+            self.add_error('result3', msg)
+        elif choice1 == choice2:
+            self.add_error('result1', msg)
+            self.add_error('result2', msg)
+        elif choice2 == choice3:
+            self.add_error('result3', msg)
+            self.add_error('result2', msg)
+        elif choice1 == choice3:
+            self.add_error('result3', msg)
+            self.add_error('result1', msg)
+
