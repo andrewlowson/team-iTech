@@ -225,23 +225,6 @@ def random_game(request):
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)
 
-def player_stats(request):
-    if request.user.is_authenticated():
-        player = Player.objects.get(user = request.user)
-        playerGames = Result.objects.select_related().filter(player=player)
-        print playerGames
-        for game in playerGames:
-            most_f_list = Celebrity.objects.select_related().filter(game_name=game)
-        print most_f_list
-
-        context_dict = {
-            'player' : player,
-
-        }
-    else:
-        return render(request, 'fmk/sign_in.html')
-    return render(request, 'fmk/user_stats.html', context_dict)
-
 
 def stolen(request):
 
