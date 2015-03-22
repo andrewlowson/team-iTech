@@ -987,6 +987,15 @@ h2 {
 	height:128px;
 	overflow:hidden;
 }
+/*Twitter Layout */
+#twitter-layout {
+
+	position: absolute;
+	top: 19%;
+    left: 84%;
+
+
+}
 
 
 
