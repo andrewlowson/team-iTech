@@ -1,12 +1,11 @@
-import random
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login, logout
-from registration.signals import user_registered
 from fmk.models import Celebrity, Player, Game, Result
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User, AnonymousUser
+import random
 
 
 def index(request):
@@ -80,14 +79,9 @@ def playgame(request, gameID):
                 context_dict['celebrities'].append(celebrity)
                 if request.user.is_authenticated():
                     # The results are only stored in the database if the user is signed in
-                    game_player = request.user
-                    result.player = Player.objects.get(game_player)
+                    result.player = Player.objects.get(user=request.user)
                     result.game_name = game
                     result.save()
-                    play_count = game_player.gamesPlayed
-                    newPlayCount = play_count + 1
-                    game_player.gamesPlayed = newPlayCount
-                    game_player.save()
         else:
             print form.errors
     else:
@@ -97,7 +91,6 @@ def playgame(request, gameID):
             context_dict['celebrities'].append(celebrity)
 
     context_dict.update({'form': form})
-    print context_dict['game'].id
     context_dict.update({'game': game})
     return render(request, 'fmk/playgame.html', context_dict)
 
@@ -120,11 +113,8 @@ def sign_up(request):
             user.set_password(user.password)
             user.save()
             Player.objects.get_or_create(user=user)[0]
+
             registered = True
-            #player = authenticate(username=user.username, password=user.password)
-            #print player
-            #login(request, player)
-            return HttpResponseRedirect('/fmk/sign_in/')
         else:
             print user_form.errors
     else:
@@ -132,15 +122,6 @@ def sign_up(request):
     return render(request,
                   'fmk/sign_up.html',
                   {'user_form': user_form, 'registered': registered})
-
-
-#def login_on_registration(sender, user, request, **kwargs):
- #   """Logs in the user after activation"""
-  #  user.backend = 'django.contrib.auth.backends.ModelBackend'
-   # login(request, user)
-
-# Registers the function with the django-registration user_registered signal
-#user_registered.connect(login_on_registration)
 
 
 # View for user sign in (login) page
@@ -240,18 +221,18 @@ def random_game(request):
     Game.objects.get_or_create(celebrity1 = celeb_list[0], celebrity2 = celeb_list[1], celebrity3=celeb_list[2])
     return render(request, 'fmk/random_game.html', context_dict)
 
-def player_stats(request):
-    if request.user.is_authenticated():
-        player = Player.objects.get(user = request.user)
-        playerGames = Result.objects.select_related().filter(player=player)
-        print playerGames
-        for game in playerGames:
-            most_f_list = Celebrity.objects.select_related().filter(game_name=game)
-        print most_f_list
+#def player_stats(request):
+    #if request.user.is_authenticated():
+        #player = Player.objects.get(user = request.user)
+        #playerGames = Result.objects.select_related().filter(player=player)
+        #print playerGames
+        #for game in playerGames:
+            #most_f_list = Celebrity.objects.select_related().filter(game_name=game)
+        #print most_f_list
 
 
-    else:
-        return render(request, 'fmk/sign_in.html')
+    #else:
+        #return render(request, 'fmk/sign_in.html')
 
 
 def stolen(request):
