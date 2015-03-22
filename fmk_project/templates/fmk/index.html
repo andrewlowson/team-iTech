@@ -34,17 +34,25 @@
                         <!--otherwise just allow them to play random game-->
             {% else %}
                 <a href="{% url 'random_game' %}" class="btn btn-primary">Random Game</a>
-                <p>Sign in to create your own games and add a celebrity</p>
+                <p>&emsp;Sign in to create your own games and add a celebrity</p>
                 </div>
             {% endif %}
         </div>
 
     </div>
 <div>
+        {% if user.is_authenticated %}
         <!--CSS layout for the twitter feed on the index page-->
         <div id="indextwitterlayout">
+                {% else %}
+                <div id="indextwitterlayoutnouser">
+                        {% endif %}
                 <!--twitter API for the main timeline feed-->
-            <a class="twitter-timeline" href="https://twitter.com/search?q=%23fmkitech%20OR%20%40fmkitech" data-widget-id="575301081732878337">Tweets about #fmkitech OR @fmkitech</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <a class="twitter-timeline" href="https://twitter.com/search?q=%23fmkitech%20OR%20%40fmkitech"
+               data-widget-id="575301081732878337">Tweets about #fmkitech OR @fmkitech</a> <script>!function(d,s,id)
+        {var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id))
+        {js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore
+        (js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
         </div>
 
