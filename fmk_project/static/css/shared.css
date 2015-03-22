@@ -975,13 +975,11 @@ h2 {
 
 /*Index Page Layout */
 #indexLayoutTest {
-
 	margin-left: auto;
     margin-right: auto;
     width: 50%;
 
 }
-
 #indexbuttonlayout {
 	padding-left: 30%;
 
@@ -991,7 +989,8 @@ h2 {
 
 	margin-left: auto;
     margin-right: auto;
-    width: 20%;
+    width: 50%;
+    align-content: center;
 }
 
 

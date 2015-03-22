@@ -29,11 +29,12 @@ def top_tables(request):
     most_f_list = Celebrity.objects.order_by('-fuck_count')[:5]
     most_m_list = Celebrity.objects.order_by('-marry_count')[:5]
     most_k_list = Celebrity.objects.order_by('-kill_count')[:5]
+    most_p_list = Player.objects.order_by('-gamesPlayed')[:5]
     context_dict = {
         'fuck_list': most_f_list,
         'marry_list': most_m_list,
         'kill_list': most_k_list,
-
+        'plays_list': most_p_list,
         }
 
     return render(request, 'fmk/top_tables.html', context_dict)
