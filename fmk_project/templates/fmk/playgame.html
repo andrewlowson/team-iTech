@@ -14,9 +14,7 @@
 
 
 
-<form id = "result_form" method='post' action = "/fmk/play/{{game.id}}/">
-
-    {% csrf_token  %}
+   
     {% if celebrities %}
     <table class="table table-striped table-hover ">
   <thead>
@@ -35,12 +33,18 @@
         {% endif %}
     </tr>
 
+<form id = "result_form" method='post' action = "/fmk/play/{{game.id}}/">
+	
+	 {% csrf_token  %}
     <tr>
-
     {% for field in form.visible_fields %}
         <td>{{field}}</td>
     {% endfor %}
-
+    </tr>
+	<tr>
+    {% for field in form.visible_fields %}
+        <td>{{field.errors}}</td>
+    {% endfor %}
     </tr>
 
     <tr class="active">
@@ -53,9 +57,10 @@
         <td></td>
 
      <td>
-
+	 {% if form %}
          <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
-
+		{% endif %}
+	</form>	
          <a href="{% url 'random_game' %}" class="btn btn-primary">Play Again</a></td>
 
         <td></td>
@@ -63,10 +68,6 @@
 
   </tbody>
 </table>
-</form>
-
-
-			
 
 
       {% endblock %}

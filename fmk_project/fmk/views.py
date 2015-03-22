@@ -83,10 +83,10 @@ def playgame(request, gameID):
                     result.save()
         else:
             print form.errors
+            context_dict.update({'form': form})
     else:
         form = ResultForm()
-
-    context_dict.update({'form': form})
+        context_dict.update({'form': form})
     context_dict.update({'game': game})
     for index in range(0, 3):
             celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
