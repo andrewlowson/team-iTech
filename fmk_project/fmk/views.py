@@ -43,7 +43,7 @@ def top_tables(request):
 def playgame(request, gameID):
     context_dict = {'game':[], 'stats':[], 'celebrities':[]}
     game = Game.objects.get(id = gameID)
-    context_dict['game'].append(game)
+    # context_dict['game'].append(game)
     celeb_id_list = [game.celebrity1, game.celebrity2, game.celebrity3]
     if request.method == 'POST':
         form = ResultForm(data=request.POST)
@@ -91,6 +91,7 @@ def playgame(request, gameID):
             context_dict['celebrities'].append(celebrity)
 
     context_dict.update({'form': form})
+    context_dict.update({'game': game})
     return render(request, 'fmk/playgame.html', context_dict)
 
 # def user_stats(request):
