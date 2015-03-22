@@ -18,5 +18,6 @@ urlpatterns = patterns('',
     #url(r'^my_stats/$', views.player_stats, name= 'player_stats'),
     url(r'^site_map/$', views.site_map, name='site_map'),
     url(r'^suggest_celebrity/$', views.suggest_celebrity, name='suggest_celebrity'),
+    url(r'^player_stats/$', views.player_stats, name='player_stats'),
 )
 

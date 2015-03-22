@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from registration.signals import user_registered
 from fmk.models import Celebrity, Player, Game, Result
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
 
@@ -79,14 +78,17 @@ def playgame(request, gameID):
                     context_dict['stats'].append(str(stat_number)+'% of people killed!')
                 if request.user.is_authenticated():
                     # The results are only stored in the database if the user is signed in
-                    game_player = request.user
-                    result.player = Player.objects.get(game_player)
+                    result.player = Player.objects.get(user=request.user)
                     result.game_name = game
                     result.save()
-                    play_count = game_player.gamesPlayed
-                    newPlayCount = play_count + 1
-                    game_player.gamesPlayed = newPlayCount
-                    game_player.save()
+            if request.user.is_authenticated:
+                game_player = Player.objects.get(user=request.user)
+                play_count = game_player.gamesPlayed
+                print play_count
+                newPlayCount = play_count + 1
+                game_player.gamesPlayed = newPlayCount
+                print game_player.gamesPlayed
+                game_player.save()
         else:
             print form.errors
     else:
@@ -98,12 +100,6 @@ def playgame(request, gameID):
             celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
             context_dict['celebrities'].append(celebrity)
     return render(request, 'fmk/playgame.html', context_dict)
-
-# def user_stats(request):
-#     context_dict = {
-#         'boldmessage': "How does one retrieve the users fucked, married and killed? So many models and connections!",
-#     }
-# return render(request, 'fmk/index.html', context_dict)
 
 
 # View for creating a user account
@@ -131,15 +127,6 @@ def sign_up(request):
     return render(request,
                   'fmk/sign_up.html',
                   {'user_form': user_form, 'registered': registered})
-
-
-#def login_on_registration(sender, user, request, **kwargs):
- #   """Logs in the user after activation"""
-  #  user.backend = 'django.contrib.auth.backends.ModelBackend'
-   # login(request, user)
-
-# Registers the function with the django-registration user_registered signal
-#user_registered.connect(login_on_registration)
 
 
 # View for user sign in (login) page
@@ -248,9 +235,13 @@ def player_stats(request):
             most_f_list = Celebrity.objects.select_related().filter(game_name=game)
         print most_f_list
 
+        context_dict = {
+            'player' : player,
 
+        }
     else:
         return render(request, 'fmk/sign_in.html')
+    return render(request, 'fmk/user_stats.html', context_dict)
 
 
 def stolen(request):
