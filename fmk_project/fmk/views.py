@@ -228,11 +228,14 @@ def random_game(request):
 def player_stats(request):
     if request.user.is_authenticated():
         player = Player.objects.get(user = request.user)
-        playerGames = Result.objects.select_related().filter(player=player)
-        print playerGames
-        for game in playerGames:
-            most_f_list = Celebrity.objects.select_related().filter(game_name=game)
-        print most_f_list
+        player_results = Result.objects.select_related().filter(player=player)
+        print player_results
+        player_games = []
+        for result in player_results:
+            print result
+            player_games.append(result.game_name)
+            print player_games
+        print player_games
 
         context_dict = {
             'player' : player,
