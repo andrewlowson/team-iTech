@@ -108,12 +108,16 @@ def sign_up(request):
 
         if user_form.is_valid():
             user = user_form.save()
-
+            password = user.password
             user.set_password(user.password)
             user.save()
             Player.objects.get_or_create(user=user)[0]
-
+            username = user.username
             registered = True
+            player = authenticate(username=username, password=password)
+            print player
+            login(request, player)
+            return HttpResponseRedirect('/fmk/')
         else:
             print user_form.errors
     else:
