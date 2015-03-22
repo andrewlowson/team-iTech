@@ -28,151 +28,29 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
             {% if random_celebs %}
 
 
-<div id="spinner" >
-<div style="display:none" id="container">
-    <div id="nav">
-
-    </div>
-    <div id="content" >
-
-
-<div class="home" >
-	<div class="game" id="game" >
-
-		<div id="instructions" ></div>
-
-		<div class="people" >
-
-<div class="person" id="person1" >
-  <div class="name">{{random_celebs.0}}</div>
-  				<div class="photoContainer">
-					<div class="photoCard">
-						<div class="photoFront">
-							<div class="photoFrontImage" ><div class="photoFrontImageInner" ><img src="{{random_celebs.0.picture.url}}" alt="{{random_celebs.0}}" /></div></div>
-							<div class="overlay" id="overlay1" ><img src="{% static 'images/condom.png' %}" alt="" /></div>
-							<div class="overlay" id="overlay2" ><img src="{% static 'images/rings.png' %}" alt="" /></div>
-							<div class="overlay" id="overlay3" ><img src="{% static 'images/berretta.png' %}" alt="" /></div>
-						</div>
-
-					</div>
-				</div>
-
-					<div class="icon" id="icon1" >
-
-					<div class="word shag" ></div>
-				</div>
-				<div class="icon" id="icon2" >
-
-					<div class="game-form">{{form.result1}}	{{ field.errors }}
-				{{ field.help_text }}</div>
-				</div>
-				<div class="icon" id="icon3" >
-
-					<div class="word kill" ></div>
-				</div>
-
-				</div>
-
-
-<div class="person" id="person2" >
-  <div class="name">{{random_celebs.1}}</div>
-    			<div class="photoContainer">
-					<div class="photoCard">
-						<div class="photoFront">
-							<div class="photoFrontImage" ><div class="photoFrontImageInner" ><img src="{{random_celebs.1.picture.url}}" alt="{{random_celebs.1}}" /></div></div>
-							<div class="overlay" id="overlay1" ><img src="{% static 'images/condom.png' %}" alt="" /></div>
-							<div class="overlay" id="overlay2" ><img src="{% static 'images/rings.png' %}" alt="" /></div>
-							<div class="overlay" id="overlay3" ><img src="{% static 'images/berretta.png' %}" alt="" /></div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="icon" id="icon1" >
-
-					<div class="word shag" ></div>
-				</div>
-				<div class="icon" id="icon2" >
-
-					<div class="game-form">{{form.result2}}	{{ field.errors }}
-				{{ field.help_text }}</div>
-				</div>
-				<div class="icon" id="icon3" >
-
-					<div class="word kill" ></div>
-				</div>
-
-				</div>
-
-
-<div class="person" id="person3" >
-  <div class="name">{{random_celebs.2}}</div>
-    <div class="photoContainer">
-					<div class="photoCard">
-						<div class="photoFront">
-							<div class="photoFrontImage" ><div class="photoFrontImageInner" ><img src="{{random_celebs.2.picture.url}}" alt="{{random_celebs.2}}" /></div></div>
-							<div class="overlay" id="overlay1" ><img src="{% static 'images/condom.png' %}" alt="" /></div>
-							<div class="overlay" id="overlay2" ><img src="{% static 'images/rings.png' %}" alt="" /></div>
-							<div class="overlay" id="overlay3" ><img src="{% static 'images/berretta.png' %}" alt="" /></div>
-						</div>
-
-					</div>
-				</div>
-
-
-				<div class="icon" id="icon1" >
-
-					<div class="word shag" ></div>
-				</div>
-				<div class="icon" id="icon2" >
-
-					<div class="game-form">{{form.result3}}	{{ field.errors }}
-				{{ field.help_text }}</div>
-				</div>
-				<div class="icon" id="icon3" >
-
-					<div class="word kill" >KILL</div>
-				</div>
-
-                </div>
-
-						</div>
-		<div class="nextAndChangeButtons" >
-            <input type = "submit" name = "submit" value = "Submit" />
-		</div>
-
-	</div>
-
-
-
-</div>
-
-    </div>
-
-</div>
-</div>
-
 
 
 		{% endif %}
 
      </div><div>
+<h1>Game {{ game.id }}</h1>
+		<h2>I found you.</h2>
+		{% if random_celebs%}
+			<ul>
+				{% for celebrity in random_celebs %}
+				<img src ="{{celebrity.picture.url}}" alt="{{celebrity}}">
+				{% endfor %}
+			</ul>
+		{% endif %}
 
+		{% if form %}
+			<form id = "result_form" method='post' action = "/fmk/play/{{game.id}}/">
 
-            </div>
-
-
-			<!--Then the template splits it-->
-	
-
-</div></div></div>
-			
-			<!--Then the end of the form finishes down here-->
-			
+			{% csrf_token %}
 			{% for hidden in form.hidden_fields %}
 				{{ hidden }}
 			{% endfor %}
-<table><tr>
+			<table><tr>
 			{% for field in form.visible_fields %}
 				<td>
 				{{ field.errors }}
@@ -181,8 +59,33 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				</td>
 			{% endfor %}
 
-			<td><input type = "submit" name = "submit" value = "Submit" /></td></tr></table>
-		</form>
+				<td><input type = "submit" name = "submit" value = "Submit" /></td></tr></table>
+			</form>
+		{% endif %}
+
+
+
+			<!--Then the template splits it-->
+	
+
+</div></div></div>
+			
+			<!--&lt;!&ndash;Then the end of the form finishes down here&ndash;&gt;-->
+			<!---->
+			<!--{% for hidden in form.hidden_fields %}-->
+				<!--{{ hidden }}-->
+			<!--{% endfor %}-->
+<!--<table><tr>-->
+			<!--{% for field in form.visible_fields %}-->
+				<!--<td>-->
+				<!--{{ field.errors }}-->
+				<!--{{ field.help_text }}-->
+				<!--{{ field }}-->
+				<!--</td>-->
+			<!--{% endfor %}-->
+
+			<!--<td><input type = "submit" name = "submit" value = "Submit" /></td></tr></table>-->
+		<!--</form>-->
 
 
       {% endblock %}
