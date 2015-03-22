@@ -1,13 +1,11 @@
-import random
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from registration.signals import user_registered
 from fmk.models import Celebrity, Player, Game, Result
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
 
+import random
 
 def index(request):
     context_dict = {
