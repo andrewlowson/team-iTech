@@ -91,7 +91,6 @@ def playgame(request, gameID):
     for index in range(0, 3):
             celebrity = Celebrity.objects.get(id=celeb_id_list[index].id)
             context_dict['celebrities'].append(celebrity)
-    print context_dict['game']
     return render(request, 'fmk/playgame.html', context_dict)
 
 # def user_stats(request):
