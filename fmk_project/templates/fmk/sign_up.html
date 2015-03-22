@@ -4,7 +4,7 @@
         <h1>Sign Up</h1>
 
         {%  if registered %}
-        <strong>Congratulations, You Have Created An Account</strong>
+        <strong>Congratulations, you have created an account {{ user.username }}</strong> </br>
        <a href="/fmk/">Return Home</a>
         {% else %}
         <h3>Sign Up For Great Features!</h3>
@@ -33,7 +33,7 @@
     <br>
  </div>
 
-    {{ profile_form.as_p }}
+    {{ user_form.errors }}
 
     <br>
  <div class="col-lg-10 col-lg-offset-2">
