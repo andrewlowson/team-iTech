@@ -4,45 +4,19 @@
         <h1>Sign Up</h1>
 
         {%  if registered %}
-        <strong>Congratulations, you have created an account {{ user.username }}</strong> </br>
+        <strong>Congratulations, you have created an account {{ user.username }}</strong> <br>
        <a href="/fmk/">Return Home</a>
         {% else %}
         <h3>Sign Up For Great Features!</h3>
 
-        <form class="form-horizontal" id="user_form" method="post" action="/fmk/sign_up/"
+                <form id="user_form" method="post" action="/fmk/sign_up/"
             enctype="multipart/form-data">
-
 
             {% csrf_token %}
 
-    <label for="username" class="col-lg-2 control-label">Username</label>
+    {{ user_form.as_p }}
 
- <div class="col-lg-9">
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username" value=""/>
-     <br>
- </div>
-<label for="email" class="col-lg-2 control-label">Email</label>
- <div class="col-lg-9">
-             <input type="text" class="form-control" id="email" name="email" placeholder="Email" value=""/>
-     <br>
-
- </div>
-            <label for="password" class="col-lg-2 control-label">Password</label>
-<div class="col-lg-9">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value=""/>
-    <br>
- </div>
-
-    {{ user_form.errors }}
-
-    <br>
- <div class="col-lg-10 col-lg-offset-2">
-    <input type = "submit" class="btn btn-primary" name="submit" value="Register"/>
-            </div>
+    <input type = "submit" name="submit" value="Register"/>
     </form>
-
-
-
-
-{% endif %}
+    {% endif %}
 {% endblock %}
