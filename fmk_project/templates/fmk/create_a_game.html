@@ -4,6 +4,49 @@
 	{% block body_block %}
 		<h1>Create A New Game</h1>
 
+<script>
+  $(function() {
+    var availableTags = [
+     {% for celebrity in celebrities %}
+        "{{celebrity}}",
+     {% endfor %}
+    ];
+    $( ".tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+</script>
+
+<script>
+  $(function() {
+    var availableTags = [
+     {% for celebrity in celebrities %}
+        "{{celebrity}}",
+     {% endfor %}
+    ];
+    $( ".tags2" ).autocomplete({
+      source: availableTags
+    });
+  });
+</script>
+
+
+<script>
+  $(function() {
+    var availableTags = [
+         {% for celebrity in celebrities %}
+                "{{celebrity}}",
+         {% endfor %}
+    ];
+
+  $( ".tags3" ).autocomplete({
+      source: availableTags
+    });
+  });
+</script>
+
+
+
 		<form id = "create_game_form" method='post' action = "/fmk/create_a_game/">
 
             {% if game_id %}
@@ -53,35 +96,27 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
 
 
-			{% for field in form.visible_fields %}
-				<br>
-				{{ field.errors }}
-				{{ field.help_text }}
-				{{ field }}
 
-				</br>
-			{% endfor %}
+            <div class="ui-widget">
+                <label for="tags">Celebrity 1: </label>
+                <input id="id_celebrity1" name="celebrity1" class="tags">
+            </div>
 
-            <ul class="nav nav-list">
-                <li class="nav-header">Find a Celebrity</li>
-                <form>
 
-                    <li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
-                </form>
-            </ul>
+            <div class="ui-widget">
+                <label for="tags2">Celebrity 2: </label>
+                <input id="id_celebrity2" name="celebrity2" class="tags2">
+            </div>
 
-            {% if celebrity_list %}
-                <div id="celebrities">
-                    {% include 'fmk/celebrity_list.html' with celebrity_list=celebrity_list %}
-                </div>
-            {% endif %}
+            <div class="ui-widget">
+                <label for="tags">Celebrity 3: </label>
+                <input id="id_celebrity3" name="celebrity3" class="tags3">
+            </div>
 
 
             </br>
             <div class="col-lg-5 col-lg-offset-2">
-    <input type = "submit" class="btn btn-primary" name="submit" value="Create Game"/>
-
-
+            <input type = "submit" class="btn btn-primary" name="submit" value="Create Game"/>
             </div>
             <br>
             <br>
@@ -96,4 +131,6 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
 </form>
          {% endif %}
+
+
 {% endblock %}

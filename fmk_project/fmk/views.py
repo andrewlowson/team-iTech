@@ -199,13 +199,19 @@ def add_game(request):
         if form.is_valid():
             game = form.save(commit=True)
             game_id = game.id
+
             context_dict = {'game_id': game_id}
             return render(request, 'fmk/create_a_game.html', context_dict)
         else:
             print form.errors
     else:
         form = CreateGameForm()
-    return render(request, 'fmk/create_a_game.html', {'form': form})
+        celeb_list = Celebrity.objects.all()
+        context_dict = {
+            'celebrities': celeb_list,
+            'form': form,
+        }
+    return render(request, 'fmk/create_a_game.html', context_dict)
 
 
 def random_game(request):
@@ -249,7 +255,16 @@ def suggest_celebrity(request):
     celebrity_list = []
     starts_with = ''
     if request.method == 'GET':
-            starts_with = request.GET['suggestion']
+        starts_with = request.GET['suggestion']
     celebrity_list = get_celebrity_list(5, starts_with)
 
     return render(request, 'fmk/celebrity_list.html', {'celebrity_list' : celebrity_list})
+
+
+def testpage(request):
+
+    test = Celebrity.objects.all()
+    context_dictionary = {
+        'test':test
+    }
+    return render(request, 'fmk/testpage.html', context_dictionary)
