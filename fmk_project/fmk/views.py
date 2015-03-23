@@ -227,11 +227,6 @@ def random_game(request):
     return render(request, 'fmk/random_game.html', context_dict)
 
 
-def stolen(request):
-
-    return render(request, 'fmk/stolen.html')
-
-
 # Helper function to find all the celebrities starting with the name inputted
 def get_celebrity_list(max_results=0, starts_with=''):
     celebrity_list = []

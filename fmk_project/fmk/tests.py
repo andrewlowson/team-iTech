@@ -1,22 +1,45 @@
+import unittest
 from django.test import TestCase
-from rango.models import Celebrity
-
-class CelebrityTests(TestCase):
-    def test_ensure_views_are_positive(self):
-
-        celebrity = Celebrity(name='test', views=-1, likes=0)
-        celebrity.save()
-        self.assertEqual((celebrity.views >= 0), True)
-
-
+from fmk.models import *
+from fmk.views import *
 from django.core.urlresolvers import reverse
 
-class IndexViewTests(TestCase):
-    def test_index_view(self):
-        """
 
-        """
-        response = self.client.get(reverse('index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "There are no celebrities in the database")
-        self.assertQuerysetEqual(response.context['celebrities'], [])
+class SignUpTest(unittest.TestCase):
+
+
+    def SignUp(self):
+        "I'm not sure what I'm doing"
+
+        self.request = sign_up('andrewlowson', 'andrew@lowson.co', 'password')
+        # self.form = SignUpForm(data=self.request.POST)
+        # self.user = self.form.save()
+        # self.password = self.user.password
+        # self.user.set_password(self.user.password)
+        # self.user.save()
+        # Player.objects.get_or_create(user=self.user)[0]
+        # self.username = self.user.username
+        # registered=True
+        # self.player = authenticate(username=self.username, password=self.password)
+
+
+        self.assertEqual(username = 'andrewlowson')
+
+
+    def SignIn(self):
+
+        self.request = sign_in(self.username, self.password)
+
+        self.assertEqual(HttpResponseRedirect,'/fmk/')
+
+
+
+class OtherSignUp(unittest.TestCase):
+
+    def FailTest(self):
+
+        "HOping this fails"
+
+        self.request = sign_up(123,123,123)
+
+        assert HttpResponseRedirect == '/fmk/'
