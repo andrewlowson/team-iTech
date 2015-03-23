@@ -16,11 +16,11 @@
 
    
     {% if celebrities %}
-    <table class="table table-striped table-hover ">
+    <table class="table table-striped table-hover gamebuttons">
   <thead>
     <tr class="info">
 {% for celebrity in celebrities %}
-				<th>{{celebrity}}</th>
+				<th class=" gamebuttons">{{celebrity}}</th>
 				{% endfor %}
     </tr>
   </thead>
@@ -28,7 +28,7 @@
 
     <tr>
         {% for celebrity in celebrities %}
-        <td><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
+        <td class=" gamebuttons"><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
         {% endfor %}
         {% endif %}
     </tr>
@@ -38,30 +38,30 @@
 	 {% csrf_token  %}
     <tr>
     {% for field in form.visible_fields %}
-        <td>{{field}}</td>
+        <td class=" gamebuttons">{{field}}</td>
     {% endfor %}
     </tr>
 	<tr>
     {% for field in form.visible_fields %}
-        <td>{{field.errors}}</td>
+        <td class=" gamebuttons">{{field.errors}}</td>
     {% endfor %}
     </tr>
 
     <tr class="active">
 		{% for statistic in stats %}
-            <td>{{statistic}}</td>
+            <td class=" gamebuttons">{{statistic}}</td>
         {% endfor %}
 
     </tr>
     <tr class="info">
         <td></td>
 
-     <td>
+     <td class=" gamebuttons">
 	 {% if form %}
-         <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
+         <input type="submit" class="btn btn-primary gamebuttons" name="submit" value="Submit" />
 		{% endif %}
 	</form>	
-         <a href="{% url 'random_game' %}" class="btn btn-primary">Play Again</a></td>
+         <a href="{% url 'random_game' %}" class="btn btn-primary gamebuttons">Play Again</a></td>
 
         <td></td>
     </tr>

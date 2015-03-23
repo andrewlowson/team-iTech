@@ -14,38 +14,34 @@
 			{% csrf_token %}
 
 <div>
-<table class="table table-striped table-hover ">
+<table class="table table-striped table-hover gamebuttons">
   <thead>
-    <tr class="info">
+    <tr class="info gamebuttons">
 
-      <th>{{random_celebs.0}}</th>
-      <th>{{random_celebs.1}}</th>
-      <th>{{random_celebs.2}}</th>
+      <th class=" gamebuttons">{{random_celebs.0}}</th>
+      <th class=" gamebuttons">{{random_celebs.1}}</th>
+      <th class=" gamebuttons">{{random_celebs.2}}</th>
 
     </tr>
   </thead>
   <tbody>
     <tr>
-   	{% for celebrity in random_celebs %}
-        <td><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
-    {% endfor %}
-
+        {% for celebrity in random_celebs %}
+            <td class="gamebuttons"><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
+        {% endfor %}
     </tr>
     <tr>
-			{% for field in form.visible_fields %}
-				<td>
-				{{ field.errors }}
-				{{ field.help_text }}
-
-                 {{ field}}
-
-            {% endfor %}
-				</td>
-
+        {% for field in form.visible_fields %}
+            <td class="gamebuttons">
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+            </td>
+        {% endfor %}
     </tr>
     <tr class="info">
       <td></td>
-      <td><input type = "submit" class="btn btn-primary" name = "submit" value = "Submit" /></td>
+      <td class="gamebuttons"><input type = "submit" class="btn btn-primary " name = "submit" value = "Submit" /></td>
       <td></td>
     </tr>
 
