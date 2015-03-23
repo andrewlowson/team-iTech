@@ -68,6 +68,11 @@ Password: testuser
 This is a web application game that lets you choose from three celebrities who you would rather Fuck (F), Marry (M), or Kill (K). The random game is allowed to be played by all players, regardless of if they have an account with FMK or not. This game picks three celebrities at random, upon which the player can then select which one they would F, M or K.
 
 If the player creates an account or is signed in, then they can access other features, as well as the random game. Create a game allows the player to pick three celebrities, rather than them being random, and share the game with friends, or play it themselves. 
+
+The application also contains top tables that display the celebrities that have been fucked, married, and killed the most. The hall of shame table shows which users have played the game the most. 
+
+Players that have accounts can also add celebrities to the game that are not already in the database by supplying their name and a photo of that celebrity, as well as giving them a defined category. If the category does not exit, the player may create it also, so it can be used my other players.
+
 ————————————————————————————————————————————————————————————————————————————————————————————————————————-
 ###Social Media 
 
