@@ -161,53 +161,71 @@ class RandomGameTest(TestCase):
         self.assertEqual((celeb_list[1]==celeb_list[2]), False)
 
 
+class PlayGameTests(TestCase):
+    def test_play_game_test(self):
+        # define some basic data
+        cat = Category(name = 'testCategory', description = 'This is a test category')
+        cat.save()
+        celeb1 = Celebrity(
+            first_name='Test1',
+            last_name ='Name',
+            picture = 'test1.jpg',
+            category = cat,
+            fuck_count = 3,
+            marry_count = 2,
+            kill_count = 1,
+        )
+        celeb1.save()
+        celeb2 = Celebrity(
+            first_name='Test2',
+            last_name ='Name',
+            picture = 'test2.jpg',
+            category = cat,
+            fuck_count = 2,
+            marry_count = 1,
+            kill_count = 3,
+        )
+        celeb2.save()
 
+        num_f_celeb3 = 7
+        num_m_celeb3 = 20
+        num_k_celeb3 = 100
 
+        celeb3 = Celebrity(
+            first_name='Test3',
+            last_name ='Name',
+            picture = 'test3.jpg',
+            category = cat,
+            fuck_count = num_f_celeb3,
+            marry_count = num_m_celeb3,
+            kill_count = num_k_celeb3,
+        )
+        celeb3.save()
+        game = Game (celebrity1 = celeb1, celebrity2=celeb2, celebrity3=celeb3)
+        game.save()
 
+        # user visits the play game page, but not logged in
+        #response = build_url('/play/', get ={'gameID':game})
+        response = self.client.get(reverse('play_game', args=str(game.id)))
+        self.assertEqual(response.status_code, 200)
 
+        # check that 3 celebrities are returned
+        num_celebs = len(response.context['celebrities'])
+        self.assertEqual(num_celebs, 3)
+        celeb_list = response.context['celebrities']
+        # and that they are unique
+        self.assertEqual((celeb_list[0]==celeb_list[1]), False)
+        self.assertEqual((celeb_list[0]==celeb_list[2]), False)
+        self.assertEqual((celeb_list[1]==celeb_list[2]), False)
 
+        # check to ensure celebrity stats haven't been altered
+        self.assertEqual((celeb_list[2].fuck_count==num_f_celeb3), True)
+        self.assertEqual((celeb_list[2].marry_count==num_m_celeb3), True)
+        self.assertEqual((celeb_list[2].kill_count==num_k_celeb3), True)
 
+        # check a game is in the context dict
+        self.assertEqual(response.context['game']!=None, True)
 
+        # check a form is in the context dict
+        self.assertEqual(response.context['form']!=None, True)
 
-
-
-
-
-class SignUpTest(unittest.TestCase):
-
-
-    def SignUp(self):
-        "I'm not sure what I'm doing"
-
-        self.request = sign_up('andrewlowson', 'andrew@lowson.co', 'password')
-        # self.form = SignUpForm(data=self.request.POST)
-        # self.user = self.form.save()
-        # self.password = self.user.password
-        # self.user.set_password(self.user.password)
-        # self.user.save()
-        # Player.objects.get_or_create(user=self.user)[0]
-        # self.username = self.user.username
-        # registered=True
-        # self.player = authenticate(username=self.username, password=self.password)
-
-
-        self.assertEqual(username = 'andrewlowson')
-
-
-    def SignIn(self):
-
-        self.request = sign_in(self.username, self.password)
-
-        self.assertEqual(HttpResponseRedirect,'/fmk/')
-
-
-
-class OtherSignUp(unittest.TestCase):
-
-    def FailTest(self):
-
-        "HOping this fails"
-
-        self.request = sign_up(123,123,123)
-
-        assert HttpResponseRedirect == '/fmk/'
