@@ -29,7 +29,7 @@ class Category(models.Model):
 class Celebrity(models.Model):
 	first_name = models.CharField(max_length = 60)
 	last_name = models.CharField(max_length = 60)
-	picture = models.ImageField(upload_to = 'FMK_Celebrity_Thumbs/', blank=True)
+	picture = models.ImageField(upload_to = 'FMK_Celebrity_Thumbs/')
 	category = models.ForeignKey(Category, verbose_name='categories')
 	fuck_count = models.IntegerField(default=0)
 	marry_count = models.IntegerField(default=0)
