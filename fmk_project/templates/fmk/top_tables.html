@@ -13,14 +13,18 @@
         <br>
         <div class="list-group">
 
+
+
 <ul class="nav nav-tabs">
-  <li class=""><a href="#home" data-toggle="tab" aria-expanded="false">Most Fucked</a></li>
-  <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Most Married</a></li>
-    <li class="active"><a href="#dropdown1" data-toggle="tab" aria-expanded="true">Most Killed</a></li>
+    <li class="active"><a href="#play" data-toggle="tab" aria-expanded="true">Hall of Shame</a></li>
+  <li ><a href="#home" data-toggle="tab" aria-expanded="false">Most Fucked</a></li>
+  <li ><a href="#profile" data-toggle="tab" aria-expanded="true">Most Married</a></li>
+    <li ><a href="#dropdown1" data-toggle="tab" aria-expanded="true">Most Killed</a></li>
+
 
 </ul>
 <div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active in" id="home">
+  <div class="tab-pane fade " id="home">
     <p class="list-group-item-text">
               <table class="table table-striped table-hover ">
 
@@ -78,8 +82,24 @@
         {% endif %}</p>
   </div>
 
+    <div class="tab-pane fade active in" id="play">
+    <p class="list-group-item-text">
+                      <table class="table table-striped table-hover ">
 
-
+		{% if plays_list %}
+			{% for player in plays_list %}
+			<tr>
+				<td> {{ player }}</td>
+                <td>has played</td>
+                <td>{{ player.gamesPlayed }}</td>
+                <td>times.</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+			<p>No Players for display</p>
+        {% endif %}</p>
+  </div>
 </div>
 
 
