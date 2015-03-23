@@ -46,6 +46,8 @@ $ python manage.py syncdb // Setup the database
 
 $ python manage.py migrate // Migrate changes to the database. Before this, you may have to run the 'python manage.py makemigrations' command first
 
+$ python populate_rango.py // Run the population script. You may need to run the migrate command again.
+
 ### Run Server
 
 $ python manage.py runserver  // Run start the server and navigate to the home page at http://127.0.0.1:8000
