@@ -55,9 +55,23 @@ th.gamebuttons{
 }
 
 
+/*AJAX Page Layout */
 
 
-
+#project-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  #project-icon {
+    float: left;
+    height: 100px;
+    width: 100px;
+  }
+  #project-description {
+    margin: 0;
+    padding: 0;
+  }
 
 
 

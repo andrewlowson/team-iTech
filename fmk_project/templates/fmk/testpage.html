@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'fmk/base.html' %}
+{% load staticfiles %}
+{% block body_block %}
 
-</body>
-</html>
+  <script>
+  $(function() {
+    var projects = [
+
+        {% for celebrity in test %}
+    {
+        value: "{{celebrity.category}}",
+        label: "{{celebrity.category}}",
+        desc: "{{celebrity}}",
+        icon: "{{celebrity.picture.url}}"
+      },
+  {% endfor %}
+
+    ];
+
+    $( "#project" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( ".project" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        $( "#project-id" ).val( ui.item.value );
+        $( "#project-description" ).html( ui.item.desc )
+        $( "#project-icon" ).attr( "src", ui.item.icon );
+
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+        .appendTo( ul );
+    };
+  });
+  </script>
+
+<div id="project-label">Search by category:</div>
+<img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
+<input id="project">
+<input type="hidden" id="project-id">
+<p id="project-description"></p>
+
+
+<p><br><br><span></span></p>
+
+
+
+{% endblock %}
