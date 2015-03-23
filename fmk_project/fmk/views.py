@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from registration.signals import user_registered
 from fmk.models import Celebrity, Player, Game, Result
 from fmk.forms import SignUpForm, AddCategoryForm, AddCelebrityForm, CreateGameForm, ResultForm
+
+
 
 
 def index(request):
@@ -80,7 +81,7 @@ def playgame(request, gameID):
                 if request.user.is_authenticated():
                     # The results are only stored in the database if the user is signed in
                     game_player = request.user
-                    result.player = Player.objects.get(game_player)
+                    result.player = Player.objects.get(user = game_player)
                     result.game_name = game
                     result.save()
                     play_count = game_player.gamesPlayed
@@ -259,28 +260,15 @@ def stolen(request):
 
 
 # Helper function to find all the celebrities starting with the name inputted
-def get_celebrity_list(max_results=0, starts_with=''):
-    celebrity_list = []
+def get_category_list(max_results=0, starts_with=''):
+    cat_list = []
     if starts_with:
-        celebrity_list = Celebrity.objects.filter(Celebrity_name_startswith = starts_with)
+        cat_list = Category.objects.filter(name_istartswith = starts_with)
 
     if max_results > 0:
-            if len(celebrity_list) > max_results:
-                    celebrity_list = celebrity_list[:max_results]
+            if len(cat_list) > max_results:
+                    cat_list = cat_list[:max_results]
 
-    for celebrity in celebrity_list:
-        celebrity.url = Celebrity.first_name
-
-    return celebrity_list
+    return cat_list
 
 
-
-# View to examine the request and pick out the celebrity query string
-def suggest_celebrity(request):
-    celebrity_list = []
-    starts_with = ''
-    if request.method == 'GET':
-            starts_with = request.GET['suggestion']
-    celebrity_list = get_celebrity_list(5, starts_with)
-
-    return render(request, 'fmk/celebrity_list.html', {'celebrity_list' : celebrity_list})

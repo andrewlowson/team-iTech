@@ -43,7 +43,10 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
             <p>Or you can have a go yourself </p>
             <a href="/fmk/play/{{game_id}}" class="btn btn-primary">Play Your Game</a>
+			
+			
 
+				
             {% else %}
 			{% csrf_token %}
 
@@ -94,5 +97,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
             {% endif %}
 
 </form>
-         {% endif %}
+         {% endif %}	
+		 
+		 
 {% endblock %}

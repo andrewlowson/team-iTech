@@ -52,6 +52,7 @@ class CreateGameForm (forms.ModelForm):
         queryset=Celebrity.objects.all(),
         help_text="Select a celebrity."
     )
+    
 
     class Meta:
         model = Game
