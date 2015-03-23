@@ -207,7 +207,12 @@ def add_game(request):
             print form.errors
     else:
         form = CreateGameForm()
-    return render(request, 'fmk/create_a_game.html', {'form': form})
+        celeb_list = Celebrity.objects.all()
+        context_dict = {
+            'celebrities': celeb_list,
+            'form': form,
+        }
+    return render(request, 'fmk/create_a_game.html', context_dict)
 
 
 def random_game(request):
