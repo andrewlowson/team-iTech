@@ -69,7 +69,7 @@ If the player creates an account or is signed in, then they can access other fea
 ————————————————————————————————————————————————————————————————————————————————————————————————————————-
 ###Social Media 
 
-Check FMK out on twitter at fmkitech. The application contains twitter intergration, allowing the player to share the application, share their results of a game, and also share or send their created game with friends.
+Check FMK out on twitter at @fmkitech. The application contains twitter intergration, allowing the player to share the application, share their results of a game, and also share or send their created game with friends.
 
 Find us at: 
 
