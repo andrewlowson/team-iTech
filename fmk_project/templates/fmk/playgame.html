@@ -73,7 +73,7 @@
 	<p>Tweet who you chose to FMK!</p>
                 <a class="twitter-hashtag-button"
                    data-size="large"
-					href="https://twitter.com/intent/tweet?button_hashtag=fmkitech&text={% for tweet in tweets %}{{tweet}} {% endfor %}%20%20%20 {% url 'play_game' game.id %}"
+					href="https://twitter.com/intent/tweet?button_hashtag=fmkitech&text={% for tweet in tweets %}{{tweet}} {% endfor %}%20%20%20 fmkitech.pythonanywhere.com{% url 'play_game' game.id %}"
 					data-related="twitter">
 
 					Share Results
