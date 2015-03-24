@@ -15,6 +15,5 @@ urlpatterns = patterns('',
     url(r'^play/random_game/$', views.random_game, name= 'random_game'),
     url(r'^play/(?P<gameID>[\w\-]+)/$', views.playgame, name='play_game'),
     url(r'^site_map/$', views.site_map, name='site_map'),
-    #url(r'^suggest_category/$', views.suggest_category, name='suggest_category'),
 )
 

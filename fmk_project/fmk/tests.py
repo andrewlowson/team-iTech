@@ -63,7 +63,7 @@ class ResultModelTests(TestCase):
 
 # Test that if there are celebrities present in the database then the top tables will rank them and return the ordered list
 class TopTablesViewTests(TestCase):
-    def test_top_tables_view(self):
+    def test_top_tables_returns_most_fmk_celebrities(self):
 
         cat = Category(name = 'testCategory', description = 'This is a test category')
         cat.save()
@@ -108,8 +108,8 @@ class TopTablesViewTests(TestCase):
         self.assertEqual(num_celebs, 3)
 
 # Test that only three celebrities are selected for the random game
-class RandomGameTest(TestCase):
-    def test_random_game(self):
+class RandomGameViewTest(TestCase):
+    def test_random_game_generates_valid_game(self):
         cat = Category(name = 'testCategory', description = 'This is a test category')
         cat.save()
         celeb1 = Celebrity(
@@ -163,8 +163,8 @@ class RandomGameTest(TestCase):
         self.assertEqual((celeb_list[1]==celeb_list[2]), False)
 
 # Test that the PlayGame view works correctly given sample data
-class PlayGameTests(TestCase):
-    def test_basic_play_game_view(self):
+class PlayGameViewTests(TestCase):
+    def test_play_game_view_loads_game(self):
         # define some basic data
         cat = Category(name = 'testCategory', description = 'This is a test category')
         cat.save()
@@ -232,7 +232,7 @@ class PlayGameTests(TestCase):
         self.assertEqual(response.context['form']!=None, True)
 
 
-    def test_unauthenticated_results_post_view(self):
+    def test_unauthenticated_user_posts_results(self):
         # define some basic data
         cat = Category(name = 'testCategory', description = 'This is a test category')
         cat.save()
@@ -292,10 +292,11 @@ class PlayGameTests(TestCase):
         self.assertEqual((celeb_list[0]==celeb_list[2]), False)
         self.assertEqual((celeb_list[1]==celeb_list[2]), False)
 
-        # check to ensure celebrity stats haven't been altered
+        # check to ensure celebrity stats have been altered correctly
 
         self.assertEqual((celeb_list[2].fuck_count==num_f_celeb3), True)
         self.assertEqual((celeb_list[2].marry_count==num_m_celeb3), True)
+        # in this test the user killed celebrity 3
         self.assertEqual((celeb_list[2].kill_count==num_k_celeb3), False)
 
         # check a game is in the context dict
