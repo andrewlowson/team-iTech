@@ -1,5 +1,5 @@
 # team-iTech
-Group repository for Internet Technologies
+Group repository for Internet Technology
 
 
 ##Contact Information
