@@ -48,7 +48,7 @@ When creating superuser, do not create one called testuser, as this is hardcoded
 
 $ python manage.py migrate // Migrate changes to the database. Before this, you may have to run the 'python manage.py makemigrations' command first
 
-$ python populate_rango.py // Run the population script. You may need to run the migrate command again.
+$ python populate_fmk.py // Run the population script. You may need to run the migrate command again.
 
 ### Run Server
 
