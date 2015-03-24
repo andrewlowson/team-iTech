@@ -62,7 +62,8 @@ $ python manage.py runserver  // Run start the server and navigate to the home p
 
 ###Test Users Credentials: 
 
-Username: testuser
+Username: testuser 
+
 Password: testpass
 
 ###About The Application
