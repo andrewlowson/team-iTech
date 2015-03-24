@@ -190,7 +190,13 @@ def add_celebrity(request):
             print form.errors
     else:
         form = AddCelebrityForm()
-    return render(request, 'fmk/add_celebrity.html', {'form': form})
+        celeb_list = Celebrity.objects.all()
+        context_dictionary = {
+            'celebrities': celeb_list,
+            'form': form,
+        }
+
+    return render(request, 'fmk/add_celebrity.html', context_dictionary)
 
 
 def add_game(request):

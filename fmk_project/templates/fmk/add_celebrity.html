@@ -1,6 +1,54 @@
 {% extends 'fmk/base.html' %}
-
+{% load staticfiles %} <!-- New line -->
     {% block body_block %}
+
+    <script>
+  $(function() {
+    var projects = [
+        {% for celebrity in celebrities %}
+        {
+            value: "{{celebrity}}",
+            label: "{{celebrity}}",
+            desc: "{{celebrity.category}}",
+            icon: "{{celebrity.picture.url}}"
+          },
+        {% endfor %}
+    ];
+    $( "#project" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        $( "#project-id" ).val( ui.item.value );
+        $( "#project-description" ).html( ui.item.desc )
+        $( "#project-icon" ).attr( "src", ui.item.icon );
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+        .appendTo( ul );
+    };
+  });
+  </script>
+
+<div id="addCelebritySearch">
+    <h2>Check our list of celebrities first</h2>
+<div id="project-label">Search by name:</div>
+<img id="project-icon" src="{% static 'images/FMK.png' %}" class="ui-state-default" alt="">
+<input id="project">
+<input type="hidden" id="project-id">
+<p id="project-description"></p>
+</div>
+
+
+
+<div id="addcelebrityform">
 		<h1>Add New Celebrity</h1>
 
 		<form  action = "/fmk/add_celebrity/" method= "POST" enctype = "multipart/form-data">
@@ -24,5 +72,9 @@
             <br>
             <br>
 		</form>
+
+</div>
+
+
 
 	{% endblock %}
