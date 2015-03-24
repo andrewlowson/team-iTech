@@ -2,6 +2,7 @@ import unittest
 from django.test import TestCase
 from fmk.models import *
 from fmk.views import *
+from fmk.forms import *
 from django.core.urlresolvers import reverse
 
 
@@ -162,7 +163,7 @@ class RandomGameTest(TestCase):
 
 
 class PlayGameTests(TestCase):
-    def test_play_game_test(self):
+    def test_basic_play_game_view(self):
         # define some basic data
         cat = Category(name = 'testCategory', description = 'This is a test category')
         cat.save()
@@ -228,4 +229,75 @@ class PlayGameTests(TestCase):
 
         # check a form is in the context dict
         self.assertEqual(response.context['form']!=None, True)
+
+
+    def test_unauthenticated_results_post_view(self):
+        # define some basic data
+        cat = Category(name = 'testCategory', description = 'This is a test category')
+        cat.save()
+        celeb1 = Celebrity(
+            first_name='Test1',
+            last_name ='Name',
+            picture = 'test1.jpg',
+            category = cat,
+            fuck_count = 3,
+            marry_count = 2,
+            kill_count = 1,
+        )
+        celeb1.save()
+        celeb2 = Celebrity(
+            first_name='Test2',
+            last_name ='Name',
+            picture = 'test2.jpg',
+            category = cat,
+            fuck_count = 2,
+            marry_count = 1,
+            kill_count = 3,
+        )
+        celeb2.save()
+
+        num_f_celeb3 = 7
+        num_m_celeb3 = 20
+        num_k_celeb3 = 100
+
+        celeb3 = Celebrity(
+            first_name='Test3',
+            last_name ='Name',
+            picture = 'test3.jpg',
+            category = cat,
+            fuck_count = num_f_celeb3,
+            marry_count = num_m_celeb3,
+            kill_count = num_k_celeb3,
+        )
+        celeb3.save()
+        game = Game (celebrity1 = celeb1, celebrity2=celeb2, celebrity3=celeb3)
+        game.save()
+        form = ResultForm()
+        form.result1=u'F'
+        form.result2=u'M'
+        form.result3=u'K'
+
+        # user visits the play game page, but not logged in
+        response = reverse('play_game', args=str(game.id))
+        response = self.client.post(response, {'result1':u'F', 'result2':u'M', 'result3':u'K'})
+        self.assertEqual(response.status_code, 200)
+
+        # check that 3 celebrities are returned
+        num_celebs = len(response.context['celebrities'])
+        self.assertEqual(num_celebs, 3)
+        celeb_list = response.context['celebrities']
+        # and that they are unique
+        self.assertEqual((celeb_list[0]==celeb_list[1]), False)
+        self.assertEqual((celeb_list[0]==celeb_list[2]), False)
+        self.assertEqual((celeb_list[1]==celeb_list[2]), False)
+
+        # check to ensure celebrity stats haven't been altered
+
+        self.assertEqual((celeb_list[2].fuck_count==num_f_celeb3), True)
+        self.assertEqual((celeb_list[2].marry_count==num_m_celeb3), True)
+        self.assertEqual((celeb_list[2].kill_count==num_k_celeb3), False)
+
+        # check a game is in the context dict
+        self.assertEqual(response.context['game']!=None, True)
+
 

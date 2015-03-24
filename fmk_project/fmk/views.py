@@ -78,21 +78,17 @@ def playgame(request, gameID):
                     celebrity.save()
                     stat_number = "{0:.0f}".format(round(float(newKCount)/numberGames*100, 2))
                     context_dict['stats'].append(str(stat_number)+'% of people killed!')
-                if request.user.is_authenticated():
-                    # The results are only stored in the database if the user is signed in
-                    result.player = Player.objects.get(user=request.user)
-                    result.game_name = game
-                    result.save()
-            if request.user.is_authenticated:
+            if request.user.is_authenticated():
+                # The results are only stored in the database if the user is signed in
                 game_player = Player.objects.get(user=request.user)
+                result.player = game_player
+                result.game_name = game
+                result.save()
                 play_count = game_player.gamesPlayed
-                print play_count
                 newPlayCount = play_count + 1
                 game_player.gamesPlayed = newPlayCount
-                print game_player.gamesPlayed
                 game_player.save()
         else:
-            print form.errors
             context_dict.update({'form': form})
     else:
         form = ResultForm()
