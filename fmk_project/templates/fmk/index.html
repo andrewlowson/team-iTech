@@ -29,13 +29,15 @@
                 <!--if the user is signed in then allow them to play random game and create a game-->
             {% if user.is_authenticated %}
                 <div id="indexbuttonlayout">
-                <a href="{% url 'random_game' %}" class="btn btn-primary">Random Game</a>
-                <a href="/fmk/create_a_game" class="btn btn-primary">Create Game</a>
+                    <a href="{% url 'random_game' %}" class="btn btn-primary">Random Game</a>
+                 <a href="{% url 'add_game' %}" class="btn btn-primary">Create Game</a>
                         <!--otherwise just allow them to play random game-->
-            {% else %}
-                <a href="{% url 'random_game' %}" class="btn btn-primary">Random Game</a>
-                <p>&emsp;Sign in to create your own games and add a celebrity</p>
                 </div>
+            {% else %}
+                <div id="indexbuttonlayout">
+                    <a href="{% url 'random_game' %}" class="btn btn-primary">Random Game</a>
+                </div>
+            <p>&emsp;Sign in to create your own games and add a celebrity</p>
             {% endif %}
         </div>
 

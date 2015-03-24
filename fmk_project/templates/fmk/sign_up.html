@@ -4,12 +4,12 @@
 
     {%  if registered %}
         <strong>Congratulations, you have created an account {{ user.username }}</strong> <br>
-        <a href="/fmk/">Return Home</a>
+        <a href="{% url 'index' %}">Return Home</a>
     {% else %}
 
         <h3>Sign Up For Great Features!</h3>
         <div class="form-group">
-            <form id="user_form" method="post" action="/fmk/sign_up/" enctype="multipart/form-data">
+            <form id="user_form" method="post" action="{% url 'sign_up' %}" enctype="multipart/form-data">
 
                 {% csrf_token %}
 

@@ -53,7 +53,7 @@
     <div id="addcelebrityform">
 		<h1>Add New Celebrity</h1>
 
-		<form  action = "/fmk/add_celebrity/" method= "POST" enctype = "multipart/form-data">
+		<form  action = "{% url 'add_celebrity' %}" method= "POST" enctype = "multipart/form-data">
 
 			{% csrf_token %}
 			{% for hiddin in form.hidden_fields %}

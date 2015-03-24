@@ -42,7 +42,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
 
             <p>Or you can have a go yourself </p>
-            <a href="/fmk/play/{{game_id}}" class="btn btn-primary">Play Your Game</a>
+            <a href="{% url 'play_game' game_id %}" class="btn btn-primary">Play Your Game</a>
 			
 			
 
@@ -125,8 +125,8 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
                 <div id="addcontent">
          <p>Can't find the celebrity you are looking for? Add one now!</p>
-                <p><a href="/fmk/add_celebrity/">Add Celebrity</a></p>
-                 <p><a href="/fmk/add_category/">Add Category</a></p>
+                <p><a href="{% url 'add_celebrity' %}">Add Celebrity</a></p>
+                 <p><a href="{% url 'add_category'%}">Add Category</a></p>
                     </div>
                 </div>
             {% endif %}

@@ -32,7 +32,7 @@
         {% endif %}
     </tr>
 
-<form id = "result_form" method='post' action = "/fmk/play/{{game.id}}/">
+<form id = "result_form" method='post' action = "{% url 'play_game' game.id %}/">
 	
 	 {% csrf_token  %}
     <tr>

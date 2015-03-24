@@ -7,7 +7,7 @@
 
 
 
-		<form id = "random_game_form" method='post' action = "/fmk/play/{{game.id}}/">
+		<form id = "random_game_form" method='post' action = "{% url 'play_game' game.id %}">
 			
 			<!--<p>Game {{game.id}}</p>-->
 			
