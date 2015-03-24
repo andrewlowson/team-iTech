@@ -43,10 +43,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
             <p>Or you can have a go yourself </p>
             <a href="{% url 'play_game' game_id %}" class="btn btn-primary">Play Your Game</a>
-			
-			
 
-				
             {% else %}
 			{% csrf_token %}
 
@@ -79,7 +76,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
             {% if user.is_authenticated %}
             <div class="jumbotron">
 
-
+</form>
 
 <h2>Search for a Celebrity by Category</h2>
     <script>
@@ -131,7 +128,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                 </div>
             {% endif %}
 
-</form>
+
          {% endif %}	
 		 
 		 

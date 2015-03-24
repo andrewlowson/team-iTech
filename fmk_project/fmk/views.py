@@ -235,7 +235,7 @@ def add_game(request):
             'celebrities': celeb_list,
             'form': form,
         }
-    return render(request, 'fmk/create_a_game.html', {'form': form})
+    return render(request, 'fmk/create_a_game.html', context_dict)
 
 # This view takes in the information from the AddCelebrity form and stores it as a Celebrity object
 def add_celebrity(request):
