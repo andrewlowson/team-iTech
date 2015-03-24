@@ -4,7 +4,7 @@ from fmk.models import *
 from fmk.views import *
 from django.core.urlresolvers import reverse
 
-
+# Test if that for a Player the gamesPlayed variable is positive
 class PlayerModelTests(TestCase):
     def test_ensure_gamesPlayed_are_positive(self):
         # should result True for categories where gamesPlayer are greater or equal to zero
@@ -12,14 +12,14 @@ class PlayerModelTests(TestCase):
         player = Player(user = user)
         self.assertEqual((player.gamesPlayed>=0), True)
 
-
+# Test the the model stores the entered strings correctly 
 class CategoryModelTests(TestCase):
     def test_ensure_categories_can_be_added(self):
         #
         cat = Category(name = 'testCategory', description = 'This is a test category')
         self.assertEqual((cat.name=='testCategory' and cat.description=='This is a test category'), True)
 
-
+# Test that for a newly added celebrity their F|M|K counters are set at zero
 class CelebrityModelTests(TestCase):
     def test_ensure_celebs_can_be_added(self):
         cat = Category(name = 'testCategory', description = 'This is a test category')
@@ -31,7 +31,7 @@ class CelebrityModelTests(TestCase):
         )
         self.assertEqual((celeb.fuck_count==0 and celeb.marry_count==0 and celeb.kill_count==0), True)
 
-
+# Test that for three different celebrities can be successful added into a Game object
 class GameModelTests(TestCase):
     def test_ensure_valid_game_can_be_created(self):
         cat = Category(name = 'testCategory', description = 'This is a test category')
@@ -41,7 +41,7 @@ class GameModelTests(TestCase):
         game = Game(celebrity1=celeb1, celebrity2=celeb2, celebrity3=celeb3)
         self.assertEqual((game.celebrity1 == celeb1 and game.celebrity2 == celeb2 and game.celebrity3 == celeb3), True)
 
-
+# Test that it is possible for 3 distinct user choices to be stored in a Result object
 class ResultModelTests(TestCase):
     def test_ensure_results_can_be_created(self):
         user = User(username = 'testuser', email = 'test@gmail.com', password = 'testpass')
@@ -60,6 +60,7 @@ class ResultModelTests(TestCase):
         )
         self.assertEqual((result.result1=='F' and result.result2=='M' and result.result3=='K'), True)
 
+# Test that if there are celebrities present in the database then the top tables will rank them and return the ordered list
 class TopTablesViewTests(TestCase):
     def test_top_tables_view(self):
 
@@ -105,7 +106,7 @@ class TopTablesViewTests(TestCase):
         num_celebs = len(response.context['kill_list'])
         self.assertEqual(num_celebs, 3)
 
-
+# Test that only three celebrities are selected for the random game
 class RandomGameTest(TestCase):
     def test_random_game(self):
         cat = Category(name = 'testCategory', description = 'This is a test category')
@@ -160,7 +161,7 @@ class RandomGameTest(TestCase):
         self.assertEqual((celeb_list[0]==celeb_list[2]), False)
         self.assertEqual((celeb_list[1]==celeb_list[2]), False)
 
-
+# Test that the PlayGame view works correctly given sample data
 class PlayGameTests(TestCase):
     def test_play_game_test(self):
         # define some basic data

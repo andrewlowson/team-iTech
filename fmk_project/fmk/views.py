@@ -143,7 +143,7 @@ def playgame(request, gameID):
                     result.game_name = game
                     result.save()
             # If the user is authenticated then their games played counter increases by 1
-            if request.user.is_authenticated:
+            if request.user.is_authenticated():
                 game_player = Player.objects.get(user=request.user)
                 play_count = game_player.gamesPlayed
                 print play_count

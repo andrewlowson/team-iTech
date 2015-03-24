@@ -1,5 +1,5 @@
 {% extends 'fmk/base.html' %}
-{% load staticfiles %} <!-- New line -->
+{% load staticfiles %}
     {% block body_block %}
 
     <script>
@@ -37,18 +37,20 @@
   });
   </script>
 
-<div id="addCelebritySearch">
-    <h2>Check our list of celebrities first</h2>
-<div id="project-label">Search by name:</div>
-<img id="project-icon" src="{% static 'images/FMK.png' %}" class="ui-state-default" alt="">
-<input id="project">
-<input type="hidden" id="project-id">
-<p id="project-description"></p>
-</div>
+    <div id="addCelebritySearch">
+        <h2>Check our list of celebrities first</h2>
+        <div id="project-label">
+            Search by name:
+        </div>
+        <img id="project-icon" src="{% static 'images/FMK.png' %}" class="ui-state-default" alt="">
+        <input id="project">
+        <input type="hidden" id="project-id">
+        <p id="project-description"></p>
+    </div>
 
 
 
-<div id="addcelebrityform">
+    <div id="addcelebrityform">
 		<h1>Add New Celebrity</h1>
 
 		<form  action = "/fmk/add_celebrity/" method= "POST" enctype = "multipart/form-data">
@@ -66,15 +68,12 @@
 				</br>
 			{% endfor %}
 
-			<div class="col-lg-5 col-lg-offset-2">
-                <input type = "submit" class="btn btn-primary" name="submit" value="Create Celebrity"/>
-            </div>
-            <br>
-            <br>
+		<div class="col-lg-5 col-lg-offset-2">
+            <input type = "submit" class="btn btn-primary" name="submit" value="Create Celebrity"/>
+        </div>
+        <br>
+        <br>
 		</form>
+    </div>
 
-</div>
-
-
-
-	{% endblock %}
+{% endblock %}

@@ -42,18 +42,18 @@
     </div>
 <div>
         {% if user.is_authenticated %}
-        <!--CSS layout for the twitter feed on the index page-->
-        <div id="indextwitterlayout">
-                {% else %}
-                <div id="indextwitterlayoutnouser">
-                        {% endif %}
-                <!--twitter API for the main timeline feed-->
-            <a class="twitter-timeline" href="https://twitter.com/search?q=%23fmkitech%20OR%20%40fmkitech"
+            <!--CSS layout for the twitter feed on the index page-->
+            <div id="indextwitterlayout">
+        {% else %}
+            <div id="indextwitterlayoutnouser">
+        {% endif %}
+        <!--twitter API for the main timeline feed-->
+        <a class="twitter-timeline" href="https://twitter.com/search?q=%23fmkitech%20OR%20%40fmkitech"
                data-widget-id="575301081732878337">Tweets about #fmkitech OR @fmkitech</a> <script>!function(d,s,id)
         {var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id))
         {js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore
         (js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
-        </div>
+            </div>
+            </div>
 
 {% endblock %}
