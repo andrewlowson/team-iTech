@@ -209,7 +209,7 @@ def playgame(request, gameID):
             context_dict['celebrities'].append(celebrity)
     return render(request, 'fmk/playgame.html', context_dict)
 
-# This view takens in information from the CreateGame form and stores it as a Game object
+# This view takes in information from the CreateGame form and stores it as a Game object
 def add_game(request):
     # if the request method is a POST
     if request.method == 'POST':

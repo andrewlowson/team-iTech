@@ -64,7 +64,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{% url 'random_game' %}">Random Game</a></li>
                                 {% if user.is_authenticated %}
-                                <li><a href="/fmk/create_a_game">Create a Game</a></li>
+                                <li><a href="{% url 'add_game' %}">Create a Game</a></li>
                                 {% endif %}
                             </ul>
                         </li>
@@ -73,7 +73,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{% url 'add_celebrity' %}">Add Celebrity</a></li>
-                                <li><a href="/fmk/add_category">Add Category</a></li>
+                                <li><a href="{% url 'add_category' %}">Add Category</a></li>
                             </ul>
                         </li>
                         {% endif %}
@@ -81,8 +81,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/fmk/about/">About</a></li>
-                                <li><a href="/fmk/contact_us/">Contact Us</a></li>
+                                <li><a href="{% url 'about'%}">About</a></li>
+                                <li><a href="{% url 'contact_us'%}">Contact Us</a></li>
                                 
                             </ul>
                         </li>
@@ -129,7 +129,7 @@
               <li><a href="{% url 'sign_in' %}">Sign in</a></li>
               <li><a href="{% url 'sign_up' %}">Register</a></li>
               {% endif %}
-              <li><a href="/fmk/contact_us">Contact Us</a></li>
+              <li><a href="{% url 'contact_us'%}">Contact Us</a></li>
             </ul>
 
           </div>

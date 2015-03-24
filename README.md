@@ -56,7 +56,7 @@ $ python manage.py runserver  // Run start the server and navigate to the home p
 
 ————————————————————————————————————————————————————————————————————————————————————————————————————————-
 
-###Application can be reached at: LINK
+###Application can be reached at: fmkitech.pythonanywhere.com
 
 ###Test Users Credentials: 
 

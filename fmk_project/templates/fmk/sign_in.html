@@ -3,7 +3,7 @@
 {% load staticfiles %} <!-- New line -->
 {% block body_block %}
 <h1>Please Sign In</h1>
-<form class="form-horizontal" id="login_form" method="post" action="/fmk/sign_in/">
+<form class="form-horizontal" id="login_form" method="post" action="{% url 'sign_in' %}">
     <fieldset>
         {% csrf_token %}
         <label for="username" class="col-lg-2 control-label">Username</label>
