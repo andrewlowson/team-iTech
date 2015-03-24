@@ -33,9 +33,9 @@ See Requirements.txt for packages to install using the command 'pip install...'
 
 ###Work on Environment
 
-$ workon rango
+$ workon environmentname
 
-(rango)$
+(environmentname)$
 
 The command 'lsvirtualenv' can be used if you have more than one virtual environment created
 
@@ -72,6 +72,8 @@ If the player creates an account or is signed in, then they can access other fea
 The application also contains top tables that display the celebrities that have been fucked, married, and killed the most. The hall of shame table shows which users have played the game the most. 
 
 Players that have accounts can also add celebrities to the game that are not already in the database by supplying their name and a photo of that celebrity, as well as giving them a defined category. If the category does not exit, the player may create it also, so it can be used my other players.
+
+Players can also use dynamic search boxes to search for celebrities by categories in the create a game page, and in the add a celebrity page, so that the player can check if the celebrity already exists.
 
 ————————————————————————————————————————————————————————————————————————————————————————————————————————-
 ###Social Media 

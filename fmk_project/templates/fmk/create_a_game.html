@@ -65,19 +65,6 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				</br>
 			{% endfor %}
 
-            <ul class="nav nav-list">
-                <li class="nav-header">Find a Celebrity</li>
-                <form>
-
-                    <li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
-                </form>
-            </ul>
-
-            {% if celebrity_list %}
-                <div id="celebrities">
-                    {% include 'fmk/celebrity_list.html' with celebrity_list=celebrity_list %}
-                </div>
-            {% endif %}
 
 
             </br>
@@ -91,9 +78,56 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
             <br>
             {% if user.is_authenticated %}
             <div class="jumbotron">
-                <p>Can't find the celebrity you are looking for? Add one now!</p>
+
+
+
+<h2>Search for a Celebrity by Category</h2>
+    <script>
+  $(function() {
+    var projects = [
+        {% for celebrity in celebrities %}
+        {
+            value: "{{celebrity.category}}",
+            label: "{{celebrity.category}}",
+            desc: "{{celebrity}}",
+            icon: "{{celebrity.picture.url}}"
+          },
+        {% endfor %}
+    ];
+    $( "#project" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        $( "#project-id" ).val( ui.item.value );
+        $( "#project-description" ).html( ui.item.desc )
+        $( "#project-icon" ).attr( "src", ui.item.icon );
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+        .appendTo( ul );
+    };
+  });
+  </script>
+
+<div id="project-label">Search by category:</div>
+<img id="project-icon" src="{% static 'images/FMK.png' %}" class="ui-state-default" alt="">
+<input id="project">
+<input type="hidden" id="project-id">
+<p id="project-description"></p>
+
+                <div id="addcontent">
+         <p>Can't find the celebrity you are looking for? Add one now!</p>
                 <p><a href="/fmk/add_celebrity/">Add Celebrity</a></p>
                  <p><a href="/fmk/add_category/">Add Category</a></p>
+                    </div>
                 </div>
             {% endif %}
 

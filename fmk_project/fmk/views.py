@@ -177,6 +177,11 @@ def add_game(request):
             print form.errors
     else:
         form = CreateGameForm()
+        celeb_list = Celebrity.objects.all()
+        context_dict = {
+            'celebrities': celeb_list,
+            'form': form,
+        }
     return render(request, 'fmk/create_a_game.html', {'form': form})
 
 # This view takes in the information from the AddCelebrity form and stores it as a Celebrity object
@@ -195,7 +200,12 @@ def add_celebrity(request):
             print form.errors
     else:
         form = AddCelebrityForm()
-    return render(request, 'fmk/add_celebrity.html', {'form': form})
+        celeb_list = Celebrity.objects.all()
+        context_dictionary = {
+            'celebrities': celeb_list,
+            'form': form,
+        }
+    return render(request, 'fmk/add_celebrity.html', context_dictionary)
   
 # This view takes in the information from the AddCategory form and stores it as a Category object
 def add_category(request):
