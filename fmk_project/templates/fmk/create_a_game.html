@@ -13,12 +13,12 @@
 
             <div class="form-group">
             <label class="control-label" for="focusedInput">Game Link</label>
-            <input class="form-control" id="focusedInput" type="text" value="fmk/play/{{ game_id }}">
+            <input class="form-control" id="focusedInput" type="text" value="{% url 'play_game' game_id %}">
 <br>
                 <p>Tweet your game to @fmkitech!</p>
                 <a class="twitter-hashtag-button"
                    data-size="large"
-             href="https://twitter.com/intent/tweet?button_hashtag=fmkitech&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20fmk/play/{{ game_id }}"
+             href="https://twitter.com/intent/tweet?button_hashtag=fmkitech&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20{% url 'play_game' game_id %}"
              data-related="twitter">
             Share Game
             </a>
@@ -31,7 +31,7 @@
                 <p>Tweet your game to a friend!</p>
                 <a class="twitter-mention-button"
                    data-size="large"
-   href="https://twitter.com/intent/tweet?screen_name=friend&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20fmk/play/{{ game_id }}">
+   href="https://twitter.com/intent/tweet?screen_name=friend&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20{% url 'play_game' game_id %}">
 Tweet to friend
 </a>
 <script>
