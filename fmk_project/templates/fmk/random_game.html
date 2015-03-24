@@ -14,53 +14,47 @@
 			{% csrf_token %}
 
 <div>
-<table class="table table-striped table-hover gamebuttons">
-  <thead>
-    <tr class="info gamebuttons">
+    <table class="table table-striped table-hover gamebuttons">
+        <thead>
+            <tr class="info gamebuttons">
+                <th class=" gamebuttons">{{random_celebs.0}}</th>
+                <th class=" gamebuttons">{{random_celebs.1}}</th>
+                <th class=" gamebuttons">{{random_celebs.2}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for celebrity in random_celebs %}
+                    <td class="gamebuttons"><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for field in form.visible_fields %}
+                    <td class="gamebuttons">
+                        {{ field.errors }}
+                        {{ field.help_text }}
+                        {{ field }}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr class="info">
+                <td></td>
+                <td class="gamebuttons"><input type = "submit" class="btn btn-primary " name = "submit" value = "Submit" /></td>
+                <td></td>
+            </tr>
 
-      <th class=" gamebuttons">{{random_celebs.0}}</th>
-      <th class=" gamebuttons">{{random_celebs.1}}</th>
-      <th class=" gamebuttons">{{random_celebs.2}}</th>
+        </tbody>
+    </table>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        {% for celebrity in random_celebs %}
-            <td class="gamebuttons"><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
-        {% endfor %}
-    </tr>
-    <tr>
-        {% for field in form.visible_fields %}
-            <td class="gamebuttons">
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
-            </td>
-        {% endfor %}
-    </tr>
-    <tr class="info">
-      <td></td>
-      <td class="gamebuttons"><input type = "submit" class="btn btn-primary " name = "submit" value = "Submit" /></td>
-      <td></td>
-    </tr>
-
-  </tbody>
-</table>
-
-<a class="twitter-share-button" href="https://twitter.com/share"
-  data-related="twitterdev"
-  data-size="large"
-  data-count="none">
-Tweet
-</a>
-<script>
-window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-</script>
-     </div>
-
-
-
+    <a class="twitter-share-button" href="https://twitter.com/share"
+    data-related="twitterdev"
+    data-size="large"
+    data-count="none">
+        Tweet
+    </a>
+    <script>
+        window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+    </script>
 </div>
 
 			<!--Then the template splits it-->
@@ -83,5 +77,4 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 			<!--<td><input type = "submit" name = "submit" value = "Submit" /></td></tr></table>-->
 		<!--</form>-->
 
-
-      {% endblock %}
+{% endblock %}

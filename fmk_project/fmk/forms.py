@@ -4,20 +4,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 
-class AddCelebrityForm (forms.ModelForm):
-    first_name = forms.CharField(max_length=60, help_text="Enter the first name of the celebrity.")
-    last_name = forms.CharField(max_length=60, help_text="Enter the last name of the celebrity.")
-    category = forms.ModelChoiceField(
-        queryset=Category.objects.all(),
-        help_text="Assign a category to the celebrity."
-    )
-    picture = forms.ImageField();
-
-    class Meta:
-        model = Celebrity
-        fields = ('first_name', 'last_name', 'category', 'picture')
-
-
+# The form that is used to create a user account
 class SignUpForm (forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
@@ -25,20 +12,8 @@ class SignUpForm (forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password')
 
-
-class AddCategoryForm (forms.ModelForm):
-    name = forms.CharField(max_length=60, help_text="Enter the name of the category.")
-    description = forms.CharField(
-        widget=forms.Textarea,
-        max_length=300,
-        help_text="Enter a description of the category."
-    )
-
-    class Meta:
-        model = Category
-        fields = ('name', 'description')
-
-
+# The form that is used to take in the players choices of celebrities
+# These will then be made into a game
 class CreateGameForm (forms.ModelForm):
     celebrity1 = forms.ModelChoiceField(
         queryset=Celebrity.objects.all(),
@@ -63,6 +38,7 @@ class CreateGameForm (forms.ModelForm):
         choice1 = cleaned_data.get('celebrity1')
         choice2 = cleaned_data.get('celebrity2')
         choice3 = cleaned_data.get('celebrity3')
+        # Ensures that the celebrity choices that are made are all distinct
         msg = "Each celebrity can only be used once"
         if choice1 == choice2 and choice3 == choice2:
             self.add_error('celebrity1', msg)
@@ -78,7 +54,8 @@ class CreateGameForm (forms.ModelForm):
             self.add_error('celebrity3', msg)
             self.add_error('celebrity1', msg)
 
-
+# Takes in the choices that the player has made in a game either F, M or K
+# This will be saved as a Result object with the appropriate Game id
 class ResultForm (forms.ModelForm):
 
     result1 = forms.ChoiceField(
@@ -108,6 +85,7 @@ class ResultForm (forms.ModelForm):
         choice1 = cleaned_data.get('result1')
         choice2 = cleaned_data.get('result2')
         choice3 = cleaned_data.get('result3')
+        # Ensures that the player has selected one of each F, M and K
         msg = "F,M and K can only be used once"
         if choice1 == choice2 and choice3 == choice2:
             self.add_error('result1', msg)
@@ -123,3 +101,32 @@ class ResultForm (forms.ModelForm):
             self.add_error('result3', msg)
             self.add_error('result1', msg)
 
+# Allows a registered player to add a celebrity to the game
+# This is then stored as a celebrity object in the database
+class AddCelebrityForm (forms.ModelForm):
+    first_name = forms.CharField(max_length=60, help_text="Enter the first name of the celebrity.")
+    last_name = forms.CharField(max_length=60, help_text="Enter the last name of the celebrity.")
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        help_text="Assign a category to the celebrity."
+    )
+    picture = forms.ImageField();
+
+    class Meta:
+        model = Celebrity
+        fields = ('first_name', 'last_name', 'category', 'picture')
+
+
+# Allows a registered player to add a celebrity category (Music/Film etc) to the game
+# This is then stored as a Category object in the database
+class AddCategoryForm (forms.ModelForm):
+    name = forms.CharField(max_length=60, help_text="Enter the name of the category.")
+    description = forms.CharField(
+        widget=forms.Textarea,
+        max_length=300,
+        help_text="Enter a description of the category."
+    )
+
+    class Meta:
+        model = Category
+        fields = ('name', 'description')
