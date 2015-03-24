@@ -43,7 +43,7 @@ def top_tables(request):
 
 
 def playgame(request, gameID):
-    context_dict = {'game':[], 'stats':[], 'celebrities':[]}
+    context_dict = {'game':[], 'stats':[], 'celebrities':[], 'tweets':[]}
     game = Game.objects.get(id = gameID)
     # context_dict['game'].append(game)
     celeb_id_list = [game.celebrity1, game.celebrity2, game.celebrity3]
@@ -62,6 +62,7 @@ def playgame(request, gameID):
                     newFCount = fcount+1
                     celebrity.fuck_count = newFCount
                     celebrity.save()
+                    context_dict['tweets'].append(str(celebrity)+' (F)')
                     stat_number = "{0:.0f}".format(round(float(newFCount)/numberGames*100, 2))
                     context_dict['stats'].append(str(stat_number)+'% of people fucked!')
                 elif result_list[index]=='M':
@@ -69,6 +70,7 @@ def playgame(request, gameID):
                     newMCount = mcount+1
                     celebrity.marry_count=newMCount
                     celebrity.save()
+                    context_dict['tweets'].append(str(celebrity)+' (M)')
                     stat_number = "{0:.0f}".format(round(float(newMCount)/numberGames*100, 2))
                     context_dict['stats'].append(str(stat_number)+'% of people married!')
                 elif result_list[index]=='K':
@@ -76,6 +78,7 @@ def playgame(request, gameID):
                     newKCount = kcount+1
                     celebrity.kill_count=newKCount
                     celebrity.save()
+                    context_dict['tweets'].append(str(celebrity)+' (K)')
                     stat_number = "{0:.0f}".format(round(float(newKCount)/numberGames*100, 2))
                     context_dict['stats'].append(str(stat_number)+'% of people killed!')
             if request.user.is_authenticated():
