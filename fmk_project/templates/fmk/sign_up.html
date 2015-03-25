@@ -14,7 +14,7 @@
                 {% csrf_token %}
 
             Username: {{user_form.username }}    <br>
-            Email add :    {{user_form.email}}        <br>
+            Email:    {{user_form.email}}        <br>
             Password : {{user_form.password}}     <br>
                 {{user_form.errors}}
             <input type = "submit" class="btn btn-primary" name="submit" value="Register"/>

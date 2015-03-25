@@ -77,17 +77,17 @@ class ResultForm (forms.ModelForm):
         # for each result field the user can select F,M or K
         choices= [('F', 'Fuck'),
             ('M', 'Marry'),
-            ('K', 'KIll')]
+            ('K', 'Kill')]
     )
     result2 = forms.ChoiceField(
         choices=[('F', 'Fuck'),
             ('M', 'Marry'),
-            ('K', 'KIll')]
+            ('K', 'Kill')]
     )
     result3 = forms.ChoiceField(
         choices=[('F', 'Fuck'),
             ('M', 'Marry'),
-            ('K', 'KIll')]
+            ('K', 'Kill')]
     )
 
 
