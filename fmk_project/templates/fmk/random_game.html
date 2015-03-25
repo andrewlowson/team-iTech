@@ -2,50 +2,107 @@
     {% load staticfiles %}
     {% block body_block %}
 	
-		<!--Andy, this is the start of what I had-->
-		
 
 
 
-		<form id = "random_game_form" method='post' action = "{% url 'play_game' game.id %}">
+<form id = "random_game_form" method='post' action = "{% url 'play_game' game.id %}">
 			
-			<!--<p>Game {{game.id}}</p>-->
 			
-			{% csrf_token %}
+			
+{% csrf_token %}
 
 <div>
     <table class="table table-striped table-hover gamebuttons">
-        <thead>
-            <tr class="info gamebuttons">
-                <th class=" gamebuttons">{{random_celebs.0}}</th>
-                <th class=" gamebuttons">{{random_celebs.1}}</th>
-                <th class=" gamebuttons">{{random_celebs.2}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                {% for celebrity in random_celebs %}
-                    <td class="gamebuttons"><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
-                {% endfor %}
-            </tr>
-            <tr>
-                {% for field in form.visible_fields %}
-                    <td class="gamebuttons">
-                        {{ field.errors }}
-                        {{ field.help_text }}
-                        {{ field }}
-                    </td>
-                {% endfor %}
-            </tr>
-            <tr class="info">
-                <td></td>
-                <td class="gamebuttons"><input type = "submit" class="btn btn-primary " name = "submit" value = "Submit" /></td>
-                <td></td>
-            </tr>
+    <thead>
+        <tr class="info">
+            <th class="gamebuttons">{{random_celebs.0}}</th>
+        </tr>
+    </thead>
+    <tbody>
 
-        </tbody>
+        <tr>
+            <td class="gamebuttons"><img src ="{{random_celebs.0.picture.url}}" alt="{{random_celebs.0}}"></td>  
+        </tr>
+
+        <tr>
+            <td class="gamebuttons">
+                {{form.visible_fields.0}}
+                {{form.visible_fields.0.errors}}
+                {{form.visible_fields.0.help_text}}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="gamebuttons">{{stats.0}}</td>
+        </tr>
+    </thread>
     </table>
+</div>
 
+<div>
+    <table class="table table-striped table-hover gamebuttons">
+    <thead>
+        <tr class="info">
+            <th class=" gamebuttons">{{random_celebs.1}}</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td class="gamebuttons"><img src ="{{random_celebs.1.picture.url}}" alt="{{random_celebs.1}}"></td>  
+        </tr>
+
+        <tr>
+            <td class="gamebuttons">
+                {{form.visible_fields.1}}
+                {{form.visible_fields.1.errors}}
+                {{form.visible_fields.1.help_text}}
+            </td>
+        </tr>
+
+    </thread>
+    </table>
+</div>
+
+<div>
+    <table class="table table-striped table-hover gamebuttons">
+    <thead>
+        <tr class="info">
+            <th class="gamebuttons">{{random_celebs.2}}</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td class="gamebuttons"><img src ="{{random_celebs.2.picture.url}}" alt="{{random_celebs.2}}"></td>  
+        </tr>
+
+        <tr>
+            <td class="gamebuttons">
+                {{form.visible_fields.2}}
+                {{form.visible_fields.2.errors}}
+                {{form.visible_fields.2.help_text}}
+            </td>
+        </tr>
+
+    </thread>
+    </table>
+</div>
+
+<div>
+<table class="table table-striped table-hover submitbuttons">
+    <tr class="info">
+        <td></td>
+
+        <td class="gamebuttons"><input type = "submit" class="btn btn-primary " name = "submit" value = "Submit" /></td>
+
+        <td></td>
+    </tr>
+</table>
+</div>
+</form>
+
+<div>
     <a class="twitter-share-button" href="https://twitter.com/share"
     data-related="twitterdev"
     data-size="large"

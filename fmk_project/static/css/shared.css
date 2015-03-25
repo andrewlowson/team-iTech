@@ -33,8 +33,8 @@
 
 
 table.gamebuttons{
-    width:60%;
-
+    width:33%;
+    float: left;
 
 }
 
@@ -47,6 +47,28 @@ td.gamebuttons{
 }
 
 th.gamebuttons{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    align:center;
+    width:100%;
+}
+
+table.submitbuttons{
+    width: 99%;
+    clear: both;
+
+}
+
+td.submitbuttons{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    align:center;
+    width:100%;
+}
+
+th.submitbuttons{
     margin-left: 25%;
     margin-right: 25%;
     text-align: center;

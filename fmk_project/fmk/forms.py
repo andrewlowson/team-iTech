@@ -87,7 +87,7 @@ class ResultForm (forms.ModelForm):
     result3 = forms.ChoiceField(
         choices=[('F', 'Fuck'),
             ('M', 'Marry'),
-            ('K', 'KIll')]
+            ('K', 'Kill')]
     )
 
 

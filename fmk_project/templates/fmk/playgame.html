@@ -11,63 +11,108 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<form id = "result_form" method='post' action = "{% url 'play_game' game.id %}/">
+    {% csrf_token  %}
 
 {% if celebrities %}
+<div>
     <table class="table table-striped table-hover gamebuttons">
     <thead>
         <tr class="info">
-        {% for celebrity in celebrities %}
-		    <th class=" gamebuttons">{{celebrity}}</th>
-	    {% endfor %}
+            <th class=" gamebuttons">{{celebrities.0}}</th>
         </tr>
     </thead>
     <tbody>
 
-    <tr>
-        {% for celebrity in celebrities %}
-            <td class=" gamebuttons"><img src ="{{celebrity.picture.url}}" alt="{{celebrity}}"></td>
+        <tr>
+            <td class=" gamebuttons"><img src ="{{celebrities.0.picture.url}}" alt="{{celebrities.0}}"></td>  
+        </tr>
 
-        {% endfor %}
+            <td class="gamebuttons">
+                {{form.visible_fields.0}}
+                {{form.visible_fields.0.errors}}
+                {{form.visible_fields.0.help_text}}
+            </td>
 
-        {% endif %}
-    </tr>
+        <tr>
+            <td class=" gamebuttons">{{stats.0}}</td>
+        </tr>
+    </thread>
+    </table>
+</div>
 
-<form id = "result_form" method='post' action = "{% url 'play_game' game.id %}/">
-	
-	 {% csrf_token  %}
-    <tr>
-    {% for field in form.visible_fields %}
-        <td class=" gamebuttons">{{field}}</td>
-    {% endfor %}
-    </tr>
-	<tr>
-    {% for field in form.visible_fields %}
-        <td class=" gamebuttons">{{field.errors}}</td>
-    {% endfor %}
-    </tr>
+<div>
+    <table class="table table-striped table-hover gamebuttons">
+    <thead>
+        <tr class="info">
+            <th class=" gamebuttons">{{celebrities.1}}</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    <tr class="active">
-	{% for statistic in stats %}
-        <td class=" gamebuttons">{{statistic}}</td>
-    {% endfor %}
+        <tr>
+            <td class=" gamebuttons"><img src ="{{celebrities.1.picture.url}}" alt="{{celebrities.1}}"></td>  
+        </tr>
 
-    </tr>
+            <td class="gamebuttons">
+                {{form.visible_fields.1}}
+                {{form.visible_fields.1.errors}}
+                {{form.visible_fields.1.help_text}}
+            </td>
+
+        <tr>
+            <td class=" gamebuttons">{{stats.1}}</td>
+        </tr>
+    </thread>
+    </table>
+</div>
+
+<div>
+    <table class="table table-striped table-hover gamebuttons">
+    <thead>
+        <tr class="info">
+            <th class=" gamebuttons">{{celebrities.2}}</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td class=" gamebuttons"><img src ="{{celebrities.2.picture.url}}" alt="{{celebrities.2}}"></td>  
+        </tr>
+
+            <td class="gamebuttons">
+                {{form.visible_fields.2}}
+                {{form.visible_fields.2.errors}}
+                {{form.visible_fields.2.help_text}}
+            </td>
+
+        <tr>
+            <td class=" gamebuttons">{{stats.2}}</td>
+        </tr>
+    </thread>
+    </table>
+</div>
+{% endif %}
+<div>
+<table class="table table-striped table-hover submitbuttons">
     <tr class="info">
         <td></td>
 
-        <td class=" gamebuttons">
-	    {% if form %}
-            <input type="submit" class="btn btn-primary gamebuttons" name="submit" value="Submit">
-	    {% endif %}
-        </form>	
+        <td class=" submitbuttons">
+        {% if form %}
+            <input type="submit" class="btn btn-primary submitbuttons" name="submit" value="Submit">
+        {% endif %}
 
-        <a href="{% url 'random_game' %}" class="btn btn-primary gamebuttons">Play Again</a></td>
+        <a href="{% url 'random_game' %}" class="btn btn-primary submitbuttons">Play Again</a></td>
 
         <td></td>
     </tr>
-
-  </tbody>
 </table>
+</div>
+</form>
+
+
+
 
 {% if tweets %}
 	<p>Tweet who you chose to FMK!</p>
