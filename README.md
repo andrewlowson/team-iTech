@@ -1,5 +1,5 @@
 # team-iTech
-Group repository for Internet Technologies
+Group repository for Internet Technology
 
 
 ##Contact Information
@@ -44,9 +44,11 @@ The command 'lsvirtualenv' can be used if you have more than one virtual environ
 
 $ python manage.py syncdb // Setup the database
 
+When creating superuser, do not create one called testuser, as this is hardcoded into the population script.
+
 $ python manage.py migrate // Migrate changes to the database. Before this, you may have to run the 'python manage.py makemigrations' command first
 
-$ python populate_rango.py // Run the population script. You may need to run the migrate command again.
+$ python populate_fmk.py // Run the population script. You may need to run the migrate command again.
 
 ### Run Server
 
@@ -60,8 +62,9 @@ $ python manage.py runserver  // Run start the server and navigate to the home p
 
 ###Test Users Credentials: 
 
-Username: testuser
-Password: testuser
+Username: testuser 
+
+Password: testpass
 
 ###About The Application
 
